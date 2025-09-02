@@ -1,0 +1,9 @@
+{
+  "framework": "hono",
+  "build_command": "npm run build",
+  "build_output_directory": "dist",
+  "environment_variables": {
+    "NODE_VERSION": "18",
+    "NPM_FLAGS": "--legacy-peer-deps"
+  }
+}

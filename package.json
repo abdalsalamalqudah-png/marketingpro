@@ -1,13 +1,14 @@
 {
   "name": "marketing-pro",
+  "version": "1.0.0",
+  "description": "Marketing Pro - Complete SaaS marketing automation platform",
   "type": "module",
+  "main": "dist/_worker.js",
   "scripts": {
     "dev": "vite",
-    "dev:sandbox": "wrangler pages dev dist --ip 0.0.0.0 --port 3000",
-    "dev:d1": "wrangler pages dev dist --d1=marketing-pro-production --local --ip 0.0.0.0 --port 3000",
     "build": "vite build",
-    "pages:build": "vite build",
     "preview": "wrangler pages dev dist",
+    "pages:dev": "wrangler pages dev dist --ip 0.0.0.0 --port 3000",
     "pages:deploy": "npm run build && wrangler pages deploy dist",
     "deploy:prod": "npm run build && wrangler pages deploy dist --project-name marketing-pro",
     "cf-typegen": "wrangler types --env-interface CloudflareBindings",

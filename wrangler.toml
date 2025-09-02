@@ -1,9 +1,0 @@
-# Cloudflare Pages Configuration
-# This file helps Cloudflare understand this is a Pages project, not Workers
-
-name = "marketing-pro"
-compatibility_date = "2025-09-02"
-compatibility_flags = ["nodejs_compat"]
-
-# This is a Pages project - build output goes to dist/
-pages_build_output_dir = "dist"
