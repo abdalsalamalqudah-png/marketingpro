@@ -1,5 +1,14 @@
 {
+  "$schema": "node_modules/wrangler/config-schema.json",
   "name": "marketing-pro",
-  "compatibility_date": "2025-09-02",
-  "send_metrics": false
+  "compatibility_date": "2025-09-02", 
+  "send_metrics": false,
+  "pages_build_output_dir": "./dist",
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "marketing-pro-production", 
+      "database_id": "94d98361-7ba8-4381-b1ce-5e0798ea51c8"
+    }
+  ]
 }
