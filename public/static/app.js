@@ -29,11 +29,32 @@ const app = {
     // Check if user is authenticated
     async checkAuth() {
         try {
+            // First check localStorage for user data
+            const storedUser = localStorage.getItem('user');
+            const storedTeam = localStorage.getItem('team');
+            
+            if (storedUser && storedTeam) {
+                // Use stored data without API call
+                this.user = JSON.parse(storedUser);
+                this.team = JSON.parse(storedTeam);
+                console.log('Using stored authentication data');
+                return;
+            }
+            
+            // If no stored data, try API call
             const response = await axios.get('/api/auth/me');
             this.user = response.data.user;
             this.team = response.data.team;
+            
+            // Store the data for future use
+            localStorage.setItem('user', JSON.stringify(this.user));
+            localStorage.setItem('team', JSON.stringify(this.team));
+            
         } catch (error) {
             console.log('Not authenticated, redirecting to login');
+            // Clear any stored data
+            localStorage.removeItem('user');
+            localStorage.removeItem('team');
             window.location.href = '/login';
         }
     },
