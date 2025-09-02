@@ -209,12 +209,76 @@ simpleAuth.get('/test', async (c) => {
 
 // Get current user
 simpleAuth.get('/me', async (c) => {
-  return c.json({ error: 'Not authenticated' }, 401);
+  try {
+    // Check for auth token in cookies
+    const token = c.req.cookie('auth_token');
+    
+    if (!token) {
+      return c.json({ error: 'Not authenticated' }, 401);
+    }
+
+    // Decode and validate token
+    let decoded;
+    try {
+      decoded = JSON.parse(atob(token));
+    } catch (error) {
+      return c.json({ error: 'Invalid token' }, 401);
+    }
+
+    if (!decoded.user_id || !decoded.email) {
+      return c.json({ error: 'Invalid token format' }, 401);
+    }
+
+    // Check if database is available
+    if (!c.env.DB) {
+      return c.json({ error: 'Database not available' }, 503);
+    }
+
+    // Get user with team info
+    const user = await c.env.DB.prepare(`
+      SELECT u.*, t.name as team_name, t.slug as team_slug, t.plan as team_plan
+      FROM users u
+      JOIN teams t ON u.team_id = t.id
+      WHERE u.id = ? AND u.email = ?
+    `).bind(decoded.user_id, decoded.email).first();
+
+    if (!user) {
+      return c.json({ error: 'User not found' }, 401);
+    }
+
+    return c.json({
+      success: true,
+      user: {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        role: user.role,
+        team_id: user.team_id
+      },
+      team: {
+        id: user.team_id,
+        name: user.team_name,
+        slug: user.team_slug,
+        plan: user.team_plan
+      }
+    });
+
+  } catch (error) {
+    console.error('Me endpoint error:', error);
+    return c.json({ error: 'Authentication check failed' }, 500);
+  }
 });
 
 // Logout
 simpleAuth.post('/logout', async (c) => {
-  return c.json({ success: true, message: 'Logged out' });
+  // Clear the auth cookie
+  setCookie(c, 'auth_token', '', {
+    httpOnly: true,
+    maxAge: 0, // Delete the cookie
+    path: '/'
+  });
+  
+  return c.json({ success: true, message: 'Logged out successfully' });
 });
 
 export default simpleAuth;
