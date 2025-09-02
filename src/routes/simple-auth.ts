@@ -220,9 +220,12 @@ simpleAuth.get('/me', async (c) => {
     // Decode and validate token
     let decoded;
     try {
+      console.log('Attempting to decode token:', token);
       decoded = JSON.parse(atob(token));
+      console.log('Decoded token:', decoded);
     } catch (error) {
-      return c.json({ error: 'Invalid token' }, 401);
+      console.error('Token decode error:', error);
+      return c.json({ error: 'Invalid token format', debug: error.message }, 401);
     }
 
     if (!decoded.user_id || !decoded.email) {
