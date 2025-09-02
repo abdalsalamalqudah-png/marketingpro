@@ -83,10 +83,13 @@ simpleAuth.post('/register', async (c) => {
       iat: Date.now()
     }));
 
-    // Set cookie
+    // Set cookie with cross-domain support
     setCookie(c, 'auth_token', token, {
       httpOnly: true,
-      maxAge: 24 * 60 * 60
+      maxAge: 24 * 60 * 60,
+      sameSite: 'Lax',
+      secure: true,
+      path: '/'
     });
 
     return c.json({
@@ -156,7 +159,10 @@ simpleAuth.post('/login', async (c) => {
 
     setCookie(c, 'auth_token', token, {
       httpOnly: true,
-      maxAge: 24 * 60 * 60
+      maxAge: 24 * 60 * 60,
+      sameSite: 'Lax',
+      secure: true,
+      path: '/'
     });
 
     return c.json({
@@ -278,6 +284,8 @@ simpleAuth.post('/logout', async (c) => {
   setCookie(c, 'auth_token', '', {
     httpOnly: true,
     maxAge: 0, // Delete the cookie
+    sameSite: 'Lax',
+    secure: true,
     path: '/'
   });
   

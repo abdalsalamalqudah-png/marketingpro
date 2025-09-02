@@ -9,8 +9,13 @@ import type { Bindings } from './types'
 
 const app = new Hono<{ Bindings: Bindings }>()
 
-// Enable CORS for frontend-backend communication
-app.use('/api/*', cors())
+// Enable CORS for frontend-backend communication with custom domains
+app.use('/api/*', cors({
+  origin: ['https://marketingpro2.pages.dev', 'https://thinkndigital.com'],
+  credentials: true,
+  allowMethods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowHeaders: ['Content-Type', 'Authorization', 'Cookie']
+}))
 
 // Serve static files from public directory
 app.use('/static/*', serveStatic({ root: './public' }))
