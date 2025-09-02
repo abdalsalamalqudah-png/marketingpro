@@ -27,7 +27,14 @@ document.getElementById('loginForm')?.addEventListener('submit', async (e) => {
         }
     } catch (error) {
         console.error('Login error:', error);
-        showError(errorDiv, error.response?.data?.error || 'حدث خطأ في تسجيل الدخول');
+        const errorData = error.response?.data;
+        
+        if (errorData?.setup_instructions) {
+            // Database not configured error
+            showSetupError(errorDiv, errorData);
+        } else {
+            showError(errorDiv, errorData?.error || 'حدث خطأ في تسجيل الدخول');
+        }
     }
 });
 
@@ -67,7 +74,14 @@ document.getElementById('registerForm')?.addEventListener('submit', async (e) =>
         }
     } catch (error) {
         console.error('Register error:', error);
-        showError(errorDiv, error.response?.data?.error || 'حدث خطأ في إنشاء الحساب');
+        const errorData = error.response?.data;
+        
+        if (errorData?.setup_instructions) {
+            // Database not configured error
+            showSetupError(errorDiv, errorData);
+        } else {
+            showError(errorDiv, errorData?.error || 'حدث خطأ في إنشاء الحساب');
+        }
     }
 });
 
@@ -97,4 +111,37 @@ function showError(errorDiv, message) {
     setTimeout(() => {
         errorDiv.classList.add('hidden');
     }, 5000);
+}
+
+// Show database setup error with detailed instructions
+function showSetupError(errorDiv, errorData) {
+    errorDiv.classList.remove('hidden');
+    errorDiv.classList.add('bg-blue-50', 'border-blue-200');
+    errorDiv.classList.remove('bg-red-50', 'border-red-200');
+    
+    errorDiv.innerHTML = `
+        <div class="text-blue-700">
+            <h4 class="font-semibold mb-2">
+                <i class="fas fa-database mr-2"></i>
+                ${errorData.error}
+            </h4>
+            <p class="mb-3">${errorData.message}</p>
+            
+            <div class="bg-white rounded border p-3 mb-3">
+                <h5 class="font-medium mb-2">للتطوير المحلي:</h5>
+                <code class="text-sm bg-gray-800 text-green-400 p-2 rounded block">
+                    ${errorData.setup_instructions.local}
+                </code>
+            </div>
+            
+            <div class="text-center">
+                <a href="/setup" class="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 text-sm">
+                    <i class="fas fa-wrench mr-1"></i>
+                    دليل الإعداد التفصيلي
+                </a>
+            </div>
+        </div>
+    `;
+    
+    // Don't auto-hide setup errors
 }

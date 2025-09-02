@@ -1,10 +1,14 @@
 import { Hono } from 'hono';
 import { setCookie, deleteCookie } from 'hono/cookie';
 import { hashPassword, verifyPassword, generateToken } from '../middleware/auth';
+import { databaseMiddleware, demoModeMiddleware } from '../middleware/database';
 import { DatabaseService } from '../utils/database';
 import type { Bindings } from '../types';
 
 const auth = new Hono<{ Bindings: Bindings }>();
+
+// Apply database middleware to all auth routes
+auth.use('*', demoModeMiddleware);
 
 // Register new user and team
 auth.post('/register', async (c) => {
