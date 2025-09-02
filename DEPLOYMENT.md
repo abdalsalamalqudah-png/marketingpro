@@ -26,9 +26,10 @@ npx wrangler pages project create marketing-pro \
 3. **Connect GitHub repository**: `abdalsalamalqudah-png/marketingpro`
 4. **Production branch**: `main`
 5. **Build settings**:
-   - **Build command**: `npm run build`
+   - **Build command**: `npm run build` (أو اتركه فارغ)
    - **Build output directory**: `dist`
    - **Root directory**: `/` (default)
+   - **Environment variables**: `NODE_VERSION = 18`
 
 ### 2. إعداد Environment Variables
 
@@ -180,9 +181,12 @@ npx wrangler d1 execute marketing-pro-production --command="SELECT 1"
 
 ### رسائل الخطأ الشائعة
 
-#### "Missing entry-point"
-- **المشكلة**: wrangler.jsonc غير صحيح
-- **الحل**: تأكد من `pages_build_output_dir: "./dist"`
+#### "Missing entry-point" أو "Workers-specific command"
+- **المشكلة**: Cloudflare يحاول deploy كـ Worker بدلاً من Pages
+- **الحل**: 
+  1. تأكد من عدم وجود أمر "deploy" في package.json
+  2. استخدم Build command فارغ أو `npm run build` فقط
+  3. تأكد من Build output directory = `dist`
 
 #### "Database not found"  
 - **المشكلة**: database_id خاطئ أو غير موجود
