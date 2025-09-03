@@ -1,7 +1,7 @@
 {
   "name": "marketing-pro",
   "version": "1.0.0",
-  "description": "Marketing Pro - Complete SaaS marketing automation platform",
+  "description": "Marketing Pro - Complete SaaS marketing automation platform with Email, WhatsApp, and Social Media integrations",
   "type": "module",
   "main": "dist/_worker.js",
   "scripts": {
