@@ -280,25 +280,160 @@ app.get('/api/whatsapp/conversations', (c) => {
 })
 
 // Social Media API endpoints
-app.get('/api/social/:platform', (c) => {
+app.get('/api/social/:platform/status', (c) => {
   const platform = c.req.param('platform')
+  
+  // Simulate some platforms being connected
+  const connectedPlatforms = ['facebook', 'instagram']
+  const isConnected = connectedPlatforms.includes(platform)
   
   return c.json({
     platform,
-    connected: platform === 'facebook' || platform === 'instagram',
-    message: 'سيتم تطوير تكامل منصات التواصل الاجتماعي'
+    connected: isConnected,
+    stats: isConnected ? {
+      followers: Math.floor(Math.random() * 10000) + 1000,
+      engagement: (Math.random() * 5 + 1).toFixed(1),
+      posts: Math.floor(Math.random() * 100) + 10
+    } : { followers: 0, engagement: 0, posts: 0 }
   })
 })
 
-app.post('/api/social/:platform/post', async (c) => {
+app.post('/api/social/:platform/connect', async (c) => {
   const platform = c.req.param('platform')
-  const { content, media } = await c.req.json()
+  
+  // Simulate OAuth process
+  await new Promise(resolve => setTimeout(resolve, 1000))
   
   return c.json({
     success: true,
+    message: `تم ربط ${platform} بنجاح (وضع تجريبي)`,
     platform,
-    message: `سيتم نشر المحتوى على ${platform} عند ربط API`,
-    data: { content, media }
+    // In real implementation, this would be the OAuth URL
+    auth_url: null // Simulate direct connection for demo
+  })
+})
+
+app.post('/api/social/:platform/disconnect', async (c) => {
+  const platform = c.req.param('platform')
+  
+  return c.json({
+    success: true,
+    message: `تم قطع الاتصال مع ${platform}`,
+    platform
+  })
+})
+
+app.post('/api/social/post', async (c) => {
+  const { content, platforms, image } = await c.req.json()
+  
+  // Simulate posting to multiple platforms
+  await new Promise(resolve => setTimeout(resolve, 1500))
+  
+  return c.json({
+    success: true,
+    message: `تم نشر المنشور على ${platforms.join(', ')} بنجاح`,
+    data: {
+      content,
+      platforms,
+      post_ids: platforms.map(p => `${p}_${Date.now()}`),
+      posted_at: new Date().toISOString()
+    }
+  })
+})
+
+app.get('/api/social/scheduled', (c) => {
+  return c.json({
+    posts: [
+      {
+        id: 1,
+        content: 'منشور ترويجي للمنتج الجديد مع عرض خاص لفترة محدودة',
+        platforms: ['facebook', 'instagram', 'twitter'],
+        scheduled_date: '2024-01-20',
+        scheduled_time: '14:00',
+        status: 'scheduled'
+      },
+      {
+        id: 2,
+        content: 'شكراً لجميع عملائنا على ثقتهم ودعمهم المستمر',
+        platforms: ['facebook', 'linkedin'],
+        scheduled_date: '2024-01-22',
+        scheduled_time: '10:30',
+        status: 'scheduled'
+      }
+    ]
+  })
+})
+
+app.get('/api/social/top-posts', (c) => {
+  return c.json({
+    posts: [
+      {
+        id: 1,
+        platform: 'facebook',
+        content: 'أفضل استراتيجيات التسويق الرقمي لعام 2024',
+        likes: 1250,
+        shares: 340,
+        comments: 89,
+        engagement_rate: 4.2
+      },
+      {
+        id: 2,
+        platform: 'instagram',
+        content: 'صور من خلف الكواليس لفريق العمل',
+        likes: 890,
+        shares: 156,
+        comments: 67,
+        engagement_rate: 3.8
+      },
+      {
+        id: 3,
+        platform: 'linkedin',
+        content: 'نصائح مهمة لرواد الأعمال المبتدئين',
+        likes: 567,
+        shares: 234,
+        comments: 45,
+        engagement_rate: 5.1
+      }
+    ]
+  })
+})
+
+app.get('/api/social/activity', (c) => {
+  return c.json({
+    activities: [
+      {
+        id: 1,
+        platform: 'facebook',
+        content: 'نشكركم على تفاعلكم الرائع مع منشوراتنا',
+        engagement: { likes: 245, shares: 67, comments: 23 },
+        posted_at: '2024-01-15 14:30',
+        status: 'published'
+      },
+      {
+        id: 2,
+        platform: 'instagram',
+        content: 'صورة جديدة من مكتبنا الجديد في الرياض',
+        engagement: { likes: 432, shares: 89, comments: 34 },
+        posted_at: '2024-01-15 12:15',
+        status: 'published'
+      },
+      {
+        id: 3,
+        platform: 'twitter',
+        content: 'نحن متحمسون لإعلان شراكتنا الجديدة!',
+        engagement: { likes: 156, shares: 78, comments: 12 },
+        posted_at: '2024-01-15 10:45',
+        status: 'published'
+      },
+      {
+        id: 4,
+        platform: 'linkedin',
+        content: 'مقال جديد: كيفية بناء استراتيجية تسويق فعالة',
+        engagement: { likes: 89, shares: 145, comments: 56 },
+        posted_at: '2024-01-14 16:20',
+        status: 'published'
+      }
+    ]
   })
 })
 
@@ -400,6 +535,7 @@ app.get('/', (c) => {
         <script src="/pages/dashboard.js"></script>
         <script src="/pages/email.js"></script>
         <script src="/pages/whatsapp.js"></script>
+        <script src="/pages/social-media.js"></script>
         
         <!-- Placeholder components for other pages -->
         <script>
@@ -446,19 +582,7 @@ app.get('/', (c) => {
           }
         };
 
-        window.SocialMediaPage = {
-          render() {
-            return \`
-              <div class="max-w-7xl mx-auto">
-                <h1 class="text-h1 font-bold mb-4">منصات التواصل الاجتماعي</h1>
-                <div class="card">
-                  <h2 class="text-h2 mb-4">قريباً</h2>
-                  <p>سيتم تطوير تكامل Meta، Twitter، LinkedIn APIs</p>
-                </div>
-              </div>
-            \`;
-          }
-        };
+        // SocialMediaPage is loaded from separate file
 
         window.ContentCreatorPage = {
           render() {
