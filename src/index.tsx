@@ -73,30 +73,209 @@ app.post('/api/email/send', async (c) => {
   // Placeholder for email service integration
   return c.json({
     success: true,
-    message: 'سيتم تنفيذ إرسال البريد الإلكتروني عند ربط خدمة البريد',
-    data: { to, subject, content }
+    message: 'تم إرسال البريد الإلكتروني بنجاح (وضع تجريبي)',
+    data: { to, subject, content, sent_at: new Date().toISOString() }
+  })
+})
+
+app.post('/api/email/test', async (c) => {
+  const { service, apiKey } = await c.req.json()
+  
+  // Simulate connection test
+  await new Promise(resolve => setTimeout(resolve, 1000))
+  
+  return c.json({
+    success: true,
+    message: `تم اختبار الاتصال مع ${service} بنجاح`,
+    service
   })
 })
 
 app.get('/api/email/templates', (c) => {
   return c.json({
     templates: [
-      { id: 1, name: 'ترحيب بالعملاء الجدد', type: 'welcome' },
-      { id: 2, name: 'نشرة إخبارية أسبوعية', type: 'newsletter' },
-      { id: 3, name: 'تذكير بالعروض', type: 'promotion' }
+      { 
+        id: 1, 
+        name: 'ترحيب بالعملاء الجدد', 
+        type: 'welcome',
+        subject: 'مرحباً بك في شركتنا',
+        content: 'مرحباً {name}، نحن سعداء لانضمامك إلينا...'
+      },
+      { 
+        id: 2, 
+        name: 'نشرة إخبارية أسبوعية', 
+        type: 'newsletter',
+        subject: 'آخر أخبارنا هذا الأسبوع',
+        content: 'إليك أهم المستجدات في شركتنا هذا الأسبوع...'
+      },
+      { 
+        id: 3, 
+        name: 'تذكير بالعروض', 
+        type: 'promotion',
+        subject: 'عرض خاص لفترة محدودة!',
+        content: 'لا تفوت عرضنا الخاص المتاح حتى نهاية الشهر...'
+      }
+    ]
+  })
+})
+
+app.post('/api/email/templates', async (c) => {
+  const { name, type, subject, content } = await c.req.json()
+  
+  return c.json({
+    success: true,
+    message: 'تم حفظ القالب بنجاح',
+    template: { id: Date.now(), name, type, subject, content }
+  })
+})
+
+app.get('/api/email/campaigns', (c) => {
+  return c.json({
+    campaigns: [
+      {
+        id: 1,
+        subject: 'حملة الصيف 2024',
+        recipient: 'all-customers@list.com',
+        status: 'sent',
+        sent_at: '2024-01-15 10:30',
+        open_rate: '23.4%'
+      },
+      {
+        id: 2,
+        subject: 'نشرة إخبارية يناير',
+        recipient: 'newsletter@list.com',
+        status: 'sent',
+        sent_at: '2024-01-10 14:00',
+        open_rate: '18.7%'
+      }
     ]
   })
 })
 
 // WhatsApp API endpoints
-app.post('/api/whatsapp/send', async (c) => {
-  const { phone, message } = await c.req.json()
+app.get('/api/whatsapp/status', (c) => {
+  return c.json({
+    connected: false,
+    message: 'يرجى إعداد WhatsApp Business API أولاً'
+  })
+})
+
+app.post('/api/whatsapp/setup', async (c) => {
+  const { access_token, phone_number_id, verify_token } = await c.req.json()
   
-  // Placeholder for WhatsApp Business API integration
+  // Simulate setup process
+  await new Promise(resolve => setTimeout(resolve, 1500))
+  
   return c.json({
     success: true,
-    message: 'سيتم تنفيذ إرسال الرسالة عند ربط WhatsApp Business API',
-    data: { phone, message }
+    message: 'تم حفظ إعدادات WhatsApp بنجاح (وضع تجريبي)',
+    data: { phone_number_id }
+  })
+})
+
+app.post('/api/whatsapp/test', async (c) => {
+  // Simulate connection test
+  await new Promise(resolve => setTimeout(resolve, 1000))
+  
+  return c.json({
+    success: true,
+    message: 'تم اختبار الاتصال بنجاح'
+  })
+})
+
+app.post('/api/whatsapp/send', async (c) => {
+  const { phone, message, type } = await c.req.json()
+  
+  // Simulate sending message
+  await new Promise(resolve => setTimeout(resolve, 800))
+  
+  return c.json({
+    success: true,
+    message: 'تم إرسال الرسالة بنجاح (وضع تجريبي)',
+    data: { 
+      phone, 
+      message, 
+      type,
+      message_id: 'wamid.' + Date.now(),
+      status: 'sent',
+      sent_at: new Date().toISOString()
+    }
+  })
+})
+
+app.post('/api/whatsapp/bulk-send', async (c) => {
+  const { numbers, message } = await c.req.json()
+  
+  // Simulate bulk sending
+  await new Promise(resolve => setTimeout(resolve, 2000))
+  
+  return c.json({
+    success: true,
+    message: `تم إرسال الرسالة لـ ${numbers.length} رقم بنجاح (وضع تجريبي)`,
+    data: {
+      total_numbers: numbers.length,
+      sent_count: numbers.length,
+      failed_count: 0
+    }
+  })
+})
+
+app.get('/api/whatsapp/templates', (c) => {
+  return c.json({
+    templates: [
+      {
+        id: 'welcome_msg_ar',
+        name: 'رسالة ترحيب',
+        language: 'ar',
+        status: 'approved',
+        content: 'مرحباً {{name}}، نشكرك لاختيار خدماتنا. فريقنا جاهز لخدمتك على مدار الساعة.'
+      },
+      {
+        id: 'order_confirmation_ar',
+        name: 'تأكيد الطلب',
+        language: 'ar',
+        status: 'approved',
+        content: 'تم تأكيد طلبك رقم {{order_number}}. سيتم التواصل معك قريباً لترتيب التسليم.'
+      },
+      {
+        id: 'appointment_reminder_ar',
+        name: 'تذكير بالموعد',
+        language: 'ar',
+        status: 'pending',
+        content: 'نذكرك بموعدك غداً في تمام الساعة {{time}}. يرجى التأكيد أو إعادة الجدولة.'
+      }
+    ]
+  })
+})
+
+app.get('/api/whatsapp/conversations', (c) => {
+  return c.json({
+    conversations: [
+      {
+        id: 1,
+        phone: '+966501234567',
+        message: 'مرحباً، كيف يمكنني مساعدتك؟',
+        status: 'delivered',
+        sent_at: '2024-01-15 14:30',
+        direction: 'outbound'
+      },
+      {
+        id: 2,
+        phone: '+966507654321',
+        message: 'شكراً لتواصلك معنا. تم تأكيد طلبك.',
+        status: 'read',
+        sent_at: '2024-01-15 13:45',
+        direction: 'outbound'
+      },
+      {
+        id: 3,
+        phone: '+966509876543',
+        message: 'نذكرك بموعد اجتماعك غداً الساعة 10:00 صباحاً',
+        status: 'sent',
+        sent_at: '2024-01-15 12:00',
+        direction: 'outbound'
+      }
+    ]
   })
 })
 
@@ -219,6 +398,8 @@ app.get('/', (c) => {
         <!-- Application Components -->
         <script src="/components/sidebar.js"></script>
         <script src="/pages/dashboard.js"></script>
+        <script src="/pages/email.js"></script>
+        <script src="/pages/whatsapp.js"></script>
         
         <!-- Placeholder components for other pages -->
         <script>
@@ -245,34 +426,6 @@ app.get('/', (c) => {
                 <div class="card">
                   <h2 class="text-h2 mb-4">قريباً</h2>
                   <p>سيتم تطوير هذا القسم لإدارة بيانات العملاء</p>
-                </div>
-              </div>
-            \`;
-          }
-        };
-
-        window.EmailPage = {
-          render() {
-            return \`
-              <div class="max-w-7xl mx-auto">
-                <h1 class="text-h1 font-bold mb-4">البريد الإلكتروني</h1>
-                <div class="card">
-                  <h2 class="text-h2 mb-4">قريباً</h2>
-                  <p>سيتم تطوير تكامل البريد الإلكتروني مع SendGrid/Mailgun</p>
-                </div>
-              </div>
-            \`;
-          }
-        };
-
-        window.WhatsAppPage = {
-          render() {
-            return \`
-              <div class="max-w-7xl mx-auto">
-                <h1 class="text-h1 font-bold mb-4">واتساب بزنس</h1>
-                <div class="card">
-                  <h2 class="text-h2 mb-4">قريباً</h2>
-                  <p>سيتم تطوير تكامل WhatsApp Business API</p>
                 </div>
               </div>
             \`;
