@@ -669,6 +669,17 @@ app.get('/', (c) => {
         };
         </script>
 
+        <!-- Load enriched page components to override placeholders -->
+        <script src="/pages/campaigns.js"></script>
+        <script src="/pages/clients.js"></script>
+        <script src="/pages/marketing-strategy.js"></script>
+        <script src="/pages/content-creator.js"></script>
+        <script src="/pages/ai-tools.js"></script>
+        <script src="/pages/content-calendar.js"></script>
+        <script src="/pages/smart-assistant.js"></script>
+        <script src="/pages/integrations.js"></script>
+        <script src="/pages/brand-settings.js"></script>
+
         <!-- Application Initialization -->
         <script>
         // Initialize app when DOM is ready
