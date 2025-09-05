@@ -1,0 +1,15 @@
+name = "marketing-platform"
+main = "src/index.tsx"
+compatibility_date = "2023-12-01"
+compatibility_flags = ["nodejs_compat"]
+
+[build]
+command = "npm run build"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "marketing-pro-production"
+database_id = "marketing-pro-production"
+
+[vars]
+ENVIRONMENT = "development"
