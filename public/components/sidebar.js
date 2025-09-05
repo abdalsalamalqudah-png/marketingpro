@@ -152,6 +152,14 @@ class Sidebar {
               <span class="text mr-3">${section.title}</span>
             </div>
           `).join('')}
+          
+          <!-- Logout Button in Sidebar -->
+          <div class="sidebar-divider mt-4 pt-4 border-t border-gray-200">
+            <div id="sidebar-logout-btn" class="sidebar-item logout-item">
+              <i class="fas fa-sign-out-alt icon text-lg text-red-500"></i>
+              <span class="text mr-3 text-red-600">تسجيل الخروج</span>
+            </div>
+          </div>
         </nav>
       </div>
       
@@ -224,6 +232,15 @@ class Sidebar {
         this.handleLogout();
       });
     }
+    
+    // Sidebar logout button (in sidebar)
+    const sidebarLogoutBtn = document.getElementById('sidebar-logout-btn');
+    if (sidebarLogoutBtn) {
+      sidebarLogoutBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        this.handleLogout();
+      });
+    }
 
     // Sidebar overlay
     const overlay = document.getElementById('sidebar-overlay');
@@ -255,12 +272,17 @@ class Sidebar {
       const overlay = document.getElementById('sidebar-overlay');
       
       this.showMobileSidebar = !this.showMobileSidebar;
+      
       if (this.showMobileSidebar) {
         sidebar.classList.add('show');
         overlay.classList.add('show');
+        // Prevent body scroll when sidebar is open
+        document.body.classList.add('sidebar-open');
       } else {
         sidebar.classList.remove('show');
         overlay.classList.remove('show');
+        // Allow body scroll when sidebar is closed
+        document.body.classList.remove('sidebar-open');
       }
     }
   }
@@ -360,6 +382,40 @@ class Sidebar {
           <p>حدث خطأ أثناء تحميل ${section.title}. يرجى المحاولة مرة أخرى.</p>
         </div>
       `;
+    }
+  }
+  
+  handleLogout() {
+    // Show confirmation dialog
+    if (confirm('هل تريد تسجيل الخروج؟')) {
+      // Clear any stored data
+      localStorage.removeItem('sidebar-collapsed');
+      localStorage.removeItem('user-session');
+      
+      // Show logout message
+      const contentArea = document.getElementById('page-content');
+      if (contentArea) {
+        contentArea.innerHTML = `
+          <div class="flex items-center justify-center min-h-[400px]">
+            <div class="text-center">
+              <div class="mb-4">
+                <i class="fas fa-sign-out-alt text-6xl text-gray-400 mb-4"></i>
+              </div>
+              <h3 class="text-2xl font-bold mb-2">تم تسجيل الخروج</h3>
+              <p class="text-gray-600 mb-4">شكراً لاستخدامك منصة Marketing Pro</p>
+              <button onclick="location.reload()" class="btn btn-primary">
+                <i class="fas fa-sign-in-alt ml-2"></i>
+                تسجيل الدخول مرة أخرى
+              </button>
+            </div>
+          </div>
+        `;
+      }
+      
+      // Close mobile sidebar if open
+      if (this.isMobile && this.showMobileSidebar) {
+        this.toggleMobileSidebar();
+      }
     }
   }
   
