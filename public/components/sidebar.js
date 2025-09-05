@@ -8,6 +8,7 @@ class Sidebar {
     this.isCollapsed = localStorage.getItem('sidebar-collapsed') === 'true';
     this.currentSection = 'dashboard';
     this.isMobile = window.innerWidth <= 768;
+    this.showMobileSidebar = false;
     
     this.sections = [
       {
@@ -21,6 +22,12 @@ class Sidebar {
         title: 'استراتيجية التسويق',
         icon: 'fas fa-bullseye',
         component: 'MarketingStrategyPage'
+      },
+      {
+        id: 'users',
+        title: 'المستخدمون والصلاحيات',
+        icon: 'fas fa-user-shield',
+        component: 'UsersPage'
       },
       {
         id: 'clients',
@@ -116,7 +123,7 @@ class Sidebar {
   render() {
     const sidebarHTML = `
       <!-- Sidebar -->
-      <div id="sidebar" class="sidebar ${this.isCollapsed ? 'collapsed' : ''} ${this.isMobile ? 'hidden' : ''}">
+      <div id="sidebar" class="sidebar ${this.isCollapsed ? 'collapsed' : ''} ${this.isMobile && this.showMobileSidebar ? 'show' : ''}">
         <!-- Sidebar Header -->
         <div class="p-4 border-b border-gray-200">
           <div class="flex items-center ${this.isCollapsed ? 'justify-center' : 'justify-between'}">
@@ -170,6 +177,10 @@ class Sidebar {
                   <i class="fas fa-bell text-gray-600"></i>
                 </button>
                 <div class="flex items-center gap-2">
+                  <button id="logout-btn" class="btn btn-outline">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span class="hidden sm:inline">خروج</span>
+                  </button>
                   <i class="fas fa-user icon-flat"></i>
                   <span class="text-gray-700">مستخدم تجريبي</span>
                 </div>
@@ -205,6 +216,15 @@ class Sidebar {
       });
     }
     
+    // Logout button
+    const logoutBtn = document.getElementById('logout-btn');
+    if (logoutBtn) {
+      logoutBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        this.handleLogout();
+      });
+    }
+
     // Sidebar overlay
     const overlay = document.getElementById('sidebar-overlay');
     if (overlay) {
@@ -234,8 +254,14 @@ class Sidebar {
       const sidebar = document.getElementById('sidebar');
       const overlay = document.getElementById('sidebar-overlay');
       
-      sidebar.classList.toggle('show');
-      overlay.classList.toggle('show');
+      this.showMobileSidebar = !this.showMobileSidebar;
+      if (this.showMobileSidebar) {
+        sidebar.classList.add('show');
+        overlay.classList.add('show');
+      } else {
+        sidebar.classList.remove('show');
+        overlay.classList.remove('show');
+      }
     }
   }
   
@@ -245,7 +271,11 @@ class Sidebar {
     const toggleIcon = toggleBtn?.querySelector('i');
     
     if (sidebar) {
-      sidebar.className = `sidebar ${this.isCollapsed ? 'collapsed' : ''} ${this.isMobile ? 'hidden' : ''}`;
+      if (this.isMobile) {
+        sidebar.className = `sidebar ${this.showMobileSidebar ? 'show' : ''}`;
+      } else {
+        sidebar.className = `sidebar ${this.isCollapsed ? 'collapsed' : ''}`;
+      }
     }
     
     if (toggleIcon) {

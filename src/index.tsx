@@ -437,6 +437,30 @@ app.get('/api/social/activity', (c) => {
   })
 })
 
+// Landing page for logout redirection
+app.get('/landing', (c) => {
+  return c.html(`
+    <!doctype html>
+    <html lang="ar" dir="rtl">
+    <head>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <title>Marketing Pro - صفحة البداية</title>
+      <script src="https://cdn.tailwindcss.com"></script>
+      <link rel="stylesheet" href="/styles/design-system.css" />
+    </head>
+    <body class="min-h-screen flex items-center justify-center bg-gray-50">
+      <div class="text-center p-8 card">
+        <i class="fas fa-rocket icon-flat text-3xl mb-3"></i>
+        <h1 class="text-h1 font-bold mb-2">مرحباً بك في Marketing Pro</h1>
+        <p class="text-gray-600 mb-6">منصة إدارة التسويق الشاملة</p>
+        <a href="/" class="btn btn-primary"><i class="fas fa-arrow-right"></i> دخول للوحة التحكم</a>
+      </div>
+    </body>
+    </html>
+  `)
+})
+
 // Main application with new sidebar structure
 app.get('/', (c) => {
   return c.html(`
@@ -668,6 +692,18 @@ app.get('/', (c) => {
           }
         };
         </script>
+
+        <!-- Load enriched page components to override placeholders -->
+        <script src="/pages/campaigns.js"></script>
+        <script src="/pages/clients.js"></script>
+        <script src="/pages/marketing-strategy.js"></script>
+        <script src="/pages/content-creator.js"></script>
+        <script src="/pages/ai-tools.js"></script>
+        <script src="/pages/content-calendar.js"></script>
+        <script src="/pages/smart-assistant.js"></script>
+        <script src="/pages/integrations.js"></script>
+        <script src="/pages/brand-settings.js"></script>
+        <script src="/pages/users.js"></script>
 
         <!-- Application Initialization -->
         <script>
