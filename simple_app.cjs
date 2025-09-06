@@ -373,6 +373,12 @@ app.get('/dashboard', (c) => {
                     <h3 class="text-xs font-semibold text-gray-400 uppercase mb-2 px-3">الحملات التسويقية</h3>
                     <ul class="space-y-1">
                         <li>
+                            <a href="/marketing-strategy" class="sidebar-item flex items-center px-3 py-2 rounded-lg text-sm text-gray-600 hover:bg-blue-50">
+                                <i class="fas fa-brain ml-3 w-5"></i>
+                                استراتيجية التسويق بالذكاء الاصطناعي
+                            </a>
+                        </li>
+                        <li>
                             <a href="/email-campaigns" class="sidebar-item flex items-center px-3 py-2 rounded-lg text-sm text-gray-600 hover:bg-blue-50">
                                 <i class="fas fa-envelope ml-3 w-5"></i>
                                 حملات البريد الإلكتروني
@@ -2148,6 +2154,975 @@ app.get('/team', (c) => {
 // صفحة الفواتير والاشتراك
 app.get('/billing', (c) => {
   return c.text('💳 صفحة الفواتير والاشتراك - قيد التطوير...')
+})
+
+// صفحة استراتيجية التسويق بالذكاء الاصطناعي
+app.get('/marketing-strategy', (c) => {
+  return c.html(`
+    <!DOCTYPE html>
+    <html lang="ar" dir="rtl">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>استراتيجية التسويق بالذكاء الاصطناعي - Marketing Pro</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap');
+            body { font-family: 'Cairo', sans-serif; }
+            .gradient-bg { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+            .ai-loading {
+                background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+                background-size: 400% 400%;
+                animation: gradient 2s ease infinite;
+            }
+            @keyframes gradient {
+                0% { background-position: 0% 50%; }
+                50% { background-position: 100% 50%; }
+                100% { background-position: 0% 50%; }
+            }
+            .strategy-card {
+                transition: all 0.3s ease;
+                backdrop-filter: blur(10px);
+            }
+            .strategy-card:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            }
+        </style>
+    </head>
+    <body class="bg-gray-50">
+        <!-- Header -->
+        <header class="bg-white shadow-sm border-b h-16 flex items-center justify-between px-6 sticky top-0 z-40">
+            <div class="flex items-center space-x-4 space-x-reverse">
+                <div class="flex items-center space-x-3 space-x-reverse">
+                    <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
+                        <i class="fas fa-rocket text-white text-sm"></i>
+                    </div>
+                    <h1 class="text-lg font-bold text-gray-800">Marketing Pro</h1>
+                </div>
+            </div>
+            <a href="/dashboard" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition text-sm">
+                <i class="fas fa-arrow-right ml-1"></i>عودة للداشبورد
+            </a>
+        </header>
+
+        <div class="min-h-screen">
+            <!-- Hero Section -->
+            <div class="gradient-bg text-white py-12">
+                <div class="max-w-7xl mx-auto px-6 text-center">
+                    <div class="inline-flex items-center justify-center w-20 h-20 bg-white/20 backdrop-blur-lg rounded-full mb-6">
+                        <i class="fas fa-brain text-3xl text-white"></i>
+                    </div>
+                    <h1 class="text-4xl md:text-5xl font-bold mb-4">استراتيجية التسويق بالذكاء الاصطناعي</h1>
+                    <p class="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">احصل على استراتيجية تسويقية شاملة ومخصصة لعملك باستخدام أحدث تقنيات الذكاء الاصطناعي</p>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mt-12">
+                        <div class="bg-white/10 backdrop-blur-lg rounded-xl p-6 text-center">
+                            <i class="fas fa-magic text-2xl mb-3"></i>
+                            <h3 class="font-semibold mb-2">ذكاء اصطناعي متقدم</h3>
+                            <p class="text-sm text-blue-100">تحليل شامل لعملك والسوق</p>
+                        </div>
+                        <div class="bg-white/10 backdrop-blur-lg rounded-xl p-6 text-center">
+                            <i class="fas fa-download text-2xl mb-3"></i>
+                            <h3 class="font-semibold mb-2">قابل للتصدير</h3>
+                            <p class="text-sm text-blue-100">تصدير PDF أو Word مع هويتك</p>
+                        </div>
+                        <div class="bg-white/10 backdrop-blur-lg rounded-xl p-6 text-center">
+                            <i class="fas fa-rocket text-2xl mb-3"></i>
+                            <h3 class="font-semibold mb-2">جاهز للتنفيذ</h3>
+                            <p class="text-sm text-blue-100">خطة عملية قابلة للتطبيق</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="max-w-7xl mx-auto px-6 py-12">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                    <!-- Form Section -->
+                    <div class="bg-white rounded-2xl shadow-xl p-8">
+                        <div class="text-center mb-8">
+                            <div class="inline-flex items-center justify-center w-16 h-16 bg-blue-100 rounded-full mb-4">
+                                <i class="fas fa-clipboard-list text-blue-600 text-2xl"></i>
+                            </div>
+                            <h2 class="text-2xl font-bold text-gray-800 mb-2">معلومات عن عملك</h2>
+                            <p class="text-gray-600">أدخل التفاصيل التالية للحصول على استراتيجية مخصصة</p>
+                        </div>
+
+                        <form id="strategyForm" class="space-y-6">
+                            <!-- اسم البزنس -->
+                            <div>
+                                <label class="block text-sm font-bold text-gray-700 mb-2">
+                                    <i class="fas fa-building text-blue-600 ml-2"></i>
+                                    اسم البزنس / الشركة *
+                                </label>
+                                <input type="text" id="businessName" required
+                                       class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                       placeholder="مثال: متجر الإلكترونيات الذكية">
+                            </div>
+
+                            <!-- نبذة عن البزنس -->
+                            <div>
+                                <label class="block text-sm font-bold text-gray-700 mb-2">
+                                    <i class="fas fa-info-circle text-blue-600 ml-2"></i>
+                                    نبذة عن البزنس *
+                                </label>
+                                <textarea id="businessDescription" required rows="4"
+                                          class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+                                          placeholder="اشرح طبيعة عملك، المنتجات أو الخدمات التي تقدمها، وما يميزك عن المنافسين..."></textarea>
+                            </div>
+
+                            <!-- الفئة المستهدفة -->
+                            <div>
+                                <label class="block text-sm font-bold text-gray-700 mb-2">
+                                    <i class="fas fa-users text-blue-600 ml-2"></i>
+                                    الفئة المستهدفة *
+                                </label>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-3">
+                                    <select id="targetAge" class="px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500">
+                                        <option value="">الفئة العمرية</option>
+                                        <option value="18-25">18-25 سنة</option>
+                                        <option value="26-35">26-35 سنة</option>
+                                        <option value="36-45">36-45 سنة</option>
+                                        <option value="46-55">46-55 سنة</option>
+                                        <option value="55+">أكثر من 55 سنة</option>
+                                        <option value="all">جميع الأعمار</option>
+                                    </select>
+                                    <select id="targetGender" class="px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500">
+                                        <option value="">الجنس</option>
+                                        <option value="male">ذكور</option>
+                                        <option value="female">إناث</option>
+                                        <option value="both">كلاهما</option>
+                                    </select>
+                                </div>
+                                <textarea id="targetDetails" rows="3"
+                                          class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+                                          placeholder="تفاصيل إضافية عن الجمهور المستهدف (الاهتمامات، المستوى التعليمي، المهن، السلوكيات الشرائية...)"></textarea>
+                            </div>
+
+                            <!-- مكان البزنس -->
+                            <div>
+                                <label class="block text-sm font-bold text-gray-700 mb-2">
+                                    <i class="fas fa-map-marker-alt text-blue-600 ml-2"></i>
+                                    مكان البزنس *
+                                </label>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <select id="businessCountry" required class="px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500">
+                                        <option value="">اختر البلد</option>
+                                        <option value="saudi">السعودية</option>
+                                        <option value="uae">الإمارات</option>
+                                        <option value="kuwait">الكويت</option>
+                                        <option value="qatar">قطر</option>
+                                        <option value="bahrain">البحرين</option>
+                                        <option value="oman">عُمان</option>
+                                        <option value="jordan">الأردن</option>
+                                        <option value="egypt">مصر</option>
+                                        <option value="lebanon">لبنان</option>
+                                        <option value="morocco">المغرب</option>
+                                        <option value="other">أخرى</option>
+                                    </select>
+                                    <input type="text" id="businessCity"
+                                           class="px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                           placeholder="المدينة">
+                                </div>
+                            </div>
+
+                            <!-- نوع البزنس -->
+                            <div>
+                                <label class="block text-sm font-bold text-gray-700 mb-2">
+                                    <i class="fas fa-store text-blue-600 ml-2"></i>
+                                    نوع البزنس
+                                </label>
+                                <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+                                    <label class="flex items-center p-3 border border-gray-300 rounded-xl cursor-pointer hover:bg-blue-50 transition">
+                                        <input type="checkbox" name="businessType" value="online" class="ml-2">
+                                        <span class="text-sm">متجر إلكتروني</span>
+                                    </label>
+                                    <label class="flex items-center p-3 border border-gray-300 rounded-xl cursor-pointer hover:bg-blue-50 transition">
+                                        <input type="checkbox" name="businessType" value="physical" class="ml-2">
+                                        <span class="text-sm">متجر فعلي</span>
+                                    </label>
+                                    <label class="flex items-center p-3 border border-gray-300 rounded-xl cursor-pointer hover:bg-blue-50 transition">
+                                        <input type="checkbox" name="businessType" value="service" class="ml-2">
+                                        <span class="text-sm">خدمات</span>
+                                    </label>
+                                    <label class="flex items-center p-3 border border-gray-300 rounded-xl cursor-pointer hover:bg-blue-50 transition">
+                                        <input type="checkbox" name="businessType" value="restaurant" class="ml-2">
+                                        <span class="text-sm">مطعم</span>
+                                    </label>
+                                    <label class="flex items-center p-3 border border-gray-300 rounded-xl cursor-pointer hover:bg-blue-50 transition">
+                                        <input type="checkbox" name="businessType" value="clinic" class="ml-2">
+                                        <span class="text-sm">عيادة طبية</span>
+                                    </label>
+                                    <label class="flex items-center p-3 border border-gray-300 rounded-xl cursor-pointer hover:bg-blue-50 transition">
+                                        <input type="checkbox" name="businessType" value="education" class="ml-2">
+                                        <span class="text-sm">تعليم</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- المنافسين -->
+                            <div>
+                                <label class="block text-sm font-bold text-gray-700 mb-2">
+                                    <i class="fas fa-chess text-blue-600 ml-2"></i>
+                                    المنافسين الرئيسيين
+                                </label>
+                                <textarea id="competitors" rows="3"
+                                          class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+                                          placeholder="اذكر أسماء أهم 3-5 منافسين في مجالك، وما يميز كل منهم..."></textarea>
+                            </div>
+
+                            <!-- الميزانية التسويقية -->
+                            <div>
+                                <label class="block text-sm font-bold text-gray-700 mb-2">
+                                    <i class="fas fa-dollar-sign text-blue-600 ml-2"></i>
+                                    الميزانية التسويقية الشهرية
+                                </label>
+                                <select id="marketingBudget" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500">
+                                    <option value="">اختر الميزانية</option>
+                                    <option value="0-1000">أقل من 1,000 ريال</option>
+                                    <option value="1000-5000">1,000 - 5,000 ريال</option>
+                                    <option value="5000-10000">5,000 - 10,000 ريال</option>
+                                    <option value="10000-25000">10,000 - 25,000 ريال</option>
+                                    <option value="25000+">أكثر من 25,000 ريال</option>
+                                </select>
+                            </div>
+
+                            <!-- أهداف التسويق -->
+                            <div>
+                                <label class="block text-sm font-bold text-gray-700 mb-2">
+                                    <i class="fas fa-bullseye text-blue-600 ml-2"></i>
+                                    الأهداف التسويقية
+                                </label>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                    <label class="flex items-center p-3 border border-gray-300 rounded-xl cursor-pointer hover:bg-blue-50 transition">
+                                        <input type="checkbox" name="goals" value="brand-awareness" class="ml-2">
+                                        <span class="text-sm">زيادة الوعي بالعلامة التجارية</span>
+                                    </label>
+                                    <label class="flex items-center p-3 border border-gray-300 rounded-xl cursor-pointer hover:bg-blue-50 transition">
+                                        <input type="checkbox" name="goals" value="sales" class="ml-2">
+                                        <span class="text-sm">زيادة المبيعات</span>
+                                    </label>
+                                    <label class="flex items-center p-3 border border-gray-300 rounded-xl cursor-pointer hover:bg-blue-50 transition">
+                                        <input type="checkbox" name="goals" value="leads" class="ml-2">
+                                        <span class="text-sm">جذب عملاء محتملين</span>
+                                    </label>
+                                    <label class="flex items-center p-3 border border-gray-300 rounded-xl cursor-pointer hover:bg-blue-50 transition">
+                                        <input type="checkbox" name="goals" value="customer-retention" class="ml-2">
+                                        <span class="text-sm">الاحتفاظ بالعملاء الحاليين</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- زر إنشاء الاستراتيجية -->
+                            <button type="submit" id="generateBtn" class="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-4 rounded-xl font-bold text-lg hover:from-blue-700 hover:to-purple-700 transition-all transform hover:scale-105 shadow-lg">
+                                <i class="fas fa-magic ml-2"></i>
+                                <span id="btnText">إنشاء استراتيجية التسويق بالذكاء الاصطناعي</span>
+                                <div id="loadingSpinner" class="hidden inline-block w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Preview/Results Section -->
+                    <div class="space-y-8">
+                        <!-- Preview Card -->
+                        <div id="previewCard" class="bg-white rounded-2xl shadow-xl p-8 hidden">
+                            <div class="text-center mb-6">
+                                <div class="inline-flex items-center justify-center w-16 h-16 bg-green-100 rounded-full mb-4">
+                                    <i class="fas fa-check-circle text-green-600 text-2xl"></i>
+                                </div>
+                                <h3 class="text-xl font-bold text-gray-800 mb-2">تم إنشاء الاستراتيجية بنجاح!</h3>
+                                <p class="text-gray-600">استراتيجية تسويقية شاملة ومخصصة لعملك</p>
+                            </div>
+                            
+                            <div class="space-y-4 mb-6">
+                                <div class="flex items-center justify-between p-4 bg-gray-50 rounded-xl">
+                                    <span class="font-medium text-gray-700">اسم البزنس</span>
+                                    <span id="previewBusinessName" class="text-blue-600 font-semibold"></span>
+                                </div>
+                                <div class="flex items-center justify-between p-4 bg-gray-50 rounded-xl">
+                                    <span class="font-medium text-gray-700">الفئة المستهدفة</span>
+                                    <span id="previewTarget" class="text-blue-600 font-semibold"></span>
+                                </div>
+                                <div class="flex items-center justify-between p-4 bg-gray-50 rounded-xl">
+                                    <span class="font-medium text-gray-700">المكان</span>
+                                    <span id="previewLocation" class="text-blue-600 font-semibold"></span>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <button onclick="exportToPDF()" class="bg-red-600 hover:bg-red-700 text-white py-3 px-6 rounded-xl font-bold transition-colors">
+                                    <i class="fas fa-file-pdf ml-2"></i>تصدير PDF
+                                </button>
+                                <button onclick="exportToWord()" class="bg-blue-600 hover:bg-blue-700 text-white py-3 px-6 rounded-xl font-bold transition-colors">
+                                    <i class="fas fa-file-word ml-2"></i>تصدير Word
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Strategy Result -->
+                        <div id="strategyResult" class="bg-white rounded-2xl shadow-xl p-8 hidden">
+                            <div class="mb-6 text-center">
+                                <h3 class="text-2xl font-bold text-gray-800 mb-2">استراتيجيتك التسويقية</h3>
+                                <p class="text-gray-600">خطة تسويقية شاملة مدعومة بالذكاء الاصطناعي</p>
+                            </div>
+                            
+                            <div id="strategyContent" class="space-y-6">
+                                <!-- سيتم ملء المحتوى هنا بواسطة JavaScript -->
+                            </div>
+                        </div>
+
+                        <!-- Features Info -->
+                        <div class="bg-gradient-to-r from-purple-500 to-blue-600 rounded-2xl p-8 text-white">
+                            <h3 class="text-xl font-bold mb-4">ماذا تتضمن استراتيجيتك؟</h3>
+                            <div class="space-y-3">
+                                <div class="flex items-center">
+                                    <i class="fas fa-check-circle text-green-300 ml-3"></i>
+                                    <span>تحليل شامل للسوق والمنافسين</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-check-circle text-green-300 ml-3"></i>
+                                    <span>تحديد الجمهور المستهدف بدقة</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-check-circle text-green-300 ml-3"></i>
+                                    <span>استراتيجية المحتوى والرسائل التسويقية</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-check-circle text-green-300 ml-3"></i>
+                                    <span>خطة تسويق رقمي متكاملة</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-check-circle text-green-300 ml-3"></i>
+                                    <span>توزيع الميزانية على القنوات المناسبة</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-check-circle text-green-300 ml-3"></i>
+                                    <span>مؤشرات الأداء الرئيسية (KPIs)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Loading Modal -->
+        <div id="loadingModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+            <div class="bg-white rounded-2xl p-8 max-w-md w-full mx-4 text-center">
+                <div class="ai-loading w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center">
+                    <i class="fas fa-brain text-white text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-800 mb-2">الذكاء الاصطناعي يعمل...</h3>
+                <p class="text-gray-600 mb-4">جاري تحليل معلومات عملك وإنشاء استراتيجية مخصصة</p>
+                <div class="w-full bg-gray-200 rounded-full h-2">
+                    <div id="progressBar" class="bg-gradient-to-r from-blue-600 to-purple-600 h-2 rounded-full transition-all duration-500" style="width: 0%"></div>
+                </div>
+                <p id="progressText" class="text-sm text-gray-500 mt-2">بدء التحليل...</p>
+            </div>
+        </div>
+
+        <script>
+            let generatedStrategy = null;
+            let currentBusinessName = '';
+
+            document.getElementById('strategyForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                generateStrategy();
+            });
+
+            async function generateStrategy() {
+                const formData = new FormData(document.getElementById('strategyForm'));
+                const data = {
+                    businessName: document.getElementById('businessName').value,
+                    businessDescription: document.getElementById('businessDescription').value,
+                    targetAge: document.getElementById('targetAge').value,
+                    targetGender: document.getElementById('targetGender').value,
+                    targetDetails: document.getElementById('targetDetails').value,
+                    businessCountry: document.getElementById('businessCountry').value,
+                    businessCity: document.getElementById('businessCity').value,
+                    businessType: Array.from(document.querySelectorAll('input[name="businessType"]:checked')).map(cb => cb.value),
+                    competitors: document.getElementById('competitors').value,
+                    marketingBudget: document.getElementById('marketingBudget').value,
+                    goals: Array.from(document.querySelectorAll('input[name="goals"]:checked')).map(cb => cb.value)
+                };
+
+                if (!data.businessName || !data.businessDescription) {
+                    alert('يرجى ملء الحقول المطلوبة (اسم البزنس والنبذة)');
+                    return;
+                }
+
+                currentBusinessName = data.businessName;
+                showLoadingModal();
+                
+                // محاكاة إنشاء الاستراتيجية بالذكاء الاصطناعي
+                await simulateAIGeneration(data);
+            }
+
+            async function simulateAIGeneration(data) {
+                const progressSteps = [
+                    { percent: 20, text: 'تحليل معلومات العمل...' },
+                    { percent: 40, text: 'دراسة السوق والمنافسين...' },
+                    { percent: 60, text: 'تحديد الجمهور المستهدف...' },
+                    { percent: 80, text: 'إنشاء الاستراتيجية التسويقية...' },
+                    { percent: 100, text: 'اكتمال إنشاء الاستراتيجية!' }
+                ];
+
+                for (const step of progressSteps) {
+                    await new Promise(resolve => setTimeout(resolve, 1000));
+                    updateProgress(step.percent, step.text);
+                }
+
+                await new Promise(resolve => setTimeout(resolve, 500));
+                hideLoadingModal();
+                displayStrategy(data);
+            }
+
+            function updateProgress(percent, text) {
+                document.getElementById('progressBar').style.width = percent + '%';
+                document.getElementById('progressText').textContent = text;
+            }
+
+            function showLoadingModal() {
+                document.getElementById('loadingModal').classList.remove('hidden');
+                updateProgress(0, 'بدء التحليل...');
+            }
+
+            function hideLoadingModal() {
+                document.getElementById('loadingModal').classList.add('hidden');
+            }
+
+            function displayStrategy(data) {
+                // عرض معاينة سريعة
+                document.getElementById('previewBusinessName').textContent = data.businessName;
+                document.getElementById('previewTarget').textContent = 
+                    (data.targetAge || 'غير محدد') + ' - ' + (data.targetGender || 'غير محدد');
+                document.getElementById('previewLocation').textContent = 
+                    (data.businessCity || '') + (data.businessCity && data.businessCountry ? ', ' : '') + 
+                    (document.querySelector('#businessCountry option:checked')?.textContent || '');
+                
+                document.getElementById('previewCard').classList.remove('hidden');
+
+                // إنشاء الاستراتيجية الكاملة
+                generatedStrategy = generateFullStrategy(data);
+                displayFullStrategy(generatedStrategy);
+                
+                document.getElementById('strategyResult').classList.remove('hidden');
+                document.getElementById('strategyResult').scrollIntoView({ behavior: 'smooth' });
+            }
+
+            function generateFullStrategy(data) {
+                const strategy = {
+                    businessName: data.businessName,
+                    executiveSummary: \`تم تطوير هذه الاستراتيجية التسويقية خصيصاً لـ "\${data.businessName}" باستخدام تقنيات الذكاء الاصطناعي المتقدمة. تهدف هذه الاستراتيجية إلى تحقيق نمو مستدام وزيادة الوعي بالعلامة التجارية في السوق المستهدف.\`,
+                    
+                    targetAudience: {
+                        primary: \`الفئة العمرية: \${data.targetAge || 'متنوعة'} | الجنس: \${data.targetGender || 'مختلط'}\`,
+                        details: data.targetDetails || 'جمهور عام مهتم بالمنتجات/الخدمات المقدمة',
+                        personas: [
+                            'الشخصية الأولى: العميل المهتم بالجودة والقيمة',
+                            'الشخصية الثانية: العميل الباحث عن الحلول السريعة',
+                            'الشخصية الثالثة: العميل المهتم بالعلامات التجارية الموثوقة'
+                        ]
+                    },
+
+                    marketAnalysis: {
+                        competitors: data.competitors || 'منافسون محليون وإقليميون في نفس القطاع',
+                        opportunities: [
+                            'نمو السوق الرقمي في المنطقة',
+                            'زيادة الاعتماد على التسوق الإلكتروني',
+                            'الحاجة لحلول مبتكرة في القطاع',
+                            'فرص التوسع في أسواق جديدة'
+                        ],
+                        threats: [
+                            'المنافسة الشديدة في السوق',
+                            'تغيير سلوكيات المستهلكين',
+                            'التحديات الاقتصادية',
+                            'التطورات التكنولوجية السريعة'
+                        ]
+                    },
+
+                    marketingChannels: [
+                        {
+                            channel: 'وسائل التواصل الاجتماعي',
+                            platforms: ['Instagram', 'Twitter', 'LinkedIn', 'TikTok'],
+                            budget: '40%',
+                            activities: [
+                                'إنشاء محتوى تفاعلي يومي',
+                                'حملات إعلانية مستهدفة',
+                                'التفاعل مع المتابعين',
+                                'شراكات مع المؤثرين'
+                            ]
+                        },
+                        {
+                            channel: 'التسويق الرقمي',
+                            platforms: ['Google Ads', 'Facebook Ads', 'YouTube'],
+                            budget: '35%',
+                            activities: [
+                                'حملات البحث المدفوعة',
+                                'إعلانات العرض والفيديو',
+                                'إعادة الاستهداف',
+                                'تحسين محركات البحث'
+                            ]
+                        },
+                        {
+                            channel: 'التسويق بالمحتوى',
+                            platforms: ['الموقع الإلكتروني', 'المدونة', 'البودكاست'],
+                            budget: '15%',
+                            activities: [
+                                'إنشاء مقالات تعليمية',
+                                'فيديوهات توضيحية',
+                                'دراسات حالة',
+                                'النشرات الإخبارية'
+                            ]
+                        },
+                        {
+                            channel: 'التسويق التقليدي',
+                            platforms: ['الراديو', 'الصحف', 'اللوحات الإعلانية'],
+                            budget: '10%',
+                            activities: [
+                                'إعلانات راديو في أوقات الذروة',
+                                'إعلانات مطبوعة مستهدفة',
+                                'رعاية الفعاليات المحلية'
+                            ]
+                        }
+                    ],
+
+                    contentStrategy: {
+                        themes: [
+                            'التعريف بالمنتجات والخدمات',
+                            'قصص نجاح العملاء',
+                            'النصائح والإرشادات المهنية',
+                            'أحدث الاتجاهات في القطاع',
+                            'خلف الكواليس والفريق'
+                        ],
+                        frequency: {
+                            'Instagram': 'يومياً (1-2 منشور)',
+                            'Twitter': '3-4 مرات يومياً',
+                            'LinkedIn': '3-4 مرات أسبوعياً',
+                            'المدونة': 'مرتين أسبوعياً',
+                            'البريد الإلكتروني': 'أسبوعياً'
+                        }
+                    },
+
+                    timeline: [
+                        {
+                            phase: 'المرحلة الأولى (الشهر 1-2)',
+                            activities: [
+                                'إطلاق الحملات على وسائل التواصل',
+                                'تحسين الموقع الإلكتروني',
+                                'بدء حملات Google Ads',
+                                'إنشاء المحتوى الأساسي'
+                            ]
+                        },
+                        {
+                            phase: 'المرحلة الثانية (الشهر 3-4)',
+                            activities: [
+                                'توسيع الحملات الإعلانية',
+                                'شراكات مع المؤثرين',
+                                'تطوير برنامج الولاء',
+                                'قياس وتحليل النتائج'
+                            ]
+                        },
+                        {
+                            phase: 'المرحلة الثالثة (الشهر 5-6)',
+                            activities: [
+                                'تحسين الاستراتيجية حسب النتائج',
+                                'إطلاق حملات موسمية',
+                                'توسيع نطاق الوصول',
+                                'تطوير منتجات/خدمات جديدة'
+                            ]
+                        }
+                    ],
+
+                    kpis: [
+                        { metric: 'الوعي بالعلامة التجارية', target: 'زيادة 50% خلال 6 أشهر', measurement: 'استطلاعات الرأي ومقاييس وسائل التواصل' },
+                        { metric: 'حركة المرور للموقع', target: 'زيادة 75% خلال 3 أشهر', measurement: 'Google Analytics' },
+                        { metric: 'معدل التحويل', target: 'تحسين بنسبة 25%', measurement: 'تتبع المبيعات والعملاء المحتملين' },
+                        { metric: 'التفاعل على وسائل التواصل', target: 'زيادة 100% في المتابعين والتفاعل', measurement: 'منصات التواصل الاجتماعي' },
+                        { metric: 'العائد على الاستثمار', target: 'ROI بنسبة 300% كحد أدنى', measurement: 'تحليل المبيعات والتكاليف' }
+                    ],
+
+                    budget: data.marketingBudget ? \`ميزانية شهرية: \${data.marketingBudget} ريال\` : 'حسب الميزانية المتاحة',
+                    
+                    recommendations: [
+                        'البدء بحملات وسائل التواصل الاجتماعي لأنها الأكثر فعالية من ناحية التكلفة',
+                        'الاستثمار في المحتوى عالي الجودة والمفيد للجمهور المستهدف',
+                        'بناء قاعدة بيانات عملاء قوية لتحسين التسويق المستهدف',
+                        'مراقبة المنافسين وتحليل استراتيجياتهم بانتظام',
+                        'الاستثمار في تدريب الفريق على أحدث اتجاهات التسويق الرقمي',
+                        'تطوير نظام قياس فعال لتتبع أداء جميع الحملات التسويقية'
+                    ]
+                };
+
+                return strategy;
+            }
+
+            function displayFullStrategy(strategy) {
+                const strategyContent = document.getElementById('strategyContent');
+                
+                strategyContent.innerHTML = \`
+                    <div class="space-y-8">
+                        <!-- الملخص التنفيذي -->
+                        <div class="strategy-card bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-xl p-6">
+                            <h4 class="text-lg font-bold text-blue-800 mb-3 flex items-center">
+                                <i class="fas fa-clipboard-list ml-2"></i>
+                                الملخص التنفيذي
+                            </h4>
+                            <p class="text-gray-700 leading-relaxed">\${strategy.executiveSummary}</p>
+                        </div>
+
+                        <!-- تحليل الجمهور المستهدف -->
+                        <div class="strategy-card bg-white border border-gray-200 rounded-xl p-6">
+                            <h4 class="text-lg font-bold text-gray-800 mb-4 flex items-center">
+                                <i class="fas fa-users ml-2 text-green-600"></i>
+                                الجمهور المستهدف
+                            </h4>
+                            <div class="space-y-4">
+                                <div>
+                                    <h5 class="font-semibold text-gray-700 mb-2">الفئة الأساسية:</h5>
+                                    <p class="text-gray-600">\${strategy.targetAudience.primary}</p>
+                                </div>
+                                <div>
+                                    <h5 class="font-semibold text-gray-700 mb-2">التفاصيل:</h5>
+                                    <p class="text-gray-600">\${strategy.targetAudience.details}</p>
+                                </div>
+                                <div>
+                                    <h5 class="font-semibold text-gray-700 mb-2">شخصيات العملاء:</h5>
+                                    <ul class="list-disc list-inside text-gray-600 space-y-1">
+                                        \${strategy.targetAudience.personas.map(persona => \`<li>\${persona}</li>\`).join('')}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- تحليل السوق -->
+                        <div class="strategy-card bg-white border border-gray-200 rounded-xl p-6">
+                            <h4 class="text-lg font-bold text-gray-800 mb-4 flex items-center">
+                                <i class="fas fa-chart-bar ml-2 text-purple-600"></i>
+                                تحليل السوق
+                            </h4>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <h5 class="font-semibold text-gray-700 mb-3 text-green-600">الفرص المتاحة:</h5>
+                                    <ul class="list-disc list-inside text-gray-600 space-y-1">
+                                        \${strategy.marketAnalysis.opportunities.map(opp => \`<li>\${opp}</li>\`).join('')}
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h5 class="font-semibold text-gray-700 mb-3 text-red-600">التحديات:</h5>
+                                    <ul class="list-disc list-inside text-gray-600 space-y-1">
+                                        \${strategy.marketAnalysis.threats.map(threat => \`<li>\${threat}</li>\`).join('')}
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <h5 class="font-semibold text-gray-700 mb-2">المنافسين:</h5>
+                                <p class="text-gray-600">\${strategy.marketAnalysis.competitors}</p>
+                            </div>
+                        </div>
+
+                        <!-- القنوات التسويقية -->
+                        <div class="strategy-card bg-white border border-gray-200 rounded-xl p-6">
+                            <h4 class="text-lg font-bold text-gray-800 mb-4 flex items-center">
+                                <i class="fas fa-bullhorn ml-2 text-orange-600"></i>
+                                القنوات التسويقية المقترحة
+                            </h4>
+                            <div class="space-y-6">
+                                \${strategy.marketingChannels.map(channel => \`
+                                    <div class="border border-gray-100 rounded-lg p-4">
+                                        <div class="flex justify-between items-center mb-3">
+                                            <h5 class="font-semibold text-gray-800">\${channel.channel}</h5>
+                                            <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">\${channel.budget} من الميزانية</span>
+                                        </div>
+                                        <p class="text-sm text-gray-600 mb-3"><strong>المنصات:</strong> \${channel.platforms.join(', ')}</p>
+                                        <div>
+                                            <h6 class="font-medium text-gray-700 mb-2">الأنشطة المقترحة:</h6>
+                                            <ul class="list-disc list-inside text-gray-600 text-sm space-y-1">
+                                                \${channel.activities.map(activity => \`<li>\${activity}</li>\`).join('')}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                \`).join('')}
+                            </div>
+                        </div>
+
+                        <!-- استراتيجية المحتوى -->
+                        <div class="strategy-card bg-white border border-gray-200 rounded-xl p-6">
+                            <h4 class="text-lg font-bold text-gray-800 mb-4 flex items-center">
+                                <i class="fas fa-pen-fancy ml-2 text-indigo-600"></i>
+                                استراتيجية المحتوى
+                            </h4>
+                            <div class="space-y-4">
+                                <div>
+                                    <h5 class="font-semibold text-gray-700 mb-2">محاور المحتوى:</h5>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+                                        \${strategy.contentStrategy.themes.map(theme => \`
+                                            <div class="bg-indigo-50 text-indigo-800 px-3 py-2 rounded-lg text-sm">\${theme}</div>
+                                        \`).join('')}
+                                    </div>
+                                </div>
+                                <div>
+                                    <h5 class="font-semibold text-gray-700 mb-2">تكرار النشر المقترح:</h5>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                        \${Object.entries(strategy.contentStrategy.frequency).map(([platform, freq]) => \`
+                                            <div class="flex justify-between items-center p-2 bg-gray-50 rounded">
+                                                <span class="text-gray-700">\${platform}</span>
+                                                <span class="text-gray-600 text-sm">\${freq}</span>
+                                            </div>
+                                        \`).join('')}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- الجدول الزمني -->
+                        <div class="strategy-card bg-white border border-gray-200 rounded-xl p-6">
+                            <h4 class="text-lg font-bold text-gray-800 mb-4 flex items-center">
+                                <i class="fas fa-calendar-alt ml-2 text-teal-600"></i>
+                                الجدول الزمني للتنفيذ
+                            </h4>
+                            <div class="space-y-4">
+                                \${strategy.timeline.map((phase, index) => \`
+                                    <div class="border border-gray-100 rounded-lg p-4">
+                                        <h5 class="font-semibold text-gray-800 mb-3">\${phase.phase}</h5>
+                                        <ul class="list-disc list-inside text-gray-600 space-y-1">
+                                            \${phase.activities.map(activity => \`<li>\${activity}</li>\`).join('')}
+                                        </ul>
+                                    </div>
+                                \`).join('')}
+                            </div>
+                        </div>
+
+                        <!-- مؤشرات الأداء -->
+                        <div class="strategy-card bg-white border border-gray-200 rounded-xl p-6">
+                            <h4 class="text-lg font-bold text-gray-800 mb-4 flex items-center">
+                                <i class="fas fa-chart-line ml-2 text-green-600"></i>
+                                مؤشرات الأداء الرئيسية (KPIs)
+                            </h4>
+                            <div class="overflow-x-auto">
+                                <table class="w-full text-sm">
+                                    <thead class="bg-gray-50">
+                                        <tr>
+                                            <th class="text-right p-3 font-semibold text-gray-700">المؤشر</th>
+                                            <th class="text-right p-3 font-semibold text-gray-700">الهدف</th>
+                                            <th class="text-right p-3 font-semibold text-gray-700">طريقة القياس</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        \${strategy.kpis.map(kpi => \`
+                                            <tr class="border-t border-gray-100">
+                                                <td class="p-3 text-gray-800">\${kpi.metric}</td>
+                                                <td class="p-3 text-gray-600">\${kpi.target}</td>
+                                                <td class="p-3 text-gray-600">\${kpi.measurement}</td>
+                                            </tr>
+                                        \`).join('')}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- الميزانية -->
+                        <div class="strategy-card bg-gradient-to-r from-green-50 to-emerald-50 border border-green-200 rounded-xl p-6">
+                            <h4 class="text-lg font-bold text-green-800 mb-3 flex items-center">
+                                <i class="fas fa-dollar-sign ml-2"></i>
+                                الميزانية المقترحة
+                            </h4>
+                            <p class="text-gray-700">\${strategy.budget}</p>
+                        </div>
+
+                        <!-- التوصيات -->
+                        <div class="strategy-card bg-gradient-to-r from-amber-50 to-yellow-50 border border-amber-200 rounded-xl p-6">
+                            <h4 class="text-lg font-bold text-amber-800 mb-4 flex items-center">
+                                <i class="fas fa-lightbulb ml-2"></i>
+                                التوصيات الاستراتيجية
+                            </h4>
+                            <ul class="list-disc list-inside text-gray-700 space-y-2">
+                                \${strategy.recommendations.map(rec => \`<li>\${rec}</li>\`).join('')}
+                            </ul>
+                        </div>
+                    </div>
+                \`;
+            }
+
+            function exportToPDF() {
+                if (!generatedStrategy) return;
+
+                try {
+                    const { jsPDF } = window.jspdf;
+                    const doc = new jsPDF();
+                    
+                    // إعداد الخط العربي (محاكاة - في التطبيق الحقيقي نحتاج خط عربي)
+                    doc.setFont("helvetica");
+                    doc.setFontSize(16);
+                    
+                    let yPosition = 20;
+                    const margin = 20;
+                    const lineHeight = 10;
+                    
+                    // عنوان الاستراتيجية
+                    doc.text(\`Marketing Strategy for \${currentBusinessName}\`, margin, yPosition, { align: 'left' });
+                    yPosition += lineHeight * 2;
+                    
+                    // إضافة شعار وهوية الشركة
+                    doc.setFontSize(12);
+                    doc.text('Generated by Marketing Pro AI', margin, yPosition);
+                    yPosition += lineHeight;
+                    doc.text(\`Date: \${new Date().toLocaleDateString('ar-SA')}\`, margin, yPosition);
+                    yPosition += lineHeight * 2;
+                    
+                    // إضافة محتوى الاستراتيجية (مبسط للمثال)
+                    doc.setFontSize(14);
+                    doc.text('Executive Summary:', margin, yPosition);
+                    yPosition += lineHeight;
+                    
+                    doc.setFontSize(10);
+                    const summaryLines = doc.splitTextToSize(generatedStrategy.executiveSummary, 170);
+                    summaryLines.forEach(line => {
+                        if (yPosition > 270) {
+                            doc.addPage();
+                            yPosition = 20;
+                        }
+                        doc.text(line, margin, yPosition);
+                        yPosition += lineHeight;
+                    });
+                    
+                    // حفظ الملف
+                    doc.save(\`\${currentBusinessName}_Marketing_Strategy.pdf\`);
+                    
+                    alert('تم تصدير الاستراتيجية بصيغة PDF بنجاح!');
+                } catch (error) {
+                    console.error('Error generating PDF:', error);
+                    alert('حدث خطأ في تصدير PDF. يرجى المحاولة مرة أخرى.');
+                }
+            }
+
+            function exportToWord() {
+                if (!generatedStrategy) return;
+                
+                try {
+                    // إنشاء محتوى HTML للتصدير
+                    const htmlContent = \`
+                        <!DOCTYPE html>
+                        <html dir="rtl" lang="ar">
+                        <head>
+                            <meta charset="UTF-8">
+                            <title>استراتيجية التسويق - \${currentBusinessName}</title>
+                            <style>
+                                body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 40px; line-height: 1.6; }
+                                .header { text-align: center; border-bottom: 2px solid #2563eb; padding-bottom: 20px; margin-bottom: 30px; }
+                                .company-name { color: #2563eb; font-size: 24px; font-weight: bold; margin-bottom: 10px; }
+                                .generated-by { color: #6b7280; font-size: 14px; }
+                                .section { margin: 30px 0; padding: 20px; border: 1px solid #e5e7eb; border-radius: 8px; }
+                                .section-title { color: #1f2937; font-size: 18px; font-weight: bold; margin-bottom: 15px; border-bottom: 1px solid #e5e7eb; padding-bottom: 5px; }
+                                .subsection { margin: 15px 0; }
+                                .subsection-title { color: #374151; font-weight: bold; margin-bottom: 8px; }
+                                ul { padding-right: 20px; }
+                                li { margin: 5px 0; }
+                                .kpi-table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+                                .kpi-table th, .kpi-table td { border: 1px solid #d1d5db; padding: 10px; text-align: right; }
+                                .kpi-table th { background-color: #f3f4f6; font-weight: bold; }
+                            </style>
+                        </head>
+                        <body>
+                            <div class="header">
+                                <div class="company-name">استراتيجية التسويق - \${currentBusinessName}</div>
+                                <div class="generated-by">
+                                    تم إنشاؤها بواسطة Marketing Pro AI | \${new Date().toLocaleDateString('ar-SA')}
+                                </div>
+                            </div>
+
+                            <div class="section">
+                                <div class="section-title">الملخص التنفيذي</div>
+                                <p>\${generatedStrategy.executiveSummary}</p>
+                            </div>
+
+                            <div class="section">
+                                <div class="section-title">الجمهور المستهدف</div>
+                                <div class="subsection">
+                                    <div class="subsection-title">الفئة الأساسية:</div>
+                                    <p>\${generatedStrategy.targetAudience.primary}</p>
+                                </div>
+                                <div class="subsection">
+                                    <div class="subsection-title">التفاصيل:</div>
+                                    <p>\${generatedStrategy.targetAudience.details}</p>
+                                </div>
+                                <div class="subsection">
+                                    <div class="subsection-title">شخصيات العملاء:</div>
+                                    <ul>
+                                        \${generatedStrategy.targetAudience.personas.map(persona => \`<li>\${persona}</li>\`).join('')}
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="section">
+                                <div class="section-title">القنوات التسويقية المقترحة</div>
+                                \${generatedStrategy.marketingChannels.map(channel => \`
+                                    <div class="subsection">
+                                        <div class="subsection-title">\${channel.channel} (\${channel.budget} من الميزانية)</div>
+                                        <p><strong>المنصات:</strong> \${channel.platforms.join(', ')}</p>
+                                        <p><strong>الأنشطة المقترحة:</strong></p>
+                                        <ul>
+                                            \${channel.activities.map(activity => \`<li>\${activity}</li>\`).join('')}
+                                        </ul>
+                                    </div>
+                                \`).join('')}
+                            </div>
+
+                            <div class="section">
+                                <div class="section-title">مؤشرات الأداء الرئيسية</div>
+                                <table class="kpi-table">
+                                    <thead>
+                                        <tr>
+                                            <th>المؤشر</th>
+                                            <th>الهدف</th>
+                                            <th>طريقة القياس</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        \${generatedStrategy.kpis.map(kpi => \`
+                                            <tr>
+                                                <td>\${kpi.metric}</td>
+                                                <td>\${kpi.target}</td>
+                                                <td>\${kpi.measurement}</td>
+                                            </tr>
+                                        \`).join('')}
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="section">
+                                <div class="section-title">التوصيات الاستراتيجية</div>
+                                <ul>
+                                    \${generatedStrategy.recommendations.map(rec => \`<li>\${rec}</li>\`).join('')}
+                                </ul>
+                            </div>
+                        </body>
+                        </html>
+                    \`;
+
+                    // إنشاء Blob وتحميل الملف
+                    const blob = new Blob([htmlContent], { type: 'application/msword' });
+                    const url = window.URL.createObjectURL(blob);
+                    const link = document.createElement('a');
+                    link.href = url;
+                    link.download = \`\${currentBusinessName}_Marketing_Strategy.doc\`;
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                    window.URL.revokeObjectURL(url);
+                    
+                    alert('تم تصدير الاستراتيجية بصيغة Word بنجاح!');
+                } catch (error) {
+                    console.error('Error generating Word document:', error);
+                    alert('حدث خطأ في تصدير Word. يرجى المحاولة مرة أخرى.');
+                }
+            }
+        </script>
+    </body>
+    </html>
+  `)
 })
 
 // صفحة إعدادات النظام
