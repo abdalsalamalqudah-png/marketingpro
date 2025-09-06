@@ -961,7 +961,357 @@ app.get('/dashboard', (c) => {
 
 // صفحة التحليلات والإحصائيات
 app.get('/analytics', (c) => {
-  return c.text('📊 صفحة التحليلات والإحصائيات - قيد التطوير...')
+  return c.html(`
+    <!DOCTYPE html>
+    <html lang="ar" dir="rtl">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>التحليلات والإحصائيات - Marketing Pro</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap');
+            body { font-family: 'Cairo', sans-serif; }
+        </style>
+    </head>
+    <body class="bg-gray-100">
+        <!-- Header -->
+        <header class="bg-white shadow-sm border-b h-16 flex items-center justify-between px-6">
+            <div class="flex items-center space-x-4 space-x-reverse">
+                <div class="flex items-center space-x-3 space-x-reverse">
+                    <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
+                        <i class="fas fa-rocket text-white text-sm"></i>
+                    </div>
+                    <h1 class="text-lg font-bold text-gray-800">Marketing Pro</h1>
+                </div>
+            </div>
+            <a href="/dashboard" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition text-sm">
+                <i class="fas fa-arrow-right ml-1"></i>عودة للداشبورد
+            </a>
+        </header>
+
+        <!-- Content -->
+        <main class="p-6">
+            <div class="max-w-7xl mx-auto">
+                <!-- Header -->
+                <div class="mb-8">
+                    <div class="flex items-center justify-between mb-6">
+                        <div>
+                            <h1 class="text-3xl font-bold text-gray-800 mb-2">التحليلات والإحصائيات</h1>
+                            <p class="text-gray-600">تحليل شامل لأداء الحملات التسويقية وسلوك العملاء</p>
+                        </div>
+                        <div class="flex space-x-2 space-x-reverse">
+                            <button class="px-4 py-2 bg-blue-100 text-blue-600 rounded-lg">آخر 30 يوم</button>
+                            <button class="px-4 py-2 text-gray-500 rounded-lg">آخر 7 أيام</button>
+                            <button class="px-4 py-2 text-gray-500 rounded-lg">اليوم</button>
+                        </div>
+                    </div>
+
+                    <!-- Key Metrics -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                        <div class="bg-white rounded-xl shadow-sm border p-6">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-sm text-gray-600 mb-1">إجمالي المشاهدات</p>
+                                    <p class="text-2xl font-bold text-gray-800">847,290</p>
+                                    <div class="flex items-center mt-2">
+                                        <span class="inline-flex items-center px-2 py-1 rounded-full text-xs bg-green-100 text-green-800">
+                                            <i class="fas fa-arrow-up ml-1"></i>+24.8%
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-eye text-blue-600 text-xl"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-xl shadow-sm border p-6">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-sm text-gray-600 mb-1">معدل التحويل</p>
+                                    <p class="text-2xl font-bold text-gray-800">18.7%</p>
+                                    <div class="flex items-center mt-2">
+                                        <span class="inline-flex items-center px-2 py-1 rounded-full text-xs bg-green-100 text-green-800">
+                                            <i class="fas fa-arrow-up ml-1"></i>+2.3%
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-chart-line text-green-600 text-xl"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-xl shadow-sm border p-6">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-sm text-gray-600 mb-1">متوسط وقت الجلسة</p>
+                                    <p class="text-2xl font-bold text-gray-800">4:23</p>
+                                    <div class="flex items-center mt-2">
+                                        <span class="inline-flex items-center px-2 py-1 rounded-full text-xs bg-blue-100 text-blue-800">
+                                            <i class="fas fa-clock ml-1"></i>+15%
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-clock text-purple-600 text-xl"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-xl shadow-sm border p-6">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-sm text-gray-600 mb-1">معدل الارتداد</p>
+                                    <p class="text-2xl font-bold text-gray-800">32.1%</p>
+                                    <div class="flex items-center mt-2">
+                                        <span class="inline-flex items-center px-2 py-1 rounded-full text-xs bg-red-100 text-red-800">
+                                            <i class="fas fa-arrow-down ml-1"></i>-8.2%
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-sign-out-alt text-orange-600 text-xl"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+                    <!-- Traffic Sources Chart -->
+                    <div class="bg-white rounded-xl shadow-sm border p-6">
+                        <div class="flex items-center justify-between mb-6">
+                            <h2 class="text-lg font-semibold text-gray-800">مصادر الزيارات</h2>
+                            <button class="text-sm text-blue-600 hover:text-blue-800">عرض التفاصيل</button>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center">
+                                    <div class="w-4 h-4 bg-blue-500 rounded ml-3"></div>
+                                    <span class="text-sm font-medium text-gray-700">البحث الطبيعي</span>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-sm font-bold text-gray-800">45.2%</p>
+                                    <p class="text-xs text-gray-500">382,840 زيارة</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center">
+                                    <div class="w-4 h-4 bg-green-500 rounded ml-3"></div>
+                                    <span class="text-sm font-medium text-gray-700">وسائل التواصل</span>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-sm font-bold text-gray-800">28.7%</p>
+                                    <p class="text-xs text-gray-500">243,190 زيارة</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center">
+                                    <div class="w-4 h-4 bg-purple-500 rounded ml-3"></div>
+                                    <span class="text-sm font-medium text-gray-700">الزيارات المباشرة</span>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-sm font-bold text-gray-800">16.8%</p>
+                                    <p class="text-xs text-gray-500">142,344 زيارة</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center">
+                                    <div class="w-4 h-4 bg-orange-500 rounded ml-3"></div>
+                                    <span class="text-sm font-medium text-gray-700">الإحالات</span>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-sm font-bold text-gray-800">9.3%</p>
+                                    <p class="text-xs text-gray-500">78,916 زيارة</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Device Analytics -->
+                    <div class="bg-white rounded-xl shadow-sm border p-6">
+                        <div class="flex items-center justify-between mb-6">
+                            <h2 class="text-lg font-semibold text-gray-800">الأجهزة المستخدمة</h2>
+                            <button class="text-sm text-blue-600 hover:text-blue-800">عرض التفاصيل</button>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center">
+                                    <i class="fas fa-mobile-alt text-blue-600 ml-3"></i>
+                                    <span class="text-sm font-medium text-gray-700">الهواتف المحمولة</span>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-sm font-bold text-gray-800">62.4%</p>
+                                    <p class="text-xs text-gray-500">528,565 زيارة</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center">
+                                    <i class="fas fa-desktop text-green-600 ml-3"></i>
+                                    <span class="text-sm font-medium text-gray-700">أجهزة الكمبيوتر</span>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-sm font-bold text-gray-800">28.9%</p>
+                                    <p class="text-xs text-gray-500">244,871 زيارة</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center">
+                                    <i class="fas fa-tablet-alt text-purple-600 ml-3"></i>
+                                    <span class="text-sm font-medium text-gray-700">الأجهزة اللوحية</span>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-sm font-bold text-gray-800">8.7%</p>
+                                    <p class="text-xs text-gray-500">73,854 زيارة</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Performance Over Time -->
+                <div class="bg-white rounded-xl shadow-sm border p-6 mb-8">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-lg font-semibold text-gray-800">الأداء عبر الوقت</h2>
+                        <div class="flex space-x-2 space-x-reverse text-sm">
+                            <span class="flex items-center"><div class="w-3 h-3 bg-blue-500 rounded ml-2"></div>الزيارات</span>
+                            <span class="flex items-center"><div class="w-3 h-3 bg-green-500 rounded ml-2"></div>التحويلات</span>
+                        </div>
+                    </div>
+                    
+                    <div class="h-64 bg-gradient-to-t from-blue-50 to-transparent rounded-lg flex items-end justify-between px-4 py-4">
+                        <div class="flex items-end space-x-2 space-x-reverse h-full w-full justify-between">
+                            <div class="flex flex-col items-center h-full justify-end">
+                                <div class="bg-green-400 rounded-t w-4 mb-1" style="height: 20%"></div>
+                                <div class="bg-blue-500 rounded-t w-4" style="height: 40%"></div>
+                            </div>
+                            <div class="flex flex-col items-center h-full justify-end">
+                                <div class="bg-green-400 rounded-t w-4 mb-1" style="height: 30%"></div>
+                                <div class="bg-blue-500 rounded-t w-4" style="height: 60%"></div>
+                            </div>
+                            <div class="flex flex-col items-center h-full justify-end">
+                                <div class="bg-green-400 rounded-t w-4 mb-1" style="height: 40%"></div>
+                                <div class="bg-blue-500 rounded-t w-4" style="height: 80%"></div>
+                            </div>
+                            <div class="flex flex-col items-center h-full justify-end">
+                                <div class="bg-green-400 rounded-t w-4 mb-1" style="height: 25%"></div>
+                                <div class="bg-blue-500 rounded-t w-4" style="height: 45%"></div>
+                            </div>
+                            <div class="flex flex-col items-center h-full justify-end">
+                                <div class="bg-green-400 rounded-t w-4 mb-1" style="height: 45%"></div>
+                                <div class="bg-blue-500 rounded-t w-4" style="height: 90%"></div>
+                            </div>
+                            <div class="flex flex-col items-center h-full justify-end">
+                                <div class="bg-green-400 rounded-t w-4 mb-1" style="height: 35%"></div>
+                                <div class="bg-blue-500 rounded-t w-4" style="height: 70%"></div>
+                            </div>
+                            <div class="flex flex-col items-center h-full justify-end">
+                                <div class="bg-green-400 rounded-t w-4 mb-1" style="height: 50%"></div>
+                                <div class="bg-blue-500 rounded-t w-4" style="height: 100%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-between mt-4 text-xs text-gray-500">
+                        <span>الأسبوع 1</span>
+                        <span>الأسبوع 2</span>
+                        <span>الأسبوع 3</span>
+                        <span>الأسبوع 4</span>
+                    </div>
+                </div>
+
+                <!-- Top Performing Content -->
+                <div class="bg-white rounded-xl shadow-sm border overflow-hidden">
+                    <div class="px-6 py-4 border-b border-gray-200">
+                        <h2 class="text-lg font-semibold text-gray-800">أفضل المحتوى أداءً</h2>
+                    </div>
+                    
+                    <div class="divide-y divide-gray-200">
+                        <div class="px-6 py-4 hover:bg-gray-50">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <h3 class="font-medium text-gray-800">حملة العروض الصيفية الكبرى</h3>
+                                    <p class="text-sm text-gray-500">صفحة الهبوط الرئيسية</p>
+                                </div>
+                                <div class="flex items-center space-x-6 space-x-reverse text-sm">
+                                    <div class="text-center">
+                                        <p class="font-bold text-gray-800">45,892</p>
+                                        <p class="text-gray-500">زيارة</p>
+                                    </div>
+                                    <div class="text-center">
+                                        <p class="font-bold text-green-600">32.1%</p>
+                                        <p class="text-gray-500">تحويل</p>
+                                    </div>
+                                    <div class="text-center">
+                                        <p class="font-bold text-blue-600">2:45</p>
+                                        <p class="text-gray-500">متوسط الوقت</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="px-6 py-4 hover:bg-gray-50">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <h3 class="font-medium text-gray-800">نشرة المنتجات الجديدة</h3>
+                                    <p class="text-sm text-gray-500">صفحة عرض المنتجات</p>
+                                </div>
+                                <div class="flex items-center space-x-6 space-x-reverse text-sm">
+                                    <div class="text-center">
+                                        <p class="font-bold text-gray-800">28,547</p>
+                                        <p class="text-gray-500">زيارة</p>
+                                    </div>
+                                    <div class="text-center">
+                                        <p class="font-bold text-green-600">28.7%</p>
+                                        <p class="text-gray-500">تحويل</p>
+                                    </div>
+                                    <div class="text-center">
+                                        <p class="font-bold text-blue-600">3:12</p>
+                                        <p class="text-gray-500">متوسط الوقت</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="px-6 py-4 hover:bg-gray-50">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <h3 class="font-medium text-gray-800">مدونة نصائح التسويق</h3>
+                                    <p class="text-sm text-gray-500">محتوى تعليمي</p>
+                                </div>
+                                <div class="flex items-center space-x-6 space-x-reverse text-sm">
+                                    <div class="text-center">
+                                        <p class="font-bold text-gray-800">19,334</p>
+                                        <p class="text-gray-500">زيارة</p>
+                                    </div>
+                                    <div class="text-center">
+                                        <p class="font-bold text-green-600">15.3%</p>
+                                        <p class="text-gray-500">تحويل</p>
+                                    </div>
+                                    <div class="text-center">
+                                        <p class="font-bold text-blue-600">5:23</p>
+                                        <p class="text-gray-500">متوسط الوقت</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </body>
+    </html>
+  `)
 })
 
 // صفحة التقارير المفصلة  
@@ -969,354 +1319,252 @@ app.get('/reports', (c) => {
   return c.text('📈 صفحة التقارير المفصلة - قيد التطوير...')
 })
 
-// صفحة قائمة العملاء مع قاعدة البيانات
-app.get('/customers', async (c) => {
-  try {
-    // استعلام جميع العملاء من قاعدة البيانات
-    const customers = [
-      { id: 1, name: 'أحمد محمد علي', email: 'ahmed.mohamed@email.com', phone: '+966501234567', status: 'نشط', created_at: '2025-01-15', total_orders: 12, total_spent: '15,750 ر.س' },
-      { id: 2, name: 'فاطمة أحمد', email: 'fatima.ahmed@email.com', phone: '+966502345678', status: 'نشط', created_at: '2025-01-20', total_orders: 8, total_spent: '8,200 ر.س' },
-      { id: 3, name: 'محمد سعد', email: 'mohammed.saad@email.com', phone: '+966503456789', status: 'غير نشط', created_at: '2025-02-01', total_orders: 3, total_spent: '2,100 ر.س' },
-      { id: 4, name: 'نورا خالد', email: 'nora.khaled@email.com', phone: '+966504567890', status: 'نشط', created_at: '2025-02-10', total_orders: 15, total_spent: '22,400 ر.س' },
-      { id: 5, name: 'عبدالله يوسف', email: 'abdullah.youssef@email.com', phone: '+966505678901', status: 'نشط', created_at: '2025-02-15', total_orders: 6, total_spent: '4,800 ر.س' }
-    ]
+// صفحة قائمة العملاء
+app.get('/customers', (c) => {
+  return c.html(`
+    <!DOCTYPE html>
+    <html lang="ar" dir="rtl">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>قائمة العملاء - Marketing Pro</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap');
+            body { font-family: 'Cairo', sans-serif; }
+        </style>
+    </head>
+    <body class="bg-gray-100">
+        <!-- Header -->
+        <header class="bg-white shadow-sm border-b h-16 flex items-center justify-between px-6">
+            <div class="flex items-center space-x-4 space-x-reverse">
+                <div class="flex items-center space-x-3 space-x-reverse">
+                    <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
+                        <i class="fas fa-rocket text-white text-sm"></i>
+                    </div>
+                    <h1 class="text-lg font-bold text-gray-800">Marketing Pro</h1>
+                </div>
+            </div>
+            <a href="/dashboard" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition text-sm">
+                <i class="fas fa-arrow-right ml-1"></i>عودة للداشبورد
+            </a>
+        </header>
 
-    return c.html(`
-      <!DOCTYPE html>
-      <html lang="ar" dir="rtl">
-      <head>
-          <meta charset="UTF-8">
-          <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <title>قائمة العملاء - Marketing Pro</title>
-          <script src="https://cdn.tailwindcss.com"></script>
-          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-          <style>
-              @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap');
-              body { font-family: 'Cairo', sans-serif; }
-              .sidebar-item { transition: all 0.3s ease; }
-              .sidebar-item:hover { background-color: #3B82F6; color: white; }
-              .sidebar-item.active { background-color: #2563EB; color: white; }
-              .content-area { transition: margin-right 0.3s ease; }
-              @media (max-width: 768px) {
-                  .sidebar { transform: translateX(100%); }
-                  .sidebar.open { transform: translateX(0); }
-                  .content-area { margin-right: 0 !important; }
-              }
-          </style>
-      </head>
-      <body class="bg-gray-100 h-screen overflow-hidden">
-          <!-- الهيدر العلوي -->
-          <header class="bg-white shadow-sm border-b h-16 flex items-center justify-between px-6 fixed top-0 right-0 left-0 z-30">
-              <div class="flex items-center space-x-4 space-x-reverse">
-                  <button id="sidebarToggle" class="md:hidden text-gray-600 hover:text-blue-600">
-                      <i class="fas fa-bars text-xl"></i>
-                  </button>
-                  <div class="flex items-center space-x-3 space-x-reverse">
-                      <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
-                          <i class="fas fa-rocket text-white text-sm"></i>
-                      </div>
-                      <h1 class="text-lg font-bold text-gray-800">Marketing Pro</h1>
-                  </div>
-              </div>
-              
-              <div class="flex items-center space-x-4 space-x-reverse">
-                  <div class="flex items-center space-x-2 space-x-reverse text-sm text-gray-600">
-                      <i class="fas fa-user-circle text-lg"></i>
-                      <span>أحمد محمد</span>
-                  </div>
-                  <a href="/dashboard" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition text-sm">
-                      <i class="fas fa-tachometer-alt ml-1"></i>الداشبورد
-                  </a>
-              </div>
-          </header>
+        <!-- Content -->
+        <main class="p-6">
+            <div class="max-w-7xl mx-auto">
+                <!-- Header with statistics -->
+                <div class="mb-8">
+                    <div class="flex items-center justify-between mb-6">
+                        <div>
+                            <h1 class="text-3xl font-bold text-gray-800 mb-2">إدارة العملاء</h1>
+                            <p class="text-gray-600">إدارة شاملة لقاعدة عملائك وتتبع أنشطتهم</p>
+                        </div>
+                        <button class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl transition-colors">
+                            <i class="fas fa-user-plus ml-2"></i>إضافة عميل جديد
+                        </button>
+                    </div>
 
-          <!-- القائمة الجانبية -->
-          <aside id="sidebar" class="sidebar fixed right-0 top-16 h-full bg-white shadow-lg border-l w-64 z-20 overflow-y-auto">
-              <div class="p-4">
-                  <!-- قسم إدارة العملاء -->
-                  <div class="mb-6">
-                      <h3 class="text-xs font-semibold text-gray-400 uppercase mb-2 px-3">إدارة العملاء</h3>
-                      <ul class="space-y-1">
-                          <li>
-                              <a href="/customers" class="sidebar-item active flex items-center px-3 py-2 rounded-lg text-sm">
-                                  <i class="fas fa-users ml-3 w-5"></i>
-                                  قائمة العملاء
-                              </a>
-                          </li>
-                          <li>
-                              <a href="/segments" class="sidebar-item flex items-center px-3 py-2 rounded-lg text-sm text-gray-600 hover:bg-blue-50">
-                                  <i class="fas fa-layer-group ml-3 w-5"></i>
-                                  تقسيم العملاء
-                              </a>
-                          </li>
-                          <li>
-                              <a href="/leads" class="sidebar-item flex items-center px-3 py-2 rounded-lg text-sm text-gray-600 hover:bg-blue-50">
-                                  <i class="fas fa-user-plus ml-3 w-5"></i>
-                                  العملاء المحتملين
-                              </a>
-                          </li>
-                      </ul>
-                  </div>
-              </div>
-          </aside>
+                    <!-- Statistics Cards -->
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                        <div class="bg-white rounded-xl shadow-sm border p-6">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-sm text-gray-600 mb-1">إجمالي العملاء</p>
+                                    <p class="text-2xl font-bold text-gray-800">2,847</p>
+                                </div>
+                                <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-users text-blue-600"></i>
+                                </div>
+                            </div>
+                        </div>
 
-          <!-- المحتوى الرئيسي -->
-          <main class="content-area mr-64 mt-16 p-6 h-screen overflow-y-auto">
-              <!-- العنوان والإحصائيات -->
-              <div class="mb-8">
-                  <div class="flex items-center justify-between mb-6">
-                      <div>
-                          <h1 class="text-3xl font-bold text-gray-800 mb-2">إدارة العملاء</h1>
-                          <p class="text-gray-600">إدارة وتتبع جميع عملائك في مكان واحد</p>
-                      </div>
-                      <button onclick="openAddCustomerModal()" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition">
-                          <i class="fas fa-plus ml-2"></i>إضافة عميل جديد
-                      </button>
-                  </div>
+                        <div class="bg-white rounded-xl shadow-sm border p-6">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-sm text-gray-600 mb-1">العملاء النشطين</p>
+                                    <p class="text-2xl font-bold text-gray-800">1,923</p>
+                                </div>
+                                <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-user-check text-green-600"></i>
+                                </div>
+                            </div>
+                        </div>
 
-                  <!-- بطاقات الإحصائيات -->
-                  <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-                      <div class="bg-white rounded-xl shadow-sm border p-6">
-                          <div class="flex items-center justify-between">
-                              <div>
-                                  <p class="text-sm font-medium text-gray-600 mb-1">إجمالي العملاء</p>
-                                  <p class="text-2xl font-bold text-blue-600">${customers.length}</p>
-                              </div>
-                              <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                                  <i class="fas fa-users text-blue-600 text-xl"></i>
-                              </div>
-                          </div>
-                      </div>
+                        <div class="bg-white rounded-xl shadow-sm border p-6">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-sm text-gray-600 mb-1">عملاء جدد اليوم</p>
+                                    <p class="text-2xl font-bold text-gray-800">47</p>
+                                </div>
+                                <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-user-plus text-purple-600"></i>
+                                </div>
+                            </div>
+                        </div>
 
-                      <div class="bg-white rounded-xl shadow-sm border p-6">
-                          <div class="flex items-center justify-between">
-                              <div>
-                                  <p class="text-sm font-medium text-gray-600 mb-1">العملاء النشطون</p>
-                                  <p class="text-2xl font-bold text-green-600">${customers.filter(c => c.status === 'نشط').length}</p>
-                              </div>
-                              <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
-                                  <i class="fas fa-user-check text-green-600 text-xl"></i>
-                              </div>
-                          </div>
-                      </div>
+                        <div class="bg-white rounded-xl shadow-sm border p-6">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-sm text-gray-600 mb-1">متوسط القيمة</p>
+                                    <p class="text-2xl font-bold text-gray-800">845 ر.س</p>
+                                </div>
+                                <div class="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-chart-line text-orange-600"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                      <div class="bg-white rounded-xl shadow-sm border p-6">
-                          <div class="flex items-center justify-between">
-                              <div>
-                                  <p class="text-sm font-medium text-gray-600 mb-1">إجمالي الطلبات</p>
-                                  <p class="text-2xl font-bold text-purple-600">${customers.reduce((sum, c) => sum + c.total_orders, 0)}</p>
-                              </div>
-                              <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
-                                  <i class="fas fa-shopping-cart text-purple-600 text-xl"></i>
-                              </div>
-                          </div>
-                      </div>
+                <!-- Filters and Search -->
+                <div class="bg-white rounded-xl shadow-sm border p-6 mb-6">
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                        <div>
+                            <input type="text" placeholder="البحث في العملاء..." 
+                                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        </div>
+                        <div>
+                            <select class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                                <option>جميع الحالات</option>
+                                <option>نشط</option>
+                                <option>غير نشط</option>
+                                <option>محظور</option>
+                            </select>
+                        </div>
+                        <div>
+                            <select class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                                <option>جميع المجموعات</option>
+                                <option>VIP</option>
+                                <option>عملاء عاديين</option>
+                                <option>عملاء محتملين</option>
+                            </select>
+                        </div>
+                        <div>
+                            <button class="w-full bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-lg transition-colors">
+                                <i class="fas fa-filter ml-2"></i>تصفية النتائج
+                            </button>
+                        </div>
+                    </div>
+                </div>
 
-                      <div class="bg-white rounded-xl shadow-sm border p-6">
-                          <div class="flex items-center justify-between">
-                              <div>
-                                  <p class="text-sm font-medium text-gray-600 mb-1">إجمالي المبيعات</p>
-                                  <p class="text-2xl font-bold text-orange-600">53,250 ر.س</p>
-                              </div>
-                              <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
-                                  <i class="fas fa-chart-line text-orange-600 text-xl"></i>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-
-              <!-- أدوات البحث والتصفية -->
-              <div class="bg-white rounded-xl shadow-sm border p-6 mb-6">
-                  <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-                      <div>
-                          <input type="text" id="searchCustomers" placeholder="البحث في العملاء..." class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                      </div>
-                      <div>
-                          <select id="statusFilter" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                              <option value="">جميع الحالات</option>
-                              <option value="نشط">نشط</option>
-                              <option value="غير نشط">غير نشط</option>
-                          </select>
-                      </div>
-                      <div>
-                          <input type="date" id="dateFilter" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                      </div>
-                      <div>
-                          <button onclick="exportCustomers()" class="w-full bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg transition">
-                              <i class="fas fa-download ml-2"></i>تصدير Excel
-                          </button>
-                      </div>
-                  </div>
-              </div>
-
-              <!-- جدول العملاء -->
-              <div class="bg-white rounded-xl shadow-sm border overflow-hidden">
-                  <div class="overflow-x-auto">
-                      <table class="w-full">
-                          <thead class="bg-gray-50">
-                              <tr>
-                                  <th class="text-right px-6 py-3 text-xs font-medium text-gray-500 uppercase">العميل</th>
-                                  <th class="text-right px-6 py-3 text-xs font-medium text-gray-500 uppercase">معلومات التواصل</th>
-                                  <th class="text-right px-6 py-3 text-xs font-medium text-gray-500 uppercase">الطلبات</th>
-                                  <th class="text-right px-6 py-3 text-xs font-medium text-gray-500 uppercase">إجمالي الإنفاق</th>
-                                  <th class="text-right px-6 py-3 text-xs font-medium text-gray-500 uppercase">الحالة</th>
-                                  <th class="text-right px-6 py-3 text-xs font-medium text-gray-500 uppercase">تاريخ التسجيل</th>
-                                  <th class="text-right px-6 py-3 text-xs font-medium text-gray-500 uppercase">الإجراءات</th>
-                              </tr>
-                          </thead>
-                          <tbody class="divide-y divide-gray-200">
-                              ${customers.map(customer => `
-                                  <tr class="hover:bg-gray-50">
-                                      <td class="px-6 py-4">
-                                          <div class="flex items-center space-x-3 space-x-reverse">
-                                              <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
-                                                  <i class="fas fa-user text-blue-600"></i>
-                                              </div>
-                                              <div>
-                                                  <div class="text-sm font-medium text-gray-800">${customer.name}</div>
-                                                  <div class="text-xs text-gray-500">#${customer.id}</div>
-                                              </div>
-                                          </div>
-                                      </td>
-                                      <td class="px-6 py-4">
-                                          <div class="text-sm text-gray-800">${customer.email}</div>
-                                          <div class="text-xs text-gray-500">${customer.phone}</div>
-                                      </td>
-                                      <td class="px-6 py-4 text-sm text-gray-600">${customer.total_orders}</td>
-                                      <td class="px-6 py-4 text-sm font-medium text-gray-800">${customer.total_spent}</td>
-                                      <td class="px-6 py-4">
-                                          <span class="inline-flex items-center px-2 py-1 rounded-full text-xs ${customer.status === 'نشط' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}">
-                                              <i class="fas fa-circle text-xs ml-1"></i>
-                                              ${customer.status}
-                                          </span>
-                                      </td>
-                                      <td class="px-6 py-4 text-sm text-gray-600">${customer.created_at}</td>
-                                      <td class="px-6 py-4">
-                                          <div class="flex items-center space-x-2 space-x-reverse">
-                                              <button onclick="viewCustomer(${customer.id})" class="text-blue-600 hover:text-blue-800 transition">
-                                                  <i class="fas fa-eye"></i>
-                                              </button>
-                                              <button onclick="editCustomer(${customer.id})" class="text-green-600 hover:text-green-800 transition">
-                                                  <i class="fas fa-edit"></i>
-                                              </button>
-                                              <button onclick="deleteCustomer(${customer.id})" class="text-red-600 hover:text-red-800 transition">
-                                                  <i class="fas fa-trash"></i>
-                                              </button>
-                                          </div>
-                                      </td>
-                                  </tr>
-                              `).join('')}
-                          </tbody>
-                      </table>
-                  </div>
-              </div>
-          </main>
-
-          <!-- Modal إضافة عميل جديد -->
-          <div id="addCustomerModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
-              <div class="bg-white rounded-xl p-6 w-full max-w-md">
-                  <div class="flex items-center justify-between mb-6">
-                      <h2 class="text-xl font-bold text-gray-800">إضافة عميل جديد</h2>
-                      <button onclick="closeAddCustomerModal()" class="text-gray-500 hover:text-gray-700">
-                          <i class="fas fa-times text-xl"></i>
-                      </button>
-                  </div>
-                  
-                  <form id="addCustomerForm" class="space-y-4">
-                      <div>
-                          <label class="block text-sm font-medium text-gray-700 mb-2">اسم العميل</label>
-                          <input type="text" name="name" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" required>
-                      </div>
-                      
-                      <div>
-                          <label class="block text-sm font-medium text-gray-700 mb-2">البريد الإلكتروني</label>
-                          <input type="email" name="email" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" required>
-                      </div>
-                      
-                      <div>
-                          <label class="block text-sm font-medium text-gray-700 mb-2">رقم الهاتف</label>
-                          <input type="tel" name="phone" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" required>
-                      </div>
-                      
-                      <div class="flex space-x-3 space-x-reverse pt-4">
-                          <button type="submit" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg transition">
-                              إضافة العميل
-                          </button>
-                          <button type="button" onclick="closeAddCustomerModal()" class="flex-1 bg-gray-500 hover:bg-gray-600 text-white py-2 px-4 rounded-lg transition">
-                              إلغاء
-                          </button>
-                      </div>
-                  </form>
-              </div>
-          </div>
-
-          <script>
-              // تبديل القائمة الجانبية
-              document.getElementById('sidebarToggle')?.addEventListener('click', function() {
-                  document.getElementById('sidebar').classList.toggle('open');
-              });
-
-              // فتح modal إضافة عميل
-              function openAddCustomerModal() {
-                  document.getElementById('addCustomerModal').classList.remove('hidden');
-              }
-
-              // إغلاق modal إضافة عميل  
-              function closeAddCustomerModal() {
-                  document.getElementById('addCustomerModal').classList.add('hidden');
-              }
-
-              // إضافة عميل جديد
-              document.getElementById('addCustomerForm').addEventListener('submit', function(e) {
-                  e.preventDefault();
-                  const formData = new FormData(this);
-                  
-                  // محاكاة إضافة عميل
-                  alert('تم إضافة العميل بنجاح! ✅');
-                  closeAddCustomerModal();
-                  this.reset();
-                  
-                  // يمكن إضافة API call هنا لحفظ البيانات
-              });
-
-              // وظائف العمليات
-              function viewCustomer(id) {
-                  alert('عرض تفاصيل العميل #' + id);
-              }
-
-              function editCustomer(id) {
-                  alert('تعديل العميل #' + id);
-              }
-
-              function deleteCustomer(id) {
-                  if (confirm('هل أنت متأكد من حذف هذا العميل؟')) {
-                      alert('تم حذف العميل #' + id);
-                  }
-              }
-
-              function exportCustomers() {
-                  alert('جاري تصدير بيانات العملاء إلى Excel...');
-              }
-
-              // البحث والتصفية
-              document.getElementById('searchCustomers').addEventListener('input', function() {
-                  // محاكاة البحث
-                  console.log('البحث عن:', this.value);
-              });
-
-              document.getElementById('statusFilter').addEventListener('change', function() {
-                  // محاكاة التصفية
-                  console.log('تصفية حسب الحالة:', this.value);
-              });
-          </script>
-      </body>
-      </html>
-    `)
-  } catch (error) {
-    console.error('Customer page error:', error)
-    return c.text('خطأ في تحميل صفحة العملاء', 500)
-  }
+                <!-- Customers Table -->
+                <div class="bg-white rounded-xl shadow-sm border overflow-hidden">
+                    <div class="px-6 py-4 border-b border-gray-200">
+                        <h2 class="text-lg font-semibold text-gray-800">قائمة العملاء</h2>
+                    </div>
+                    
+                    <div class="overflow-x-auto">
+                        <table class="w-full">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">العميل</th>
+                                    <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">البريد الإلكتروني</th>
+                                    <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">الهاتف</th>
+                                    <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">المجموعة</th>
+                                    <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">الحالة</th>
+                                    <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">تاريخ التسجيل</th>
+                                    <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">الإجراءات</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="flex items-center">
+                                            <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center text-white font-semibold">أ</div>
+                                            <div class="mr-4">
+                                                <div class="text-sm font-medium text-gray-900">أحمد محمد</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">ahmed@example.com</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">+966501234567</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-purple-100 text-purple-800">VIP</span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">نشط</span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">15 يناير 2024</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                        <button class="text-blue-600 hover:text-blue-900 ml-2">تعديل</button>
+                                        <button class="text-red-600 hover:text-red-900">حذف</button>
+                                    </td>
+                                </tr>
+                                
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="flex items-center">
+                                            <div class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center text-white font-semibold">س</div>
+                                            <div class="mr-4">
+                                                <div class="text-sm font-medium text-gray-900">سارة أحمد</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">sara@example.com</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">+966507654321</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-800">عادي</span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">نشط</span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">22 يناير 2024</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                        <button class="text-blue-600 hover:text-blue-900 ml-2">تعديل</button>
+                                        <button class="text-red-600 hover:text-red-900">حذف</button>
+                                    </td>
+                                </tr>
+                                
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="flex items-center">
+                                            <div class="w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center text-white font-semibold">م</div>
+                                            <div class="mr-4">
+                                                <div class="text-sm font-medium text-gray-900">محمد علي</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">mohammad@example.com</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">+966503456789</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-yellow-100 text-yellow-800">محتمل</span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-yellow-100 text-yellow-800">قيد المراجعة</span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">28 يناير 2024</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                        <button class="text-blue-600 hover:text-blue-900 ml-2">تعديل</button>
+                                        <button class="text-red-600 hover:text-red-900">حذف</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <!-- Pagination -->
+                    <div class="px-6 py-3 bg-gray-50 border-t border-gray-200">
+                        <div class="flex items-center justify-between">
+                            <div class="text-sm text-gray-500">
+                                عرض 1 إلى 10 من 2,847 عميل
+                            </div>
+                            <div class="flex items-center space-x-2 space-x-reverse">
+                                <button class="px-3 py-1 text-sm bg-white border border-gray-300 rounded hover:bg-gray-50">السابق</button>
+                                <button class="px-3 py-1 text-sm bg-blue-600 text-white rounded">1</button>
+                                <button class="px-3 py-1 text-sm bg-white border border-gray-300 rounded hover:bg-gray-50">2</button>
+                                <button class="px-3 py-1 text-sm bg-white border border-gray-300 rounded hover:bg-gray-50">3</button>
+                                <button class="px-3 py-1 text-sm bg-white border border-gray-300 rounded hover:bg-gray-50">التالي</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </body>
+    </html>
+  `)
 })
 
 // صفحة تقسيم العملاء
@@ -1329,763 +1577,537 @@ app.get('/leads', (c) => {
   return c.text('🎯 صفحة العملاء المحتملين - قيد التطوير...')
 })
 
-// صفحة حملات البريد الإلكتروني مع قاعدة البيانات
-app.get('/email-campaigns', async (c) => {
-  try {
-    // بيانات الحملات من قاعدة البيانات
-    const campaigns = [
-      { id: 1, name: 'عروض الجمعة البيضاء', subject: 'خصومات تصل إلى 70% - عروض محدودة!', status: 'مرسلة', sent_count: 2547, open_rate: 24.5, click_rate: 8.2, created_at: '2025-09-06', sent_at: '2025-09-06 10:00' },
-      { id: 2, name: 'ترحيب بالعملاء الجدد', subject: 'مرحباً بك في عائلتنا الكبيرة!', status: 'جاري الإرسال', sent_count: 1234, open_rate: 89.2, click_rate: 45.1, created_at: '2025-09-05', sent_at: null },
-      { id: 3, name: 'تذكير بالعربة المهجورة', subject: 'لا تنس منتجاتك المختارة 🛒', status: 'مجدولة', sent_count: 0, open_rate: 0, click_rate: 0, created_at: '2025-09-04', sent_at: '2025-09-07 09:00' },
-      { id: 4, name: 'نشرة أخبار شهرية', subject: 'آخر الأخبار والعروض الحصرية', status: 'مسودة', sent_count: 0, open_rate: 0, click_rate: 0, created_at: '2025-09-03', sent_at: null }
-    ]
+// صفحة حملات البريد الإلكتروني
+app.get('/email-campaigns', (c) => {
+  return c.html(`
+    <!DOCTYPE html>
+    <html lang="ar" dir="rtl">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>حملات البريد الإلكتروني - Marketing Pro</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap');
+            body { font-family: 'Cairo', sans-serif; }
+        </style>
+    </head>
+    <body class="bg-gray-100">
+        <!-- Header -->
+        <header class="bg-white shadow-sm border-b h-16 flex items-center justify-between px-6">
+            <div class="flex items-center space-x-4 space-x-reverse">
+                <div class="flex items-center space-x-3 space-x-reverse">
+                    <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
+                        <i class="fas fa-rocket text-white text-sm"></i>
+                    </div>
+                    <h1 class="text-lg font-bold text-gray-800">Marketing Pro</h1>
+                </div>
+            </div>
+            <a href="/dashboard" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition text-sm">
+                <i class="fas fa-arrow-right ml-1"></i>عودة للداشبورد
+            </a>
+        </header>
 
-    return c.html(`
-      <!DOCTYPE html>
-      <html lang="ar" dir="rtl">
-      <head>
-          <meta charset="UTF-8">
-          <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <title>حملات البريد الإلكتروني - Marketing Pro</title>
-          <script src="https://cdn.tailwindcss.com"></script>
-          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-          <style>
-              @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap');
-              body { font-family: 'Cairo', sans-serif; }
-              .sidebar-item { transition: all 0.3s ease; }
-              .sidebar-item:hover { background-color: #3B82F6; color: white; }
-              .sidebar-item.active { background-color: #2563EB; color: white; }
-              .content-area { transition: margin-right 0.3s ease; }
-              @media (max-width: 768px) {
-                  .sidebar { transform: translateX(100%); }
-                  .sidebar.open { transform: translateX(0); }
-                  .content-area { margin-right: 0 !important; }
-              }
-          </style>
-      </head>
-      <body class="bg-gray-100 h-screen overflow-hidden">
-          <!-- الهيدر العلوي -->
-          <header class="bg-white shadow-sm border-b h-16 flex items-center justify-between px-6 fixed top-0 right-0 left-0 z-30">
-              <div class="flex items-center space-x-4 space-x-reverse">
-                  <button id="sidebarToggle" class="md:hidden text-gray-600 hover:text-blue-600">
-                      <i class="fas fa-bars text-xl"></i>
-                  </button>
-                  <div class="flex items-center space-x-3 space-x-reverse">
-                      <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
-                          <i class="fas fa-rocket text-white text-sm"></i>
-                      </div>
-                      <h1 class="text-lg font-bold text-gray-800">Marketing Pro</h1>
-                  </div>
-              </div>
-              
-              <div class="flex items-center space-x-4 space-x-reverse">
-                  <div class="flex items-center space-x-2 space-x-reverse text-sm text-gray-600">
-                      <i class="fas fa-user-circle text-lg"></i>
-                      <span>أحمد محمد</span>
-                  </div>
-                  <a href="/dashboard" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition text-sm">
-                      <i class="fas fa-tachometer-alt ml-1"></i>الداشبورد
-                  </a>
-              </div>
-          </header>
+        <!-- Content -->
+        <main class="p-6">
+            <div class="max-w-7xl mx-auto">
+                <!-- Header with statistics -->
+                <div class="mb-8">
+                    <div class="flex items-center justify-between mb-6">
+                        <div>
+                            <h1 class="text-3xl font-bold text-gray-800 mb-2">حملات البريد الإلكتروني</h1>
+                            <p class="text-gray-600">إنشاء وإدارة حملات البريد الإلكتروني الفعالة</p>
+                        </div>
+                        <button class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-xl transition-colors">
+                            <i class="fas fa-plus ml-2"></i>حملة جديدة
+                        </button>
+                    </div>
 
-          <!-- القائمة الجانبية -->
-          <aside id="sidebar" class="sidebar fixed right-0 top-16 h-full bg-white shadow-lg border-l w-64 z-20 overflow-y-auto">
-              <div class="p-4">
-                  <!-- قسم الحملات التسويقية -->
-                  <div class="mb-6">
-                      <h3 class="text-xs font-semibold text-gray-400 uppercase mb-2 px-3">الحملات التسويقية</h3>
-                      <ul class="space-y-1">
-                          <li>
-                              <a href="/email-campaigns" class="sidebar-item active flex items-center px-3 py-2 rounded-lg text-sm">
-                                  <i class="fas fa-envelope ml-3 w-5"></i>
-                                  حملات البريد الإلكتروني
-                              </a>
-                          </li>
-                          <li>
-                              <a href="/whatsapp" class="sidebar-item flex items-center px-3 py-2 rounded-lg text-sm text-gray-600 hover:bg-blue-50">
-                                  <i class="fab fa-whatsapp ml-3 w-5"></i>
-                                  واتساب بزنس
-                              </a>
-                          </li>
-                          <li>
-                              <a href="/social-media" class="sidebar-item flex items-center px-3 py-2 rounded-lg text-sm text-gray-600 hover:bg-blue-50">
-                                  <i class="fas fa-share-alt ml-3 w-5"></i>
-                                  وسائل التواصل الاجتماعي
-                              </a>
-                          </li>
-                      </ul>
-                  </div>
-              </div>
-          </aside>
+                    <!-- Statistics Cards -->
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                        <div class="bg-white rounded-xl shadow-sm border p-6">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-sm text-gray-600 mb-1">إجمالي الحملات</p>
+                                    <p class="text-2xl font-bold text-gray-800">47</p>
+                                </div>
+                                <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-envelope text-blue-600"></i>
+                                </div>
+                            </div>
+                        </div>
 
-          <!-- المحتوى الرئيسي -->
-          <main class="content-area mr-64 mt-16 p-6 h-screen overflow-y-auto">
-              <!-- العنوان والإحصائيات -->
-              <div class="mb-8">
-                  <div class="flex items-center justify-between mb-6">
-                      <div>
-                          <h1 class="text-3xl font-bold text-gray-800 mb-2">حملات البريد الإلكتروني</h1>
-                          <p class="text-gray-600">إنشاء وإدارة حملات البريد الإلكتروني الاحترافية</p>
-                      </div>
-                      <button onclick="openCreateCampaignModal()" class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-medium transition">
-                          <i class="fas fa-plus ml-2"></i>إنشاء حملة جديدة
-                      </button>
-                  </div>
+                        <div class="bg-white rounded-xl shadow-sm border p-6">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-sm text-gray-600 mb-1">معدل الفتح</p>
+                                    <p class="text-2xl font-bold text-gray-800">24.3%</p>
+                                </div>
+                                <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-eye text-green-600"></i>
+                                </div>
+                            </div>
+                        </div>
 
-                  <!-- بطاقات الإحصائيات -->
-                  <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-                      <div class="bg-white rounded-xl shadow-sm border p-6">
-                          <div class="flex items-center justify-between">
-                              <div>
-                                  <p class="text-sm font-medium text-gray-600 mb-1">إجمالي الحملات</p>
-                                  <p class="text-2xl font-bold text-blue-600">${campaigns.length}</p>
-                              </div>
-                              <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                                  <i class="fas fa-envelope text-blue-600 text-xl"></i>
-                              </div>
-                          </div>
-                      </div>
+                        <div class="bg-white rounded-xl shadow-sm border p-6">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-sm text-gray-600 mb-1">معدل النقر</p>
+                                    <p class="text-2xl font-bold text-gray-800">8.7%</p>
+                                </div>
+                                <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-mouse-pointer text-purple-600"></i>
+                                </div>
+                            </div>
+                        </div>
 
-                      <div class="bg-white rounded-xl shadow-sm border p-6">
-                          <div class="flex items-center justify-between">
-                              <div>
-                                  <p class="text-sm font-medium text-gray-600 mb-1">الرسائل المرسلة</p>
-                                  <p class="text-2xl font-bold text-green-600">${campaigns.reduce((sum, c) => sum + c.sent_count, 0).toLocaleString()}</p>
-                              </div>
-                              <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
-                                  <i class="fas fa-paper-plane text-green-600 text-xl"></i>
-                              </div>
-                          </div>
-                      </div>
+                        <div class="bg-white rounded-xl shadow-sm border p-6">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-sm text-gray-600 mb-1">رسائل مرسلة</p>
+                                    <p class="text-2xl font-bold text-gray-800">125,847</p>
+                                </div>
+                                <div class="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-paper-plane text-orange-600"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                      <div class="bg-white rounded-xl shadow-sm border p-6">
-                          <div class="flex items-center justify-between">
-                              <div>
-                                  <p class="text-sm font-medium text-gray-600 mb-1">معدل الفتح</p>
-                                  <p class="text-2xl font-bold text-purple-600">35.6%</p>
-                              </div>
-                              <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
-                                  <i class="fas fa-eye text-purple-600 text-xl"></i>
-                              </div>
-                          </div>
-                      </div>
+                <!-- Campaign Performance Chart -->
+                <div class="bg-white rounded-xl shadow-sm border p-6 mb-6">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-lg font-semibold text-gray-800">أداء الحملات - آخر 30 يوم</h2>
+                        <div class="flex space-x-2 space-x-reverse">
+                            <button class="px-3 py-1 text-xs bg-blue-100 text-blue-600 rounded-lg">30 يوم</button>
+                            <button class="px-3 py-1 text-xs text-gray-500 rounded-lg">7 أيام</button>
+                        </div>
+                    </div>
+                    
+                    <div class="h-48 bg-gradient-to-t from-green-50 to-transparent rounded-lg flex items-end justify-between px-4 py-4">
+                        <div class="flex items-end space-x-1 space-x-reverse h-full w-full justify-between">
+                            <div class="bg-green-500 rounded-t w-6" style="height: 40%"></div>
+                            <div class="bg-green-500 rounded-t w-6" style="height: 60%"></div>
+                            <div class="bg-green-500 rounded-t w-6" style="height: 80%"></div>
+                            <div class="bg-green-500 rounded-t w-6" style="height: 45%"></div>
+                            <div class="bg-green-500 rounded-t w-6" style="height: 90%"></div>
+                            <div class="bg-green-500 rounded-t w-6" style="height: 70%"></div>
+                            <div class="bg-green-500 rounded-t w-6" style="height: 100%"></div>
+                            <div class="bg-green-500 rounded-t w-6" style="height: 85%"></div>
+                        </div>
+                    </div>
+                </div>
 
-                      <div class="bg-white rounded-xl shadow-sm border p-6">
-                          <div class="flex items-center justify-between">
-                              <div>
-                                  <p class="text-sm font-medium text-gray-600 mb-1">معدل النقر</p>
-                                  <p class="text-2xl font-bold text-orange-600">17.9%</p>
-                              </div>
-                              <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
-                                  <i class="fas fa-mouse-pointer text-orange-600 text-xl"></i>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
+                <!-- Campaigns List -->
+                <div class="bg-white rounded-xl shadow-sm border overflow-hidden">
+                    <div class="px-6 py-4 border-b border-gray-200">
+                        <h2 class="text-lg font-semibold text-gray-800">الحملات الحالية</h2>
+                    </div>
+                    
+                    <div class="divide-y divide-gray-200">
+                        <!-- Campaign 1 -->
+                        <div class="p-6 hover:bg-gray-50">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-4 space-x-reverse">
+                                    <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center">
+                                        <i class="fas fa-envelope text-green-600 text-lg"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-lg font-semibold text-gray-800">حملة العروض الصيفية</h3>
+                                        <p class="text-sm text-gray-500">تم الإرسال إلى 2,547 عميل</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center space-x-4 space-x-reverse">
+                                    <div class="text-center">
+                                        <p class="text-sm font-medium text-gray-800">معدل الفتح</p>
+                                        <p class="text-lg font-bold text-green-600">32.1%</p>
+                                    </div>
+                                    <div class="text-center">
+                                        <p class="text-sm font-medium text-gray-800">النقرات</p>
+                                        <p class="text-lg font-bold text-blue-600">12.4%</p>
+                                    </div>
+                                    <div class="flex space-x-2 space-x-reverse">
+                                        <button class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition text-sm">
+                                            <i class="fas fa-chart-bar ml-1"></i>التفاصيل
+                                        </button>
+                                        <button class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition text-sm">
+                                            <i class="fas fa-copy ml-1"></i>نسخ
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-              <!-- أدوات البحث والتصفية -->
-              <div class="bg-white rounded-xl shadow-sm border p-6 mb-6">
-                  <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-                      <div>
-                          <input type="text" placeholder="البحث في الحملات..." class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                      </div>
-                      <div>
-                          <select class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                              <option value="">جميع الحالات</option>
-                              <option value="مرسلة">مرسلة</option>
-                              <option value="جاري الإرسال">جاري الإرسال</option>
-                              <option value="مجدولة">مجدولة</option>
-                              <option value="مسودة">مسودة</option>
-                          </select>
-                      </div>
-                      <div>
-                          <input type="date" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                      </div>
-                      <div>
-                          <button class="w-full bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg transition">
-                              <i class="fas fa-chart-bar ml-2"></i>تقرير الأداء
-                          </button>
-                      </div>
-                  </div>
-              </div>
+                        <!-- Campaign 2 -->
+                        <div class="p-6 hover:bg-gray-50">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-4 space-x-reverse">
+                                    <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center">
+                                        <i class="fas fa-newspaper text-blue-600 text-lg"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-lg font-semibold text-gray-800">نشرة إخبارية أسبوعية</h3>
+                                        <p class="text-sm text-gray-500">تم الإرسال إلى 1,234 عميل</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center space-x-4 space-x-reverse">
+                                    <div class="text-center">
+                                        <p class="text-sm font-medium text-gray-800">معدل الفتح</p>
+                                        <p class="text-lg font-bold text-green-600">28.7%</p>
+                                    </div>
+                                    <div class="text-center">
+                                        <p class="text-sm font-medium text-gray-800">النقرات</p>
+                                        <p class="text-lg font-bold text-blue-600">9.2%</p>
+                                    </div>
+                                    <div class="flex space-x-2 space-x-reverse">
+                                        <button class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition text-sm">
+                                            <i class="fas fa-chart-bar ml-1"></i>التفاصيل
+                                        </button>
+                                        <button class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition text-sm">
+                                            <i class="fas fa-copy ml-1"></i>نسخ
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-              <!-- جدول الحملات -->
-              <div class="bg-white rounded-xl shadow-sm border overflow-hidden">
-                  <div class="overflow-x-auto">
-                      <table class="w-full">
-                          <thead class="bg-gray-50">
-                              <tr>
-                                  <th class="text-right px-6 py-3 text-xs font-medium text-gray-500 uppercase">الحملة</th>
-                                  <th class="text-right px-6 py-3 text-xs font-medium text-gray-500 uppercase">الحالة</th>
-                                  <th class="text-right px-6 py-3 text-xs font-medium text-gray-500 uppercase">المرسل إليهم</th>
-                                  <th class="text-right px-6 py-3 text-xs font-medium text-gray-500 uppercase">معدل الفتح</th>
-                                  <th class="text-right px-6 py-3 text-xs font-medium text-gray-500 uppercase">معدل النقر</th>
-                                  <th class="text-right px-6 py-3 text-xs font-medium text-gray-500 uppercase">التاريخ</th>
-                                  <th class="text-right px-6 py-3 text-xs font-medium text-gray-500 uppercase">الإجراءات</th>
-                              </tr>
-                          </thead>
-                          <tbody class="divide-y divide-gray-200">
-                              ${campaigns.map(campaign => `
-                                  <tr class="hover:bg-gray-50">
-                                      <td class="px-6 py-4">
-                                          <div>
-                                              <div class="text-sm font-medium text-gray-800">${campaign.name}</div>
-                                              <div class="text-xs text-gray-500">${campaign.subject}</div>
-                                          </div>
-                                      </td>
-                                      <td class="px-6 py-4">
-                                          <span class="inline-flex items-center px-2 py-1 rounded-full text-xs ${
-                                            campaign.status === 'مرسلة' ? 'bg-green-100 text-green-800' :
-                                            campaign.status === 'جاري الإرسال' ? 'bg-blue-100 text-blue-800' :
-                                            campaign.status === 'مجدولة' ? 'bg-yellow-100 text-yellow-800' :
-                                            'bg-gray-100 text-gray-800'
-                                          }">
-                                              <i class="fas fa-circle text-xs ml-1"></i>
-                                              ${campaign.status}
-                                          </span>
-                                      </td>
-                                      <td class="px-6 py-4 text-sm text-gray-600">${campaign.sent_count.toLocaleString()}</td>
-                                      <td class="px-6 py-4 text-sm text-gray-600">${campaign.open_rate}%</td>
-                                      <td class="px-6 py-4 text-sm text-gray-600">${campaign.click_rate}%</td>
-                                      <td class="px-6 py-4 text-sm text-gray-600">${campaign.created_at}</td>
-                                      <td class="px-6 py-4">
-                                          <div class="flex items-center space-x-2 space-x-reverse">
-                                              <button onclick="viewCampaign(${campaign.id})" class="text-blue-600 hover:text-blue-800 transition">
-                                                  <i class="fas fa-eye"></i>
-                                              </button>
-                                              <button onclick="editCampaign(${campaign.id})" class="text-green-600 hover:text-green-800 transition">
-                                                  <i class="fas fa-edit"></i>
-                                              </button>
-                                              <button onclick="duplicateCampaign(${campaign.id})" class="text-purple-600 hover:text-purple-800 transition">
-                                                  <i class="fas fa-copy"></i>
-                                              </button>
-                                              <button onclick="deleteCampaign(${campaign.id})" class="text-red-600 hover:text-red-800 transition">
-                                                  <i class="fas fa-trash"></i>
-                                              </button>
-                                          </div>
-                                      </td>
-                                  </tr>
-                              `).join('')}
-                          </tbody>
-                      </table>
-                  </div>
-              </div>
-          </main>
+                        <!-- Campaign 3 -->
+                        <div class="p-6 hover:bg-gray-50">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-4 space-x-reverse">
+                                    <div class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center">
+                                        <i class="fas fa-gift text-purple-600 text-lg"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-lg font-semibold text-gray-800">حملة ترحيب بالعملاء الجدد</h3>
+                                        <p class="text-sm text-gray-500">مجدولة للإرسال غداً</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center space-x-4 space-x-reverse">
+                                    <span class="inline-flex px-3 py-1 text-xs font-semibold rounded-full bg-yellow-100 text-yellow-800">
+                                        قيد الانتظار
+                                    </span>
+                                    <div class="flex space-x-2 space-x-reverse">
+                                        <button class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition text-sm">
+                                            <i class="fas fa-play ml-1"></i>إرسال الآن
+                                        </button>
+                                        <button class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition text-sm">
+                                            <i class="fas fa-edit ml-1"></i>تعديل
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-          <!-- Modal إنشاء حملة جديدة -->
-          <div id="createCampaignModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
-              <div class="bg-white rounded-xl p-6 w-full max-w-2xl max-h-96 overflow-y-auto">
-                  <div class="flex items-center justify-between mb-6">
-                      <h2 class="text-xl font-bold text-gray-800">إنشاء حملة بريد إلكتروني جديدة</h2>
-                      <button onclick="closeCreateCampaignModal()" class="text-gray-500 hover:text-gray-700">
-                          <i class="fas fa-times text-xl"></i>
-                      </button>
-                  </div>
-                  
-                  <form id="createCampaignForm" class="space-y-4">
-                      <div class="grid grid-cols-2 gap-4">
-                          <div>
-                              <label class="block text-sm font-medium text-gray-700 mb-2">اسم الحملة</label>
-                              <input type="text" name="name" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" required>
-                          </div>
-                          
-                          <div>
-                              <label class="block text-sm font-medium text-gray-700 mb-2">موضوع الرسالة</label>
-                              <input type="text" name="subject" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" required>
-                          </div>
-                      </div>
-                      
-                      <div>
-                          <label class="block text-sm font-medium text-gray-700 mb-2">المحتوى</label>
-                          <textarea name="content" rows="4" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" required></textarea>
-                      </div>
-                      
-                      <div class="grid grid-cols-2 gap-4">
-                          <div>
-                              <label class="block text-sm font-medium text-gray-700 mb-2">تاريخ الإرسال</label>
-                              <input type="datetime-local" name="send_date" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                          </div>
-                          
-                          <div>
-                              <label class="block text-sm font-medium text-gray-700 mb-2">قائمة المرسل إليهم</label>
-                              <select name="recipient_list" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" required>
-                                  <option value="">اختر قائمة</option>
-                                  <option value="all">جميع العملاء</option>
-                                  <option value="active">العملاء النشطون</option>
-                                  <option value="vip">العملاء المميزون</option>
-                              </select>
-                          </div>
-                      </div>
-                      
-                      <div class="flex space-x-3 space-x-reverse pt-4">
-                          <button type="submit" class="flex-1 bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded-lg transition">
-                              إنشاء الحملة
-                          </button>
-                          <button type="button" onclick="closeCreateCampaignModal()" class="flex-1 bg-gray-500 hover:bg-gray-600 text-white py-2 px-4 rounded-lg transition">
-                              إلغاء
-                          </button>
-                      </div>
-                  </form>
-              </div>
-          </div>
-
-          <script>
-              // تبديل القائمة الجانبية
-              document.getElementById('sidebarToggle')?.addEventListener('click', function() {
-                  document.getElementById('sidebar').classList.toggle('open');
-              });
-
-              // فتح modal إنشاء حملة
-              function openCreateCampaignModal() {
-                  document.getElementById('createCampaignModal').classList.remove('hidden');
-              }
-
-              // إغلاق modal إنشاء حملة  
-              function closeCreateCampaignModal() {
-                  document.getElementById('createCampaignModal').classList.add('hidden');
-              }
-
-              // إنشاء حملة جديدة
-              document.getElementById('createCampaignForm').addEventListener('submit', function(e) {
-                  e.preventDefault();
-                  const formData = new FormData(this);
-                  
-                  // محاكاة إنشاء حملة
-                  alert('تم إنشاء الحملة بنجاح! ✅');
-                  closeCreateCampaignModal();
-                  this.reset();
-              });
-
-              // وظائف العمليات
-              function viewCampaign(id) {
-                  alert('عرض تفاصيل الحملة #' + id);
-              }
-
-              function editCampaign(id) {
-                  alert('تعديل الحملة #' + id);
-              }
-
-              function duplicateCampaign(id) {
-                  alert('تم نسخ الحملة #' + id);
-              }
-
-              function deleteCampaign(id) {
-                  if (confirm('هل أنت متأكد من حذف هذه الحملة؟')) {
-                      alert('تم حذف الحملة #' + id);
-                  }
-              }
-          </script>
-      </body>
-      </html>
-    `)
-  } catch (error) {
-    console.error('Email campaigns page error:', error)
-    return c.text('خطأ في تحميل صفحة حملات البريد الإلكتروني', 500)
-  }
+                <!-- Quick Templates -->
+                <div class="mt-8 bg-white rounded-xl shadow-sm border p-6">
+                    <h2 class="text-lg font-semibold text-gray-800 mb-4">قوالب سريعة</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="border border-gray-200 rounded-lg p-4 hover:border-blue-500 transition-colors cursor-pointer">
+                            <div class="flex items-center mb-3">
+                                <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center ml-3">
+                                    <i class="fas fa-percentage text-blue-600"></i>
+                                </div>
+                                <h3 class="font-semibold text-gray-800">قالب العروض</h3>
+                            </div>
+                            <p class="text-sm text-gray-600">قالب للحملات الترويجية والعروض الخاصة</p>
+                        </div>
+                        
+                        <div class="border border-gray-200 rounded-lg p-4 hover:border-blue-500 transition-colors cursor-pointer">
+                            <div class="flex items-center mb-3">
+                                <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center ml-3">
+                                    <i class="fas fa-newspaper text-green-600"></i>
+                                </div>
+                                <h3 class="font-semibold text-gray-800">النشرة الإخبارية</h3>
+                            </div>
+                            <p class="text-sm text-gray-600">قالب للنشرات الإخبارية الدورية</p>
+                        </div>
+                        
+                        <div class="border border-gray-200 rounded-lg p-4 hover:border-blue-500 transition-colors cursor-pointer">
+                            <div class="flex items-center mb-3">
+                                <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center ml-3">
+                                    <i class="fas fa-heart text-purple-600"></i>
+                                </div>
+                                <h3 class="font-semibold text-gray-800">رسالة ترحيب</h3>
+                            </div>
+                            <p class="text-sm text-gray-600">قالب للترحيب بالعملاء الجدد</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </body>
+    </html>
+  `)
 })
 
-// صفحة واتساب بزنس مع قاعدة البيانات
-app.get('/whatsapp', async (c) => {
-  try {
-    // بيانات الرسائل من قاعدة البيانات
-    const whatsappMessages = [
-      { id: 1, recipient: 'أحمد محمد', phone: '+966501234567', message: 'مرحباً! نشكرك لاختيارك متجرنا. لديك خصم خاص 20%!', status: 'تم التسليم', sent_at: '2025-09-06 14:30', read: true },
-      { id: 2, recipient: 'فاطمة أحمد', phone: '+966502345678', message: 'تذكير: طلبك جاهز للاستلام من الفرع الرئيسي', status: 'تم التسليم', sent_at: '2025-09-06 13:15', read: true },
-      { id: 3, recipient: 'محمد سعد', phone: '+966503456789', message: 'عرض خاص! خصم 30% على جميع المنتجات لمدة محدودة', status: 'جاري الإرسال', sent_at: '2025-09-06 12:00', read: false },
-      { id: 4, recipient: 'نورا خالد', phone: '+966504567890', message: 'شكراً لك! تقييمك يهمنا. ما رأيك في تجربة التسوق؟', status: 'فشل الإرسال', sent_at: '2025-09-06 11:45', read: false }
-    ]
+// صفحة واتساب بزنس
+app.get('/whatsapp', (c) => {
+  return c.html(`
+    <!DOCTYPE html>
+    <html lang="ar" dir="rtl">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>واتساب بزنس - Marketing Pro</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap');
+            body { font-family: 'Cairo', sans-serif; }
+        </style>
+    </head>
+    <body class="bg-gray-100">
+        <!-- Header -->
+        <header class="bg-white shadow-sm border-b h-16 flex items-center justify-between px-6">
+            <div class="flex items-center space-x-4 space-x-reverse">
+                <div class="flex items-center space-x-3 space-x-reverse">
+                    <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
+                        <i class="fas fa-rocket text-white text-sm"></i>
+                    </div>
+                    <h1 class="text-lg font-bold text-gray-800">Marketing Pro</h1>
+                </div>
+            </div>
+            <a href="/dashboard" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition text-sm">
+                <i class="fas fa-arrow-right ml-1"></i>عودة للداشبورد
+            </a>
+        </header>
 
-    const templates = [
-      { id: 1, name: 'ترحيب بعميل جديد', message: 'مرحباً {{name}}! نرحب بك في عائلتنا. احصل على خصم 15% على أول طلب!', category: 'ترحيب' },
-      { id: 2, name: 'تأكيد الطلب', message: 'تم تأكيد طلبك #{{order_id}}. سيصلك خلال {{delivery_time}}.', category: 'طلبات' },
-      { id: 3, name: 'تذكير بالعربة المهجورة', message: 'لديك منتجات في عربتك تنتظرك! أكمل الطلب الآن واحصل على شحن مجاني.', category: 'تسويق' },
-      { id: 4, name: 'طلب التقييم', message: 'كيف كانت تجربتك معنا؟ شاركنا تقييمك واحصل على نقاط مكافآت!', category: 'خدمة عملاء' }
-    ]
+        <!-- Content -->
+        <main class="p-6">
+            <div class="max-w-7xl mx-auto">
+                <!-- Header -->
+                <div class="mb-8">
+                    <div class="flex items-center justify-between mb-6">
+                        <div>
+                            <h1 class="text-3xl font-bold text-gray-800 mb-2">واتساب بزنس</h1>
+                            <p class="text-gray-600">إدارة الرسائل والحملات عبر واتساب بزنس</p>
+                        </div>
+                        <button class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-xl transition-colors">
+                            <i class="fas fa-plus ml-2"></i>رسالة جديدة
+                        </button>
+                    </div>
 
-    return c.html(`
-      <!DOCTYPE html>
-      <html lang="ar" dir="rtl">
-      <head>
-          <meta charset="UTF-8">
-          <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <title>واتساب بزنس - Marketing Pro</title>
-          <script src="https://cdn.tailwindcss.com"></script>
-          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-          <style>
-              @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap');
-              body { font-family: 'Cairo', sans-serif; }
-              .sidebar-item { transition: all 0.3s ease; }
-              .sidebar-item:hover { background-color: #3B82F6; color: white; }
-              .sidebar-item.active { background-color: #2563EB; color: white; }
-              .content-area { transition: margin-right 0.3s ease; }
-              @media (max-width: 768px) {
-                  .sidebar { transform: translateX(100%); }
-                  .sidebar.open { transform: translateX(0); }
-                  .content-area { margin-right: 0 !important; }
-              }
-          </style>
-      </head>
-      <body class="bg-gray-100 h-screen overflow-hidden">
-          <!-- الهيدر العلوي -->
-          <header class="bg-white shadow-sm border-b h-16 flex items-center justify-between px-6 fixed top-0 right-0 left-0 z-30">
-              <div class="flex items-center space-x-4 space-x-reverse">
-                  <button id="sidebarToggle" class="md:hidden text-gray-600 hover:text-blue-600">
-                      <i class="fas fa-bars text-xl"></i>
-                  </button>
-                  <div class="flex items-center space-x-3 space-x-reverse">
-                      <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
-                          <i class="fas fa-rocket text-white text-sm"></i>
-                      </div>
-                      <h1 class="text-lg font-bold text-gray-800">Marketing Pro</h1>
-                  </div>
-              </div>
-              
-              <div class="flex items-center space-x-4 space-x-reverse">
-                  <div class="flex items-center space-x-2 space-x-reverse text-sm text-gray-600">
-                      <i class="fas fa-user-circle text-lg"></i>
-                      <span>أحمد محمد</span>
-                  </div>
-                  <a href="/dashboard" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition text-sm">
-                      <i class="fas fa-tachometer-alt ml-1"></i>الداشبورد
-                  </a>
-              </div>
-          </header>
+                    <!-- Connection Status -->
+                    <div class="bg-green-50 border border-green-200 rounded-xl p-4 mb-6">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center ml-3">
+                                    <i class="fab fa-whatsapp text-green-600 text-lg"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-green-800">واتساب متصل بنجاح</h3>
+                                    <p class="text-sm text-green-600">آخر تحديث: منذ دقيقتين</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <span class="w-3 h-3 bg-green-500 rounded-full animate-pulse ml-2"></span>
+                                <span class="text-green-700 font-medium">متصل</span>
+                            </div>
+                        </div>
+                    </div>
 
-          <!-- القائمة الجانبية -->
-          <aside id="sidebar" class="sidebar fixed right-0 top-16 h-full bg-white shadow-lg border-l w-64 z-20 overflow-y-auto">
-              <div class="p-4">
-                  <!-- قسم الحملات التسويقية -->
-                  <div class="mb-6">
-                      <h3 class="text-xs font-semibold text-gray-400 uppercase mb-2 px-3">الحملات التسويقية</h3>
-                      <ul class="space-y-1">
-                          <li>
-                              <a href="/email-campaigns" class="sidebar-item flex items-center px-3 py-2 rounded-lg text-sm text-gray-600 hover:bg-blue-50">
-                                  <i class="fas fa-envelope ml-3 w-5"></i>
-                                  حملات البريد الإلكتروني
-                              </a>
-                          </li>
-                          <li>
-                              <a href="/whatsapp" class="sidebar-item active flex items-center px-3 py-2 rounded-lg text-sm">
-                                  <i class="fab fa-whatsapp ml-3 w-5"></i>
-                                  واتساب بزنس
-                              </a>
-                          </li>
-                          <li>
-                              <a href="/social-media" class="sidebar-item flex items-center px-3 py-2 rounded-lg text-sm text-gray-600 hover:bg-blue-50">
-                                  <i class="fas fa-share-alt ml-3 w-5"></i>
-                                  وسائل التواصل الاجتماعي
-                              </a>
-                          </li>
-                      </ul>
-                  </div>
-              </div>
-          </aside>
+                    <!-- Statistics Cards -->
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                        <div class="bg-white rounded-xl shadow-sm border p-6">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-sm text-gray-600 mb-1">رسائل اليوم</p>
+                                    <p class="text-2xl font-bold text-gray-800">2,847</p>
+                                </div>
+                                <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-paper-plane text-blue-600"></i>
+                                </div>
+                            </div>
+                        </div>
 
-          <!-- المحتوى الرئيسي -->
-          <main class="content-area mr-64 mt-16 p-6 h-screen overflow-y-auto">
-              <!-- العنوان والحالة -->
-              <div class="mb-8">
-                  <div class="flex items-center justify-between mb-6">
-                      <div>
-                          <h1 class="text-3xl font-bold text-gray-800 mb-2">واتساب بزنس</h1>
-                          <p class="text-gray-600">إدارة رسائل واتساب والتواصل مع العملاء</p>
-                      </div>
-                      <div class="flex space-x-3 space-x-reverse">
-                          <button onclick="openSendMessageModal()" class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-medium transition">
-                              <i class="fab fa-whatsapp ml-2"></i>إرسال رسالة
-                          </button>
-                          <button onclick="connectWhatsApp()" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition">
-                              <i class="fas fa-link ml-2"></i>ربط الحساب
-                          </button>
-                      </div>
-                  </div>
+                        <div class="bg-white rounded-xl shadow-sm border p-6">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-sm text-gray-600 mb-1">تم التسليم</p>
+                                    <p class="text-2xl font-bold text-gray-800">2,701</p>
+                                </div>
+                                <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-check-double text-green-600"></i>
+                                </div>
+                            </div>
+                        </div>
 
-                  <!-- حالة الاتصال -->
-                  <div class="bg-white rounded-xl shadow-sm border p-6 mb-6">
-                      <div class="flex items-center justify-between">
-                          <div class="flex items-center space-x-3 space-x-reverse">
-                              <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
-                                  <i class="fab fa-whatsapp text-green-600 text-xl"></i>
-                              </div>
-                              <div>
-                                  <h3 class="text-lg font-bold text-gray-800">حالة الاتصال</h3>
-                                  <div class="flex items-center space-x-2 space-x-reverse">
-                                      <span class="inline-flex items-center px-2 py-1 rounded-full text-xs bg-green-100 text-green-800">
-                                          <i class="fas fa-circle text-xs ml-1"></i>
-                                          متصل
-                                      </span>
-                                      <span class="text-sm text-gray-600">+966 50 123 4567</span>
-                                  </div>
-                              </div>
-                          </div>
-                          <div class="text-right">
-                              <p class="text-sm text-gray-600">آخر نشاط</p>
-                              <p class="text-lg font-bold text-gray-800">منذ 5 دقائق</p>
-                          </div>
-                      </div>
-                  </div>
+                        <div class="bg-white rounded-xl shadow-sm border p-6">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-sm text-gray-600 mb-1">تم القراءة</p>
+                                    <p class="text-2xl font-bold text-gray-800">1,987</p>
+                                </div>
+                                <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-eye text-purple-600"></i>
+                                </div>
+                            </div>
+                        </div>
 
-                  <!-- بطاقات الإحصائيات -->
-                  <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-                      <div class="bg-white rounded-xl shadow-sm border p-6">
-                          <div class="flex items-center justify-between">
-                              <div>
-                                  <p class="text-sm font-medium text-gray-600 mb-1">الرسائل المرسلة</p>
-                                  <p class="text-2xl font-bold text-blue-600">${whatsappMessages.length}</p>
-                              </div>
-                              <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                                  <i class="fas fa-paper-plane text-blue-600 text-xl"></i>
-                              </div>
-                          </div>
-                      </div>
+                        <div class="bg-white rounded-xl shadow-sm border p-6">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-sm text-gray-600 mb-1">معدل الاستجابة</p>
+                                    <p class="text-2xl font-bold text-gray-800">73.5%</p>
+                                </div>
+                                <div class="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-reply text-orange-600"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                      <div class="bg-white rounded-xl shadow-sm border p-6">
-                          <div class="flex items-center justify-between">
-                              <div>
-                                  <p class="text-sm font-medium text-gray-600 mb-1">تم التسليم</p>
-                                  <p class="text-2xl font-bold text-green-600">${whatsappMessages.filter(m => m.status === 'تم التسليم').length}</p>
-                              </div>
-                              <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
-                                  <i class="fas fa-check-double text-green-600 text-xl"></i>
-                              </div>
-                          </div>
-                      </div>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <!-- Recent Messages -->
+                    <div class="lg:col-span-2 bg-white rounded-xl shadow-sm border">
+                        <div class="px-6 py-4 border-b border-gray-200">
+                            <h2 class="text-lg font-semibold text-gray-800">الرسائل الحديثة</h2>
+                        </div>
+                        
+                        <div class="divide-y divide-gray-200">
+                            <!-- Message 1 -->
+                            <div class="p-4 hover:bg-gray-50">
+                                <div class="flex items-start space-x-3 space-x-reverse">
+                                    <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center text-white font-semibold text-sm">
+                                        أ
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <div class="flex items-center justify-between">
+                                            <p class="text-sm font-medium text-gray-900">أحمد محمد</p>
+                                            <p class="text-xs text-gray-500">منذ 5 دقائق</p>
+                                        </div>
+                                        <p class="text-sm text-gray-600 mt-1">مرحباً، أريد معرفة المزيد عن خدماتكم</p>
+                                        <div class="flex items-center mt-2">
+                                            <span class="inline-flex px-2 py-1 text-xs rounded-full bg-green-100 text-green-800">
+                                                <i class="fas fa-check-double ml-1 text-xs"></i>تم التسليم
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
-                      <div class="bg-white rounded-xl shadow-sm border p-6">
-                          <div class="flex items-center justify-between">
-                              <div>
-                                  <p class="text-sm font-medium text-gray-600 mb-1">تم القراءة</p>
-                                  <p class="text-2xl font-bold text-purple-600">${whatsappMessages.filter(m => m.read).length}</p>
-                              </div>
-                              <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
-                                  <i class="fas fa-eye text-purple-600 text-xl"></i>
-                              </div>
-                          </div>
-                      </div>
+                            <!-- Message 2 -->
+                            <div class="p-4 hover:bg-gray-50">
+                                <div class="flex items-start space-x-3 space-x-reverse">
+                                    <div class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center text-white font-semibold text-sm">
+                                        س
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <div class="flex items-center justify-between">
+                                            <p class="text-sm font-medium text-gray-900">سارة أحمد</p>
+                                            <p class="text-xs text-gray-500">منذ 12 دقيقة</p>
+                                        </div>
+                                        <p class="text-sm text-gray-600 mt-1">شكراً لكم على المتابعة السريعة</p>
+                                        <div class="flex items-center mt-2">
+                                            <span class="inline-flex px-2 py-1 text-xs rounded-full bg-blue-100 text-blue-800">
+                                                <i class="fas fa-eye ml-1 text-xs"></i>تم القراءة
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
-                      <div class="bg-white rounded-xl shadow-sm border p-6">
-                          <div class="flex items-center justify-between">
-                              <div>
-                                  <p class="text-sm font-medium text-gray-600 mb-1">معدل القراءة</p>
-                                  <p class="text-2xl font-bold text-orange-600">75%</p>
-                              </div>
-                              <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
-                                  <i class="fas fa-chart-line text-orange-600 text-xl"></i>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
+                            <!-- Message 3 -->
+                            <div class="p-4 hover:bg-gray-50">
+                                <div class="flex items-start space-x-3 space-x-reverse">
+                                    <div class="w-10 h-10 bg-purple-500 rounded-full flex items-center justify-center text-white font-semibold text-sm">
+                                        م
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <div class="flex items-center justify-between">
+                                            <p class="text-sm font-medium text-gray-900">محمد علي</p>
+                                            <p class="text-xs text-gray-500">منذ 18 دقيقة</p>
+                                        </div>
+                                        <p class="text-sm text-gray-600 mt-1">متى سيكون موعد التسليم؟</p>
+                                        <div class="flex items-center mt-2">
+                                            <span class="inline-flex px-2 py-1 text-xs rounded-full bg-yellow-100 text-yellow-800">
+                                                <i class="fas fa-clock ml-1 text-xs"></i>في الانتظار
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-              <!-- تبويبات المحتوى -->
-              <div class="bg-white rounded-xl shadow-sm border overflow-hidden">
-                  <div class="border-b">
-                      <nav class="flex space-x-8 space-x-reverse px-6">
-                          <button onclick="showTab('messages')" id="messagesTab" class="tab-btn active py-4 px-2 border-b-2 border-blue-500 text-blue-600 font-medium">
-                              الرسائل الحديثة
-                          </button>
-                          <button onclick="showTab('templates')" id="templatesTab" class="tab-btn py-4 px-2 border-b-2 border-transparent text-gray-500 hover:text-gray-700 font-medium">
-                              قوالب الرسائل
-                          </button>
-                      </nav>
-                  </div>
+                    <!-- Quick Actions and Templates -->
+                    <div class="space-y-6">
+                        <!-- Quick Send -->
+                        <div class="bg-white rounded-xl shadow-sm border p-6">
+                            <h3 class="text-lg font-semibold text-gray-800 mb-4">إرسال سريع</h3>
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">رقم الهاتف</label>
+                                    <input type="text" placeholder="+966501234567" 
+                                           class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">الرسالة</label>
+                                    <textarea rows="3" placeholder="اكتب رسالتك هنا..." 
+                                              class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent resize-none"></textarea>
+                                </div>
+                                <button class="w-full bg-green-600 hover:bg-green-700 text-white py-2 rounded-lg transition-colors">
+                                    <i class="fab fa-whatsapp ml-2"></i>إرسال الآن
+                                </button>
+                            </div>
+                        </div>
 
-                  <!-- جدول الرسائل -->
-                  <div id="messagesContent" class="tab-content">
-                      <div class="overflow-x-auto">
-                          <table class="w-full">
-                              <thead class="bg-gray-50">
-                                  <tr>
-                                      <th class="text-right px-6 py-3 text-xs font-medium text-gray-500 uppercase">المستلم</th>
-                                      <th class="text-right px-6 py-3 text-xs font-medium text-gray-500 uppercase">الرسالة</th>
-                                      <th class="text-right px-6 py-3 text-xs font-medium text-gray-500 uppercase">الحالة</th>
-                                      <th class="text-right px-6 py-3 text-xs font-medium text-gray-500 uppercase">وقت الإرسال</th>
-                                      <th class="text-right px-6 py-3 text-xs font-medium text-gray-500 uppercase">الإجراءات</th>
-                                  </tr>
-                              </thead>
-                              <tbody class="divide-y divide-gray-200">
-                                  ${whatsappMessages.map(msg => `
-                                      <tr class="hover:bg-gray-50">
-                                          <td class="px-6 py-4">
-                                              <div>
-                                                  <div class="text-sm font-medium text-gray-800">${msg.recipient}</div>
-                                                  <div class="text-xs text-gray-500">${msg.phone}</div>
-                                              </div>
-                                          </td>
-                                          <td class="px-6 py-4">
-                                              <div class="text-sm text-gray-600 max-w-xs truncate">${msg.message}</div>
-                                          </td>
-                                          <td class="px-6 py-4">
-                                              <span class="inline-flex items-center px-2 py-1 rounded-full text-xs ${
-                                                msg.status === 'تم التسليم' ? 'bg-green-100 text-green-800' :
-                                                msg.status === 'جاري الإرسال' ? 'bg-blue-100 text-blue-800' :
-                                                'bg-red-100 text-red-800'
-                                              }">
-                                                  ${msg.status === 'تم التسليم' ? '<i class="fas fa-check-double ml-1"></i>' : 
-                                                    msg.status === 'جاري الإرسال' ? '<i class="fas fa-clock ml-1"></i>' :
-                                                    '<i class="fas fa-exclamation-triangle ml-1"></i>'}
-                                                  ${msg.status}
-                                              </span>
-                                              ${msg.read ? '<div class="text-xs text-blue-600 mt-1"><i class="fas fa-eye ml-1"></i>تم القراءة</div>' : ''}
-                                          </td>
-                                          <td class="px-6 py-4 text-sm text-gray-600">${msg.sent_at}</td>
-                                          <td class="px-6 py-4">
-                                              <div class="flex items-center space-x-2 space-x-reverse">
-                                                  <button onclick="resendMessage(${msg.id})" class="text-green-600 hover:text-green-800 transition">
-                                                      <i class="fas fa-redo"></i>
-                                                  </button>
-                                                  <button onclick="deleteMessage(${msg.id})" class="text-red-600 hover:text-red-800 transition">
-                                                      <i class="fas fa-trash"></i>
-                                                  </button>
-                                              </div>
-                                          </td>
-                                      </tr>
-                                  `).join('')}
-                              </tbody>
-                          </table>
-                      </div>
-                  </div>
+                        <!-- Message Templates -->
+                        <div class="bg-white rounded-xl shadow-sm border p-6">
+                            <h3 class="text-lg font-semibold text-gray-800 mb-4">القوالب الجاهزة</h3>
+                            <div class="space-y-3">
+                                <div class="border border-gray-200 rounded-lg p-3 hover:border-green-500 transition-colors cursor-pointer">
+                                    <div class="flex items-center mb-2">
+                                        <i class="fas fa-handshake text-green-600 ml-2"></i>
+                                        <span class="font-medium text-gray-800">رسالة ترحيب</span>
+                                    </div>
+                                    <p class="text-xs text-gray-600">مرحباً بكم في خدماتنا...</p>
+                                </div>
+                                
+                                <div class="border border-gray-200 rounded-lg p-3 hover:border-green-500 transition-colors cursor-pointer">
+                                    <div class="flex items-center mb-2">
+                                        <i class="fas fa-percentage text-blue-600 ml-2"></i>
+                                        <span class="font-medium text-gray-800">عرض خاص</span>
+                                    </div>
+                                    <p class="text-xs text-gray-600">عرض خاص لفترة محدودة...</p>
+                                </div>
+                                
+                                <div class="border border-gray-200 rounded-lg p-3 hover:border-green-500 transition-colors cursor-pointer">
+                                    <div class="flex items-center mb-2">
+                                        <i class="fas fa-shipping-fast text-orange-600 ml-2"></i>
+                                        <span class="font-medium text-gray-800">تحديث الطلب</span>
+                                    </div>
+                                    <p class="text-xs text-gray-600">تم شحن طلبكم بنجاح...</p>
+                                </div>
+                            </div>
+                        </div>
 
-                  <!-- قوالب الرسائل -->
-                  <div id="templatesContent" class="tab-content hidden p-6">
-                      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                          ${templates.map(template => `
-                              <div class="border rounded-lg p-4 hover:shadow-md transition">
-                                  <div class="flex items-center justify-between mb-3">
-                                      <h3 class="font-bold text-gray-800">${template.name}</h3>
-                                      <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">${template.category}</span>
-                                  </div>
-                                  <p class="text-sm text-gray-600 mb-4">${template.message}</p>
-                                  <div class="flex space-x-2 space-x-reverse">
-                                      <button onclick="useTemplate(${template.id})" class="text-green-600 hover:text-green-800 text-sm font-medium">
-                                          <i class="fas fa-paper-plane ml-1"></i>استخدام
-                                      </button>
-                                      <button onclick="editTemplate(${template.id})" class="text-blue-600 hover:text-blue-800 text-sm font-medium">
-                                          <i class="fas fa-edit ml-1"></i>تعديل
-                                      </button>
-                                  </div>
-                              </div>
-                          `).join('')}
-                      </div>
-                  </div>
-              </div>
-          </main>
-
-          <!-- Modal إرسال رسالة -->
-          <div id="sendMessageModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
-              <div class="bg-white rounded-xl p-6 w-full max-w-md">
-                  <div class="flex items-center justify-between mb-6">
-                      <h2 class="text-xl font-bold text-gray-800">إرسال رسالة واتساب</h2>
-                      <button onclick="closeSendMessageModal()" class="text-gray-500 hover:text-gray-700">
-                          <i class="fas fa-times text-xl"></i>
-                      </button>
-                  </div>
-                  
-                  <form id="sendMessageForm" class="space-y-4">
-                      <div>
-                          <label class="block text-sm font-medium text-gray-700 mb-2">رقم الهاتف</label>
-                          <input type="tel" name="phone" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent" placeholder="+966501234567" required>
-                      </div>
-                      
-                      <div>
-                          <label class="block text-sm font-medium text-gray-700 mb-2">الرسالة</label>
-                          <textarea name="message" rows="4" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent" placeholder="اكتب رسالتك هنا..." required></textarea>
-                      </div>
-                      
-                      <div class="flex space-x-3 space-x-reverse pt-4">
-                          <button type="submit" class="flex-1 bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded-lg transition">
-                              <i class="fab fa-whatsapp ml-2"></i>إرسال
-                          </button>
-                          <button type="button" onclick="closeSendMessageModal()" class="flex-1 bg-gray-500 hover:bg-gray-600 text-white py-2 px-4 rounded-lg transition">
-                              إلغاء
-                          </button>
-                      </div>
-                  </form>
-              </div>
-          </div>
-
-          <script>
-              // تبديل القائمة الجانبية
-              document.getElementById('sidebarToggle')?.addEventListener('click', function() {
-                  document.getElementById('sidebar').classList.toggle('open');
-              });
-
-              // تبديل التبويبات
-              function showTab(tabName) {
-                  // إخفاء جميع المحتويات
-                  document.querySelectorAll('.tab-content').forEach(content => {
-                      content.classList.add('hidden');
-                  });
-                  
-                  // إزالة الفئة النشطة من جميع الأزرار
-                  document.querySelectorAll('.tab-btn').forEach(btn => {
-                      btn.classList.remove('active', 'border-blue-500', 'text-blue-600');
-                      btn.classList.add('border-transparent', 'text-gray-500');
-                  });
-                  
-                  // إظهار المحتوى المحدد
-                  document.getElementById(tabName + 'Content').classList.remove('hidden');
-                  
-                  // تفعيل الزر المحدد
-                  const activeBtn = document.getElementById(tabName + 'Tab');
-                  activeBtn.classList.add('active', 'border-blue-500', 'text-blue-600');
-                  activeBtn.classList.remove('border-transparent', 'text-gray-500');
-              }
-
-              // فتح modal إرسال رسالة
-              function openSendMessageModal() {
-                  document.getElementById('sendMessageModal').classList.remove('hidden');
-              }
-
-              // إغلاق modal إرسال رسالة  
-              function closeSendMessageModal() {
-                  document.getElementById('sendMessageModal').classList.add('hidden');
-              }
-
-              // إرسال رسالة
-              document.getElementById('sendMessageForm').addEventListener('submit', function(e) {
-                  e.preventDefault();
-                  const formData = new FormData(this);
-                  
-                  alert('تم إرسال الرسالة بنجاح! ✅');
-                  closeSendMessageModal();
-                  this.reset();
-              });
-
-              // ربط واتساب
-              function connectWhatsApp() {
-                  alert('سيتم فتح رمز QR للربط مع واتساب...');
-              }
-
-              // وظائف أخرى
-              function resendMessage(id) {
-                  alert('تم إعادة إرسال الرسالة #' + id);
-              }
-
-              function deleteMessage(id) {
-                  if (confirm('هل تريد حذف هذه الرسالة؟')) {
-                      alert('تم حذف الرسالة #' + id);
-                  }
-              }
-
-              function useTemplate(id) {
-                  alert('تم استخدام القالب #' + id);
-                  openSendMessageModal();
-              }
-
-              function editTemplate(id) {
-                  alert('تعديل القالب #' + id);
-              }
-          </script>
-      </body>
-      </html>
-    `)
-  } catch (error) {
-    console.error('WhatsApp page error:', error)
-    return c.text('خطأ في تحميل صفحة واتساب بزنس', 500)
-  }
+                        <!-- Broadcast -->
+                        <div class="bg-white rounded-xl shadow-sm border p-6">
+                            <h3 class="text-lg font-semibold text-gray-800 mb-4">الإذاعة الجماعية</h3>
+                            <div class="space-y-4">
+                                <div class="text-center p-4 bg-gray-50 rounded-lg">
+                                    <i class="fas fa-bullhorn text-gray-400 text-2xl mb-2"></i>
+                                    <p class="text-sm text-gray-600">إرسال رسالة لجميع العملاء</p>
+                                </div>
+                                <button class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg transition-colors">
+                                    <i class="fas fa-broadcast-tower ml-2"></i>إنشاء حملة إذاعة
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </body>
+    </html>
+  `)
 })
 
 // صفحة وسائل التواصل الاجتماعي
@@ -2130,7 +2152,276 @@ app.get('/billing', (c) => {
 
 // صفحة إعدادات النظام
 app.get('/settings', (c) => {
-  return c.text('⚙️ صفحة إعدادات النظام - قيد التطوير...')
+  return c.html(`
+    <!DOCTYPE html>
+    <html lang="ar" dir="rtl">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>إعدادات النظام - Marketing Pro</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap');
+            body { font-family: 'Cairo', sans-serif; }
+        </style>
+    </head>
+    <body class="bg-gray-100">
+        <!-- Header -->
+        <header class="bg-white shadow-sm border-b h-16 flex items-center justify-between px-6">
+            <div class="flex items-center space-x-4 space-x-reverse">
+                <div class="flex items-center space-x-3 space-x-reverse">
+                    <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
+                        <i class="fas fa-rocket text-white text-sm"></i>
+                    </div>
+                    <h1 class="text-lg font-bold text-gray-800">Marketing Pro</h1>
+                </div>
+            </div>
+            <a href="/dashboard" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition text-sm">
+                <i class="fas fa-arrow-right ml-1"></i>عودة للداشبورد
+            </a>
+        </header>
+
+        <!-- Content -->
+        <main class="p-6">
+            <div class="max-w-4xl mx-auto">
+                <!-- Header -->
+                <div class="mb-8">
+                    <h1 class="text-3xl font-bold text-gray-800 mb-2">إعدادات النظام</h1>
+                    <p class="text-gray-600">إدارة إعدادات الحساب والنظام العامة</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+                    <!-- Settings Navigation -->
+                    <div class="bg-white rounded-xl shadow-sm border p-4">
+                        <nav class="space-y-2">
+                            <button class="w-full text-right px-4 py-3 rounded-lg bg-blue-50 text-blue-600 font-medium transition-colors">
+                                <i class="fas fa-user ml-2"></i>الملف الشخصي
+                            </button>
+                            <button class="w-full text-right px-4 py-3 rounded-lg text-gray-600 hover:bg-gray-50 font-medium transition-colors">
+                                <i class="fas fa-bell ml-2"></i>الإشعارات
+                            </button>
+                            <button class="w-full text-right px-4 py-3 rounded-lg text-gray-600 hover:bg-gray-50 font-medium transition-colors">
+                                <i class="fas fa-shield-alt ml-2"></i>الأمان
+                            </button>
+                            <button class="w-full text-right px-4 py-3 rounded-lg text-gray-600 hover:bg-gray-50 font-medium transition-colors">
+                                <i class="fas fa-envelope ml-2"></i>البريد الإلكتروني
+                            </button>
+                            <button class="w-full text-right px-4 py-3 rounded-lg text-gray-600 hover:bg-gray-50 font-medium transition-colors">
+                                <i class="fab fa-whatsapp ml-2"></i>واتساب
+                            </button>
+                            <button class="w-full text-right px-4 py-3 rounded-lg text-gray-600 hover:bg-gray-50 font-medium transition-colors">
+                                <i class="fas fa-cog ml-2"></i>عام
+                            </button>
+                        </nav>
+                    </div>
+
+                    <!-- Settings Content -->
+                    <div class="lg:col-span-3 space-y-6">
+                        <!-- Profile Settings -->
+                        <div class="bg-white rounded-xl shadow-sm border p-6">
+                            <h2 class="text-lg font-semibold text-gray-800 mb-6">معلومات الملف الشخصي</h2>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">الاسم الأول</label>
+                                    <input type="text" value="أحمد" 
+                                           class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">الاسم الأخير</label>
+                                    <input type="text" value="محمد" 
+                                           class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">البريد الإلكتروني</label>
+                                    <input type="email" value="admin@marketingpro.com" 
+                                           class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">رقم الهاتف</label>
+                                    <input type="tel" value="+966501234567" 
+                                           class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                </div>
+                                
+                                <div class="md:col-span-2">
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">المنصب</label>
+                                    <input type="text" value="مدير التسويق" 
+                                           class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                </div>
+                                
+                                <div class="md:col-span-2">
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">نبذة مختصرة</label>
+                                    <textarea rows="3" placeholder="اكتب نبذة مختصرة عنك..." 
+                                              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none">مدير تسويق متخصص في الحملات الرقمية وإدارة العلاقات مع العملاء</textarea>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-6 flex justify-end">
+                                <button class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg transition-colors">
+                                    <i class="fas fa-save ml-2"></i>حفظ التغييرات
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Notification Settings -->
+                        <div class="bg-white rounded-xl shadow-sm border p-6">
+                            <h2 class="text-lg font-semibold text-gray-800 mb-6">إعدادات الإشعارات</h2>
+                            
+                            <div class="space-y-4">
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <h3 class="font-medium text-gray-800">إشعارات البريد الإلكتروني</h3>
+                                        <p class="text-sm text-gray-500">استلام إشعارات عن الحملات والأنشطة الجديدة</p>
+                                    </div>
+                                    <label class="relative inline-flex items-center cursor-pointer">
+                                        <input type="checkbox" checked class="sr-only peer">
+                                        <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                                    </label>
+                                </div>
+                                
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <h3 class="font-medium text-gray-800">إشعارات واتساب</h3>
+                                        <p class="text-sm text-gray-500">استلام إشعارات عبر واتساب للرسائل المهمة</p>
+                                    </div>
+                                    <label class="relative inline-flex items-center cursor-pointer">
+                                        <input type="checkbox" checked class="sr-only peer">
+                                        <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                                    </label>
+                                </div>
+                                
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <h3 class="font-medium text-gray-800">تقارير الأداء اليومية</h3>
+                                        <p class="text-sm text-gray-500">استلام ملخص يومي عن أداء الحملات</p>
+                                    </div>
+                                    <label class="relative inline-flex items-center cursor-pointer">
+                                        <input type="checkbox" class="sr-only peer">
+                                        <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                                    </label>
+                                </div>
+                                
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <h3 class="font-medium text-gray-800">إشعارات العملاء الجدد</h3>
+                                        <p class="text-sm text-gray-500">التنبيه عند تسجيل عملاء جدد</p>
+                                    </div>
+                                    <label class="relative inline-flex items-center cursor-pointer">
+                                        <input type="checkbox" checked class="sr-only peer">
+                                        <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Integration Settings -->
+                        <div class="bg-white rounded-xl shadow-sm border p-6">
+                            <h2 class="text-lg font-semibold text-gray-800 mb-6">إعدادات التكامل</h2>
+                            
+                            <div class="space-y-4">
+                                <div class="border border-gray-200 rounded-lg p-4">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center">
+                                            <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center ml-3">
+                                                <i class="fab fa-whatsapp text-green-600"></i>
+                                            </div>
+                                            <div>
+                                                <h3 class="font-medium text-gray-800">واتساب بزنس</h3>
+                                                <p class="text-sm text-gray-500">متصل - آخر مزامنة منذ 5 دقائق</p>
+                                            </div>
+                                        </div>
+                                        <div class="flex items-center space-x-2 space-x-reverse">
+                                            <span class="w-3 h-3 bg-green-500 rounded-full"></span>
+                                            <span class="text-sm font-medium text-green-600">متصل</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="border border-gray-200 rounded-lg p-4">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center">
+                                            <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center ml-3">
+                                                <i class="fas fa-envelope text-blue-600"></i>
+                                            </div>
+                                            <div>
+                                                <h3 class="font-medium text-gray-800">خدمة البريد الإلكتروني</h3>
+                                                <p class="text-sm text-gray-500">متصل - SMTP مُكوّن</p>
+                                            </div>
+                                        </div>
+                                        <div class="flex items-center space-x-2 space-x-reverse">
+                                            <span class="w-3 h-3 bg-green-500 rounded-full"></span>
+                                            <span class="text-sm font-medium text-green-600">متصل</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="border border-gray-200 rounded-lg p-4">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center">
+                                            <div class="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center ml-3">
+                                                <i class="fab fa-google text-gray-400"></i>
+                                            </div>
+                                            <div>
+                                                <h3 class="font-medium text-gray-800">Google Analytics</h3>
+                                                <p class="text-sm text-gray-500">غير متصل - يتطلب الإعداد</p>
+                                            </div>
+                                        </div>
+                                        <button class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition text-sm">
+                                            ربط الآن
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Security Settings -->
+                        <div class="bg-white rounded-xl shadow-sm border p-6">
+                            <h2 class="text-lg font-semibold text-gray-800 mb-6">إعدادات الأمان</h2>
+                            
+                            <div class="space-y-6">
+                                <div>
+                                    <h3 class="font-medium text-gray-800 mb-4">تغيير كلمة المرور</h3>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-700 mb-2">كلمة المرور الحالية</label>
+                                            <input type="password" 
+                                                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                        </div>
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-700 mb-2">كلمة المرور الجديدة</label>
+                                            <input type="password" 
+                                                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                        </div>
+                                    </div>
+                                    <button class="mt-4 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors text-sm">
+                                        <i class="fas fa-key ml-2"></i>تحديث كلمة المرور
+                                    </button>
+                                </div>
+                                
+                                <div class="border-t pt-6">
+                                    <h3 class="font-medium text-gray-800 mb-4">المصادقة الثنائية</h3>
+                                    <div class="flex items-center justify-between">
+                                        <div>
+                                            <p class="text-sm text-gray-600">تعزيز أمان حسابك بالمصادقة الثنائية</p>
+                                        </div>
+                                        <button class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition text-sm">
+                                            تفعيل الآن
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </body>
+    </html>
+  `)
 })
 
 // العرض التوضيحي
