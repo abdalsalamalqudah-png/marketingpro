@@ -1202,8 +1202,8 @@ app.get('/api/social/scheduled', async (c) => {
     
     const scheduled = await db.prepare(`
       SELECT * FROM social_posts 
-      WHERE status = 'scheduled' AND scheduled_date >= date('now')
-      ORDER BY scheduled_date ASC
+      WHERE status = 'scheduled' AND scheduled_at >= date('now')
+      ORDER BY scheduled_at ASC
     `).all()
     
     return c.json({ posts: scheduled.results || [] })
@@ -1252,7 +1252,7 @@ app.get('/api/social/posts', async (c) => {
     
     const posts = await db.prepare(`
       SELECT * FROM social_posts 
-      ORDER BY posted_at DESC
+      ORDER BY published_at DESC
     `).all()
     
     return c.json({ posts: posts.results || [] })
@@ -1272,9 +1272,9 @@ app.post('/api/social/posts', async (c) => {
     const { content, platform, scheduled_date, image_url } = await c.req.json()
     
     const result = await db.prepare(`
-      INSERT INTO social_posts (content, platform, scheduled_date, image_url, status)
-      VALUES (?, ?, ?, ?, 'scheduled')
-    `).bind(content, platform, scheduled_date, image_url).run()
+      INSERT INTO social_posts (content, platforms, scheduled_at, media_urls, status, team_id, created_by)
+      VALUES (?, ?, ?, ?, 'scheduled', 1, 1)
+    `).bind(content, `["${platform}"]`, scheduled_date, `["${image_url}"]`).run()
     
     return c.json({ 
       success: true, 
@@ -1299,7 +1299,7 @@ app.get('/api/social/activity', async (c) => {
     const activities = await db.prepare(`
       SELECT * FROM social_posts 
       WHERE status = 'published'
-      ORDER BY posted_at DESC
+      ORDER BY published_at DESC
       LIMIT 20
     `).all()
     
@@ -1641,25 +1641,321 @@ app.get('/api/dashboard/activity', async (c) => {
   }
 })
 
+// ===========================================
+// AUTHENTICATION API ENDPOINTS
+// ===========================================
+
+// Login API
+app.post('/api/auth/login', async (c) => {
+  try {
+    const db = c.env?.DB
+    const { email, password } = await c.req.json()
+    
+    if (!db) {
+      // Mock login for development
+      if (email && password) {
+        return c.json({
+          success: true,
+          message: 'تم تسجيل الدخول بنجاح',
+          user: {
+            id: 1,
+            name: 'أحمد محمد',
+            email: email,
+            role: 'admin'
+          },
+          token: 'mock_token_' + Date.now()
+        })
+      } else {
+        return c.json({ error: 'البريد الإلكتروني وكلمة المرور مطلوبان' }, 400)
+      }
+    }
+    
+    // Database authentication
+    const user = await db.prepare(`
+      SELECT id, name, email, role, status 
+      FROM users 
+      WHERE email = ? AND password_hash = ?
+    `).bind(email, password).first()
+    
+    if (!user || user.status !== 'active') {
+      return c.json({ error: 'بيانات تسجيل الدخول غير صحيحة' }, 401)
+    }
+    
+    // Update last login
+    await db.prepare(`
+      UPDATE users 
+      SET last_login_at = datetime('now'), login_count = login_count + 1
+      WHERE id = ?
+    `).bind(user.id).run()
+    
+    return c.json({
+      success: true,
+      message: 'تم تسجيل الدخول بنجاح',
+      user: {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        role: user.role
+      },
+      token: 'jwt_token_' + Date.now() // In production, use proper JWT
+    })
+  } catch (error) {
+    console.error('Login error:', error)
+    return c.json({ error: 'خطأ في تسجيل الدخول' }, 500)
+  }
+})
+
+// Logout API
+app.post('/api/auth/logout', async (c) => {
+  try {
+    // In production, invalidate JWT token here
+    return c.json({
+      success: true,
+      message: 'تم تسجيل الخروج بنجاح'
+    })
+  } catch (error) {
+    console.error('Logout error:', error)
+    return c.json({ error: 'خطأ في تسجيل الخروج' }, 500)
+  }
+})
+
+// Check authentication status
+app.get('/api/auth/me', async (c) => {
+  try {
+    const authHeader = c.req.header('Authorization')
+    
+    if (!authHeader) {
+      return c.json({ error: 'غير مصرح' }, 401)
+    }
+    
+    // Mock user for development
+    return c.json({
+      user: {
+        id: 1,
+        name: 'أحمد محمد',
+        email: 'ahmed@example.com',
+        role: 'admin',
+        avatar_url: null
+      }
+    })
+  } catch (error) {
+    console.error('Auth check error:', error)
+    return c.json({ error: 'خطأ في التحقق من الهوية' }, 500)
+  }
+})
+
+// Login Page
+app.get('/login', (c) => {
+  return c.html(`
+    <!DOCTYPE html>
+    <html lang="ar" dir="rtl">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>تسجيل الدخول - Marketing Pro</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+        <link rel="stylesheet" href="/styles/design-system.css">
+    </head>
+    <body class="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl shadow-xl p-8 w-full max-w-md">
+            <!-- Logo and Header -->
+            <div class="text-center mb-8">
+                <div class="w-16 h-16 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-rocket text-white text-2xl"></i>
+                </div>
+                <h1 class="text-2xl font-bold text-gray-900 mb-2">مرحباً بك في Marketing Pro</h1>
+                <p class="text-gray-600">سجل دخولك للوصول إلى لوحة التحكم</p>
+            </div>
+
+            <!-- Login Form -->
+            <form id="loginForm" class="space-y-6">
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
+                        <i class="fas fa-envelope ml-2"></i>
+                        البريد الإلكتروني
+                    </label>
+                    <input type="email" id="email" name="email" required 
+                           class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                           placeholder="أدخل بريدك الإلكتروني"
+                           value="ahmed@example.com">
+                </div>
+
+                <div>
+                    <label for="password" class="block text-sm font-medium text-gray-700 mb-2">
+                        <i class="fas fa-lock ml-2"></i>
+                        كلمة المرور
+                    </label>
+                    <div class="relative">
+                        <input type="password" id="password" name="password" required 
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors pr-12"
+                               placeholder="أدخل كلمة المرور"
+                               value="123456">
+                        <button type="button" id="togglePassword" class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-between">
+                    <label class="flex items-center">
+                        <input type="checkbox" class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
+                        <span class="mr-2 text-sm text-gray-600">تذكرني</span>
+                    </label>
+                    <a href="#" class="text-sm text-blue-600 hover:text-blue-800">نسيت كلمة المرور؟</a>
+                </div>
+
+                <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-3 px-4 rounded-lg hover:from-blue-700 hover:to-indigo-700 transition-all duration-200 font-medium">
+                    <i class="fas fa-sign-in-alt ml-2"></i>
+                    تسجيل الدخول
+                </button>
+
+                <!-- Demo Credentials Info -->
+                <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                    <h4 class="text-sm font-medium text-blue-800 mb-2">
+                        <i class="fas fa-info-circle ml-1"></i>
+                        بيانات تجريبية للدخول
+                    </h4>
+                    <div class="text-sm text-blue-700">
+                        <p><strong>البريد:</strong> ahmed@example.com</p>
+                        <p><strong>كلمة المرور:</strong> 123456</p>
+                    </div>
+                </div>
+            </form>
+
+            <!-- Loading State -->
+            <div id="loadingState" class="hidden text-center py-4">
+                <i class="fas fa-spinner fa-spin text-blue-600 text-2xl mb-2"></i>
+                <p class="text-gray-600">جارِ تسجيل الدخول...</p>
+            </div>
+
+            <!-- Error Message -->
+            <div id="errorMessage" class="hidden bg-red-50 border border-red-200 rounded-lg p-4 mt-4">
+                <div class="flex items-center text-red-800">
+                    <i class="fas fa-exclamation-triangle ml-2"></i>
+                    <span id="errorText"></span>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            // Toggle password visibility
+            document.getElementById('togglePassword').addEventListener('click', function() {
+                const passwordInput = document.getElementById('password');
+                const icon = this.querySelector('i');
+                
+                if (passwordInput.type === 'password') {
+                    passwordInput.type = 'text';
+                    icon.classList.remove('fa-eye');
+                    icon.classList.add('fa-eye-slash');
+                } else {
+                    passwordInput.type = 'password';
+                    icon.classList.remove('fa-eye-slash');
+                    icon.classList.add('fa-eye');
+                }
+            });
+
+            // Handle login form
+            document.getElementById('loginForm').addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+                const loadingState = document.getElementById('loadingState');
+                const errorMessage = document.getElementById('errorMessage');
+                const form = document.getElementById('loginForm');
+                
+                // Show loading state
+                form.classList.add('hidden');
+                loadingState.classList.remove('hidden');
+                errorMessage.classList.add('hidden');
+                
+                try {
+                    const response = await fetch('/api/auth/login', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ email, password })
+                    });
+                    
+                    const data = await response.json();
+                    
+                    if (data.success) {
+                        // Store auth token and user data
+                        localStorage.setItem('auth_token', data.token);
+                        localStorage.setItem('user_data', JSON.stringify(data.user));
+                        
+                        // Redirect to main application
+                        window.location.href = '/';
+                    } else {
+                        throw new Error(data.error || 'خطأ في تسجيل الدخول');
+                    }
+                } catch (error) {
+                    // Show error
+                    loadingState.classList.add('hidden');
+                    form.classList.remove('hidden');
+                    errorMessage.classList.remove('hidden');
+                    document.getElementById('errorText').textContent = error.message;
+                }
+            });
+        </script>
+    </body>
+    </html>
+  `)
+})
+
 // Landing page for logout redirection
 app.get('/landing', (c) => {
   return c.html(`
-    <!doctype html>
+    <!DOCTYPE html>
     <html lang="ar" dir="rtl">
     <head>
-      <meta charset="utf-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1" />
-      <title>Marketing Pro - صفحة البداية</title>
-      <script src="https://cdn.tailwindcss.com"></script>
-      <link rel="stylesheet" href="/styles/design-system.css" />
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Marketing Pro - صفحة البداية</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+        <link rel="stylesheet" href="/styles/design-system.css">
     </head>
-    <body class="min-h-screen flex items-center justify-center bg-gray-50">
-      <div class="text-center p-8 card">
-        <i class="fas fa-rocket icon-flat text-3xl mb-3"></i>
-        <h1 class="text-h1 font-bold mb-2">مرحباً بك في Marketing Pro</h1>
-        <p class="text-gray-600 mb-6">منصة إدارة التسويق الشاملة</p>
-        <a href="/" class="btn btn-primary"><i class="fas fa-arrow-right"></i> دخول للوحة التحكم</a>
-      </div>
+    <body class="min-h-screen bg-gradient-to-br from-green-50 to-emerald-100 flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl shadow-xl p-8 w-full max-w-md text-center">
+            <!-- Success Icon -->
+            <div class="w-20 h-20 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                <i class="fas fa-check-circle text-white text-3xl"></i>
+            </div>
+            
+            <!-- Success Message -->
+            <h1 class="text-2xl font-bold text-gray-900 mb-3">تم تسجيل الخروج بنجاح</h1>
+            <p class="text-gray-600 mb-6">شكراً لاستخدامك منصة Marketing Pro</p>
+            
+            <!-- Marketing Pro Info -->
+            <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-6 mb-6">
+                <div class="w-12 h-12 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <i class="fas fa-rocket text-white text-xl"></i>
+                </div>
+                <h2 class="text-lg font-bold text-gray-900 mb-2">Marketing Pro</h2>
+                <p class="text-sm text-gray-600">منصة إدارة التسويق الشاملة الذكية</p>
+            </div>
+            
+            <!-- Action Buttons -->
+            <div class="space-y-3">
+                <a href="/login" class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-3 px-4 rounded-lg hover:from-blue-700 hover:to-indigo-700 transition-all duration-200 font-medium inline-block">
+                    <i class="fas fa-sign-in-alt ml-2"></i>
+                    تسجيل الدخول مرة أخرى
+                </a>
+                
+                <a href="/" class="w-full bg-gray-100 text-gray-700 py-3 px-4 rounded-lg hover:bg-gray-200 transition-all duration-200 font-medium inline-block">
+                    <i class="fas fa-home ml-2"></i>
+                    العودة للصفحة الرئيسية
+                </a>
+            </div>
+            
+            <!-- Footer -->
+            <div class="mt-8 pt-6 border-t border-gray-200">
+                <p class="text-xs text-gray-500">© 2024 Marketing Pro. جميع الحقوق محفوظة</p>
+            </div>
+        </div>
     </body>
     </html>
   `)

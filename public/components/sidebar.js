@@ -388,29 +388,37 @@ class Sidebar {
   handleLogout() {
     // Show confirmation dialog
     if (confirm('هل تريد تسجيل الخروج؟')) {
-      // Clear any stored data
-      localStorage.removeItem('sidebar-collapsed');
-      localStorage.removeItem('user-session');
-      
-      // Show logout message
-      const contentArea = document.getElementById('page-content');
-      if (contentArea) {
-        contentArea.innerHTML = `
-          <div class="flex items-center justify-center min-h-[400px]">
-            <div class="text-center">
-              <div class="mb-4">
-                <i class="fas fa-sign-out-alt text-6xl text-gray-400 mb-4"></i>
-              </div>
-              <h3 class="text-2xl font-bold mb-2">تم تسجيل الخروج</h3>
-              <p class="text-gray-600 mb-4">شكراً لاستخدامك منصة Marketing Pro</p>
-              <button onclick="location.reload()" class="btn btn-primary">
-                <i class="fas fa-sign-in-alt ml-2"></i>
-                تسجيل الدخول مرة أخرى
-              </button>
-            </div>
-          </div>
-        `;
-      }
+      // Call logout API
+      fetch('/api/auth/logout', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': localStorage.getItem('auth_token') || ''
+        }
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          // Clear any stored data
+          localStorage.removeItem('sidebar-collapsed');
+          localStorage.removeItem('user-session');
+          localStorage.removeItem('auth_token');
+          
+          // Redirect to landing page
+          window.location.href = '/landing';
+        } else {
+          console.error('Logout failed:', data.error);
+          // Still clear data and redirect on error
+          localStorage.clear();
+          window.location.href = '/landing';
+        }
+      })
+      .catch(error => {
+        console.error('Logout error:', error);
+        // Clear data and redirect even on error
+        localStorage.clear();
+        window.location.href = '/landing';
+      });
       
       // Close mobile sidebar if open
       if (this.isMobile && this.showMobileSidebar) {
