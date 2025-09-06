@@ -1961,8 +1961,434 @@ app.get('/landing', (c) => {
   `)
 })
 
-// Main application with new sidebar structure
+// Professional Landing Page - Main Entry Point
 app.get('/', (c) => {
+  return c.html(`
+    <!DOCTYPE html>
+    <html lang="ar" dir="rtl">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Marketing Pro - منصة التسويق الاحترافية الشاملة</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap');
+            body { font-family: 'Cairo', sans-serif; }
+            .gradient-bg { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+            .card-hover { transition: all 0.3s ease; }
+            .card-hover:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+            .animate-float { animation: float 6s ease-in-out infinite; }
+            @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-20px); } }
+        </style>
+    </head>
+    <body class="bg-gray-50">
+        <!-- Header -->
+        <header class="gradient-bg text-white">
+            <nav class="container mx-auto px-6 py-4">
+                <div class="flex justify-between items-center">
+                    <div class="flex items-center space-x-4 space-x-reverse">
+                        <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center">
+                            <i class="fas fa-rocket text-blue-600 text-2xl"></i>
+                        </div>
+                        <h1 class="text-2xl font-bold">Marketing Pro</h1>
+                    </div>
+                    <div class="hidden md:flex space-x-6 space-x-reverse">
+                        <a href="#features" class="hover:text-blue-200 transition">الميزات</a>
+                        <a href="#pricing" class="hover:text-blue-200 transition">الأسعار</a>
+                        <a href="#contact" class="hover:text-blue-200 transition">اتصل بنا</a>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="gradient-bg text-white py-20">
+            <div class="container mx-auto px-6">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h1 class="text-5xl font-black mb-6 leading-tight">
+                            منصة التسويق
+                            <span class="text-yellow-300">الشاملة الذكية</span>
+                        </h1>
+                        <p class="text-xl mb-8 text-blue-100">
+                            إدارة حملاتك التسويقية، تحليل البيانات، وزيادة المبيعات من مكان واحد بتقنية الذكاء الاصطناعي
+                        </p>
+                        <div class="flex space-x-4 space-x-reverse">
+                            <a href="/dashboard" class="bg-yellow-400 text-gray-900 px-8 py-4 rounded-full font-bold text-lg hover:bg-yellow-300 transition shadow-lg">
+                                <i class="fas fa-tachometer-alt ml-2"></i>
+                                ابدأ الآن مجاناً
+                            </a>
+                            <a href="/demo" class="border-2 border-white text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white hover:text-gray-900 transition">
+                                <i class="fas fa-play ml-2"></i>
+                                شاهد العرض التوضيحي
+                            </a>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <div class="animate-float">
+                            <div class="bg-white rounded-2xl shadow-2xl p-8 backdrop-blur-sm">
+                                <div class="space-y-4">
+                                    <div class="flex items-center justify-between">
+                                        <h3 class="text-gray-800 font-bold text-lg">إحصائيات الحملات</h3>
+                                        <div class="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                                    </div>
+                                    <div class="grid grid-cols-2 gap-4">
+                                        <div class="bg-blue-50 p-4 rounded-xl">
+                                            <div class="text-blue-600 text-2xl font-bold">2.5M</div>
+                                            <div class="text-gray-600 text-sm">وصول شهري</div>
+                                        </div>
+                                        <div class="bg-green-50 p-4 rounded-xl">
+                                            <div class="text-green-600 text-2xl font-bold">18.7%</div>
+                                            <div class="text-gray-600 text-sm">معدل التحويل</div>
+                                        </div>
+                                    </div>
+                                    <div class="bg-gray-100 rounded-xl p-4">
+                                        <div class="flex justify-between items-center mb-2">
+                                            <span class="text-gray-600 text-sm">التقدم الشهري</span>
+                                            <span class="text-green-600 font-bold">+24%</span>
+                                        </div>
+                                        <div class="w-full bg-gray-200 rounded-full h-2">
+                                            <div class="bg-gradient-to-r from-blue-500 to-green-500 h-2 rounded-full" style="width: 75%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-black text-gray-800 mb-4">ميزات لا تُقاوم</h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                        كل ما تحتاجه لإدارة تسويق ناجح في منصة واحدة متكاملة
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="card-hover bg-gradient-to-br from-blue-50 to-blue-100 p-8 rounded-2xl">
+                        <div class="w-16 h-16 bg-blue-500 rounded-2xl flex items-center justify-center mb-6">
+                            <i class="fas fa-chart-line text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">تحليلات متقدمة</h3>
+                        <p class="text-gray-600">
+                            احصل على رؤى عميقة حول أداء حملاتك مع تقارير تفصيلية وتحليلات في الوقت الفعلي
+                        </p>
+                    </div>
+
+                    <div class="card-hover bg-gradient-to-br from-green-50 to-green-100 p-8 rounded-2xl">
+                        <div class="w-16 h-16 bg-green-500 rounded-2xl flex items-center justify-center mb-6">
+                            <i class="fas fa-robot text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">ذكاء اصطناعي</h3>
+                        <p class="text-gray-600">
+                            تحسين تلقائي للحملات واقتراحات ذكية لزيادة الأداء والوصول للجمهور المناسب
+                        </p>
+                    </div>
+
+                    <div class="card-hover bg-gradient-to-br from-purple-50 to-purple-100 p-8 rounded-2xl">
+                        <div class="w-16 h-16 bg-purple-500 rounded-2xl flex items-center justify-center mb-6">
+                            <i class="fas fa-users text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">إدارة العملاء</h3>
+                        <p class="text-gray-600">
+                            نظام CRM متكامل لإدارة العملاء وتتبع رحلة العميل من أول تفاعل حتى الشراء
+                        </p>
+                    </div>
+
+                    <div class="card-hover bg-gradient-to-br from-orange-50 to-orange-100 p-8 rounded-2xl">
+                        <div class="w-16 h-16 bg-orange-500 rounded-2xl flex items-center justify-center mb-6">
+                            <i class="fas fa-envelope text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">التسويق عبر البريد</h3>
+                        <p class="text-gray-600">
+                            أنشئ وأرسل حملات بريد إلكتروني احترافية مع قوالب جاهزة واختبارات A/B
+                        </p>
+                    </div>
+
+                    <div class="card-hover bg-gradient-to-br from-pink-50 to-pink-100 p-8 rounded-2xl">
+                        <div class="w-16 h-16 bg-pink-500 rounded-2xl flex items-center justify-center mb-6">
+                            <i class="fab fa-whatsapp text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">واتساب بزنس</h3>
+                        <p class="text-gray-600">
+                            ربط واتساب بزنس وإدارة المحادثات والرسائل الجماعية من لوحة التحكم
+                        </p>
+                    </div>
+
+                    <div class="card-hover bg-gradient-to-br from-indigo-50 to-indigo-100 p-8 rounded-2xl">
+                        <div class="w-16 h-16 bg-indigo-500 rounded-2xl flex items-center justify-center mb-6">
+                            <i class="fas fa-share-alt text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">وسائل التواصل</h3>
+                        <p class="text-gray-600">
+                            جدولة ونشر المحتوى على جميع منصات التواصل الاجتماعي من مكان واحد
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="py-16 gradient-bg text-white">
+            <div class="container mx-auto px-6">
+                <div class="grid md:grid-cols-4 gap-8 text-center">
+                    <div>
+                        <div class="text-4xl font-black mb-2">+10K</div>
+                        <div class="text-blue-200">عميل راضي</div>
+                    </div>
+                    <div>
+                        <div class="text-4xl font-black mb-2">+50M</div>
+                        <div class="text-blue-200">رسالة مرسلة</div>
+                    </div>
+                    <div>
+                        <div class="text-4xl font-black mb-2">97%</div>
+                        <div class="text-blue-200">معدل الرضا</div>
+                    </div>
+                    <div>
+                        <div class="text-4xl font-black mb-2">24/7</div>
+                        <div class="text-blue-200">دعم فني</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="py-20 bg-gray-800 text-white">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-4xl font-black mb-6">جاهز للبدء؟</h2>
+                <p class="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+                    انضم لآلاف المسوقين الذين يثقون في Marketing Pro لتنمية أعمالهم
+                </p>
+                <div class="space-x-4 space-x-reverse">
+                    <a href="/dashboard" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-full font-bold text-lg transition shadow-lg inline-block">
+                        <i class="fas fa-rocket ml-2"></i>
+                        ادخل للوحة التحكم
+                    </a>
+                    <a href="/login" class="bg-transparent border-2 border-blue-600 text-blue-400 hover:bg-blue-600 hover:text-white px-8 py-4 rounded-full font-bold text-lg transition inline-block">
+                        <i class="fas fa-sign-in-alt ml-2"></i>
+                        تسجيل الدخول
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="bg-gray-900 text-white py-12">
+            <div class="container mx-auto px-6">
+                <div class="grid md:grid-cols-4 gap-8">
+                    <div>
+                        <div class="flex items-center mb-4">
+                            <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center ml-2">
+                                <i class="fas fa-rocket text-white"></i>
+                            </div>
+                            <h3 class="text-xl font-bold">Marketing Pro</h3>
+                        </div>
+                        <p class="text-gray-400">
+                            منصة التسويق الشاملة الذكية لإدارة حملاتك وزيادة مبيعاتك
+                        </p>
+                    </div>
+                    <div>
+                        <h4 class="font-bold mb-4">الميزات</h4>
+                        <ul class="space-y-2 text-gray-400">
+                            <li><a href="#" class="hover:text-white transition">التحليلات</a></li>
+                            <li><a href="#" class="hover:text-white transition">البريد الإلكتروني</a></li>
+                            <li><a href="#" class="hover:text-white transition">وسائل التواصل</a></li>
+                            <li><a href="#" class="hover:text-white transition">واتساب بزنس</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-bold mb-4">الشركة</h4>
+                        <ul class="space-y-2 text-gray-400">
+                            <li><a href="#" class="hover:text-white transition">من نحن</a></li>
+                            <li><a href="#" class="hover:text-white transition">اتصل بنا</a></li>
+                            <li><a href="#" class="hover:text-white transition">الدعم</a></li>
+                            <li><a href="#" class="hover:text-white transition">سياسة الخصوصية</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-bold mb-4">تواصل معنا</h4>
+                        <div class="space-y-2 text-gray-400">
+                            <p><i class="fas fa-envelope ml-2"></i> info@marketingpro.com</p>
+                            <p><i class="fas fa-phone ml-2"></i> +966 50 123 4567</p>
+                            <div class="flex space-x-4 space-x-reverse mt-4">
+                                <a href="#" class="text-blue-400 hover:text-blue-300 transition">
+                                    <i class="fab fa-twitter text-xl"></i>
+                                </a>
+                                <a href="#" class="text-blue-600 hover:text-blue-500 transition">
+                                    <i class="fab fa-linkedin text-xl"></i>
+                                </a>
+                                <a href="#" class="text-pink-500 hover:text-pink-400 transition">
+                                    <i class="fab fa-instagram text-xl"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="border-t border-gray-700 mt-12 pt-8 text-center text-gray-400">
+                    <p>&copy; 2024 Marketing Pro. جميع الحقوق محفوظة</p>
+                </div>
+            </div>
+        </footer>
+    </body>
+    </html>
+  `)
+})
+
+// Demo Page
+app.get('/demo', (c) => {
+  return c.html(`
+    <!DOCTYPE html>
+    <html lang="ar" dir="rtl">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>العرض التوضيحي - Marketing Pro</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap');
+            body { font-family: 'Cairo', sans-serif; }
+            .gradient-bg { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        </style>
+    </head>
+    <body class="bg-gray-50">
+        <!-- Header -->
+        <header class="gradient-bg text-white py-4">
+            <div class="container mx-auto px-6">
+                <div class="flex justify-between items-center">
+                    <div class="flex items-center space-x-4 space-x-reverse">
+                        <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center">
+                            <i class="fas fa-rocket text-blue-600"></i>
+                        </div>
+                        <h1 class="text-xl font-bold">Marketing Pro - العرض التوضيحي</h1>
+                    </div>
+                    <a href="/" class="text-white hover:text-blue-200 transition">
+                        <i class="fas fa-arrow-right ml-2"></i>
+                        العودة للرئيسية
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <!-- Demo Content -->
+        <section class="py-12">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h1 class="text-4xl font-black text-gray-800 mb-4">شاهد Marketing Pro في العمل</h1>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                        جرب النظام مجاناً واكتشف كيف يمكن لـ Marketing Pro تحسين استراتيجيتك التسويقية
+                    </p>
+                </div>
+
+                <!-- Demo Video/Screenshot -->
+                <div class="max-w-5xl mx-auto mb-12">
+                    <div class="bg-white rounded-2xl shadow-2xl overflow-hidden">
+                        <div class="bg-gradient-to-r from-blue-600 to-purple-600 p-4 text-white">
+                            <div class="flex items-center space-x-4 space-x-reverse">
+                                <div class="flex space-x-2 space-x-reverse">
+                                    <div class="w-3 h-3 bg-red-400 rounded-full"></div>
+                                    <div class="w-3 h-3 bg-yellow-400 rounded-full"></div>
+                                    <div class="w-3 h-3 bg-green-400 rounded-full"></div>
+                                </div>
+                                <span class="font-semibold">Marketing Pro Dashboard</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Mock Dashboard Screenshot -->
+                        <div class="p-8 bg-gray-50">
+                            <div class="grid md:grid-cols-3 gap-6 mb-8">
+                                <div class="bg-white p-6 rounded-xl shadow-sm">
+                                    <div class="flex items-center justify-between mb-4">
+                                        <div>
+                                            <h3 class="text-lg font-bold text-gray-800">إجمالي العملاء</h3>
+                                            <p class="text-3xl font-black text-blue-600">2,847</p>
+                                        </div>
+                                        <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
+                                            <i class="fas fa-users text-blue-600 text-xl"></i>
+                                        </div>
+                                    </div>
+                                    <div class="text-sm text-green-600 font-semibold">
+                                        <i class="fas fa-arrow-up ml-1"></i>
+                                        +12% من الشهر الماضي
+                                    </div>
+                                </div>
+
+                                <div class="bg-white p-6 rounded-xl shadow-sm">
+                                    <div class="flex items-center justify-between mb-4">
+                                        <div>
+                                            <h3 class="text-lg font-bold text-gray-800">معدل التحويل</h3>
+                                            <p class="text-3xl font-black text-green-600">18.7%</p>
+                                        </div>
+                                        <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
+                                            <i class="fas fa-chart-line text-green-600 text-xl"></i>
+                                        </div>
+                                    </div>
+                                    <div class="text-sm text-green-600 font-semibold">
+                                        <i class="fas fa-arrow-up ml-1"></i>
+                                        +8.2% من الشهر الماضي
+                                    </div>
+                                </div>
+
+                                <div class="bg-white p-6 rounded-xl shadow-sm">
+                                    <div class="flex items-center justify-between mb-4">
+                                        <div>
+                                            <h3 class="text-lg font-bold text-gray-800">الإيرادات</h3>
+                                            <p class="text-3xl font-black text-purple-600">847,290 ر.س</p>
+                                        </div>
+                                        <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center">
+                                            <i class="fas fa-dollar-sign text-purple-600 text-xl"></i>
+                                        </div>
+                                    </div>
+                                    <div class="text-sm text-green-600 font-semibold">
+                                        <i class="fas fa-arrow-up ml-1"></i>
+                                        +24% من الشهر الماضي
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Mock Chart -->
+                            <div class="bg-white p-6 rounded-xl shadow-sm">
+                                <h3 class="text-lg font-bold text-gray-800 mb-6">أداء الحملات الشهري</h3>
+                                <div class="h-64 bg-gradient-to-t from-blue-50 to-transparent rounded-xl flex items-end justify-center">
+                                    <div class="text-center text-gray-500">
+                                        <i class="fas fa-chart-area text-6xl mb-4 text-blue-300"></i>
+                                        <p class="text-lg">الرسوم البيانية التفاعلية</p>
+                                        <p class="text-sm">تحليلات مفصلة لأداء الحملات</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="text-center">
+                    <div class="space-x-4 space-x-reverse">
+                        <a href="/dashboard" class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-full font-bold text-lg hover:shadow-lg transition inline-block">
+                            <i class="fas fa-tachometer-alt ml-2"></i>
+                            جرب الآن مجاناً
+                        </a>
+                        <a href="/login" class="bg-white border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white px-8 py-4 rounded-full font-bold text-lg transition inline-block">
+                            <i class="fas fa-sign-in-alt ml-2"></i>
+                            تسجيل الدخول
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </body>
+    </html>
+  `)
+})
+
+// Dashboard Application (Internal System)  
+app.get('/dashboard', (c) => {
   return c.html(`
     <!DOCTYPE html>
     <html lang="ar" dir="rtl">
@@ -2529,6 +2955,11 @@ app.post('/api/email/sequences', async (c) => {
     console.error('Create email sequence error:', error)
     return c.json({ error: 'Failed to create email sequence' }, 500)
   }
+})
+
+// Test route to verify functionality
+app.get('/test', (c) => {
+  return c.text('🎉 التطبيق يعمل بشكل ممتاز! 🚀')
 })
 
 export default app
