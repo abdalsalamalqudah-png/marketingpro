@@ -1,0 +1,20 @@
+3459125 feat: إصلاح القائمة الجانبية للموبايل وإضافة زر الخروج - تحديث شامل
+62557a0 Merge branch 'feature/activate-pages'
+518ea12 feat: add comprehensive Cloudflare Pages deployment guide
+35d41e0 fix: update package-lock.json
+0808a40 feat(mobile+users): fix mobile sidebar drawer behavior, add logout button (redirects to /landing), add Users page with autosave; wire users.js; add /landing route
+839d8a5 chore(dev): add pm2 as dev dependency and start via PM2 for local dev
+452e8a7 feat(pages): wire new page scripts into HTML to override placeholders and activate sidebar navigation
+49666fb Merge comprehensive sidebar integrations
+10bfcfd docs: complete comprehensive documentation and final testing
+26a9a83 feat: implement comprehensive Social Media integrations
+3ffec55 feat: implement Email and WhatsApp Business integrations
+3483594 feat: implement responsive sidebar with modular architecture
+8adf2d2 feat: preserve current flat icons design before sidebar implementation
+9b8bc8c 📝 Update README: Both domains working perfectly
+62fe631 🌐 Fix custom domain authentication issues
+c0a34cd 🔧 Fix authentication flow using localStorage
+e55d93f 🐛 Add debugging for auth token decode issues
+9f14acb 🔐 Fix authentication: Add proper /me endpoint and logout
+1b8fec6 📡 Production deployment successful! Updated README with live URLs
+60d22aa Production ready: D1 database setup complete with all features
