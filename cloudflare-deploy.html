@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚀 نشر Marketing Pro على Cloudflare Pages</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap');
+        body { font-family: 'Cairo', sans-serif; }
+        .gradient-bg { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+    </style>
+</head>
+<body class="gradient-bg min-h-screen">
+    <div class="container mx-auto px-6 py-12">
+        <div class="max-w-4xl mx-auto">
+            <!-- Header -->
+            <div class="text-center text-white mb-12">
+                <div class="inline-flex items-center justify-center w-20 h-20 bg-white/20 backdrop-blur-lg rounded-full mb-6">
+                    <i class="fas fa-rocket text-3xl text-white"></i>
+                </div>
+                <h1 class="text-4xl font-bold mb-4">نشر Marketing Pro على Cloudflare Pages</h1>
+                <p class="text-xl text-blue-100">اتبع هذه الخطوات للنشر السريع</p>
+            </div>
+
+            <!-- Deploy Steps -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Method 1 -->
+                <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20">
+                    <div class="text-center mb-6">
+                        <div class="inline-flex items-center justify-center w-16 h-16 bg-blue-500 rounded-full mb-4">
+                            <i class="fas fa-upload text-white text-2xl"></i>
+                        </div>
+                        <h2 class="text-2xl font-bold text-white mb-2">الطريقة الأولى</h2>
+                        <p class="text-blue-100">النشر اليدوي عبر Dashboard</p>
+                    </div>
+                    
+                    <div class="space-y-4 text-white">
+                        <div class="flex items-start">
+                            <span class="inline-flex items-center justify-center w-8 h-8 bg-blue-500 rounded-full text-sm font-bold mr-3">1</span>
+                            <div>
+                                <p class="font-semibold">اذهب إلى Cloudflare Pages</p>
+                                <a href="https://dash.cloudflare.com/pages" target="_blank" class="text-yellow-300 text-sm hover:underline">
+                                    dash.cloudflare.com/pages
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <span class="inline-flex items-center justify-center w-8 h-8 bg-blue-500 rounded-full text-sm font-bold mr-3">2</span>
+                            <div>
+                                <p class="font-semibold">أنشئ مشروع جديد</p>
+                                <p class="text-blue-100 text-sm">اضغط "Create a project" → "Upload assets"</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <span class="inline-flex items-center justify-center w-8 h-8 bg-blue-500 rounded-full text-sm font-bold mr-3">3</span>
+                            <div>
+                                <p class="font-semibold">ارفع مجلد dist</p>
+                                <p class="text-blue-100 text-sm">اسحب مجلد dist من المشروع</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <span class="inline-flex items-center justify-center w-8 h-8 bg-green-500 rounded-full text-sm font-bold mr-3">4</span>
+                            <div>
+                                <p class="font-semibold">انشر الموقع</p>
+                                <p class="text-blue-100 text-sm">اضغط "Deploy site"</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Method 2 -->
+                <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20">
+                    <div class="text-center mb-6">
+                        <div class="inline-flex items-center justify-center w-16 h-16 bg-green-500 rounded-full mb-4">
+                            <i class="fab fa-github text-white text-2xl"></i>
+                        </div>
+                        <h2 class="text-2xl font-bold text-white mb-2">الطريقة الثانية</h2>
+                        <p class="text-blue-100">النشر عبر GitHub</p>
+                    </div>
+                    
+                    <div class="space-y-4 text-white">
+                        <div class="flex items-start">
+                            <span class="inline-flex items-center justify-center w-8 h-8 bg-green-500 rounded-full text-sm font-bold mr-3">1</span>
+                            <div>
+                                <p class="font-semibold">ربط GitHub Repository</p>
+                                <a href="https://github.com/abdalsalamalqudah-png/marketingpro" target="_blank" class="text-yellow-300 text-sm hover:underline">
+                                    github.com/.../marketingpro
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <span class="inline-flex items-center justify-center w-8 h-8 bg-green-500 rounded-full text-sm font-bold mr-3">2</span>
+                            <div>
+                                <p class="font-semibold">اختر Branch</p>
+                                <p class="text-blue-100 text-sm">genspark_ai_developer</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <span class="inline-flex items-center justify-center w-8 h-8 bg-green-500 rounded-full text-sm font-bold mr-3">3</span>
+                            <div>
+                                <p class="font-semibold">إعدادات البناء</p>
+                                <p class="text-blue-100 text-sm">Build command: npm run build</p>
+                                <p class="text-blue-100 text-sm">Output directory: dist</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <span class="inline-flex items-center justify-center w-8 h-8 bg-green-500 rounded-full text-sm font-bold mr-3">4</span>
+                            <div>
+                                <p class="font-semibold">انشر تلقائياً</p>
+                                <p class="text-blue-100 text-sm">النشر سيحدث تلقائياً</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Current Status -->
+            <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20 mt-8">
+                <h3 class="text-2xl font-bold text-white mb-6 text-center">الحالة الحالية</h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="text-center">
+                        <div class="inline-flex items-center justify-center w-12 h-12 bg-green-500 rounded-full mb-3">
+                            <i class="fas fa-check text-white text-xl"></i>
+                        </div>
+                        <h4 class="text-white font-semibold mb-2">التطبيق جاهز</h4>
+                        <p class="text-blue-100 text-sm">تم بناء المشروع بنجاح</p>
+                        <p class="text-green-300 text-xs">_worker.js (236 KB)</p>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="inline-flex items-center justify-center w-12 h-12 bg-green-500 rounded-full mb-3">
+                            <i class="fas fa-cogs text-white text-xl"></i>
+                        </div>
+                        <h4 class="text-white font-semibold mb-2">الإعدادات محدثة</h4>
+                        <p class="text-blue-100 text-sm">wrangler.toml مُكوّن</p>
+                        <p class="text-green-300 text-xs">ES Modules ready</p>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="inline-flex items-center justify-center w-12 h-12 bg-yellow-500 rounded-full mb-3">
+                            <i class="fas fa-rocket text-white text-xl"></i>
+                        </div>
+                        <h4 class="text-white font-semibold mb-2">جاهز للنشر</h4>
+                        <p class="text-blue-100 text-sm">اختر إحدى الطرق أعلاه</p>
+                        <p class="text-yellow-300 text-xs">Deploy now!</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Access -->
+            <div class="text-center mt-12">
+                <h3 class="text-2xl font-bold text-white mb-6">روابط سريعة</h3>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="https://dash.cloudflare.com/pages" target="_blank" 
+                       class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl transition-colors">
+                        <i class="fas fa-external-link-alt mr-2"></i>Cloudflare Pages
+                    </a>
+                    <a href="https://github.com/abdalsalamalqudah-png/marketingpro" target="_blank"
+                       class="bg-gray-800 hover:bg-gray-900 text-white px-6 py-3 rounded-xl transition-colors">
+                        <i class="fab fa-github mr-2"></i>GitHub Repository
+                    </a>
+                    <button onclick="copyCommand()" 
+                            class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-xl transition-colors">
+                        <i class="fas fa-terminal mr-2"></i>Copy CLI Command
+                    </button>
+                </div>
+            </div>
+
+            <!-- CLI Command -->
+            <div class="bg-gray-900 rounded-xl p-6 mt-8">
+                <h4 class="text-white font-semibold mb-4">للنشر عبر CLI:</h4>
+                <div class="bg-black rounded-lg p-4 font-mono text-green-400 text-sm">
+                    <div id="cliCommand">
+                        export CLOUDFLARE_API_TOKEN="your_token_here"<br>
+                        cd /path/to/webapp<br>
+                        npm run build<br>
+                        npx wrangler pages deploy dist --project-name marketing-pro
+                    </div>
+                </div>
+                <p class="text-gray-400 text-xs mt-2">
+                    احصل على API Token من: 
+                    <a href="https://dash.cloudflare.com/profile/api-tokens" target="_blank" class="text-blue-400 hover:underline">
+                        dash.cloudflare.com/profile/api-tokens
+                    </a>
+                </p>
+            </div>
+
+            <!-- Expected Result -->
+            <div class="bg-gradient-to-r from-green-500/20 to-blue-500/20 backdrop-blur-lg rounded-2xl p-8 border border-white/20 mt-8">
+                <h3 class="text-2xl font-bold text-white mb-6 text-center">النتيجة المتوقعة</h3>
+                
+                <div class="text-center">
+                    <div class="inline-flex items-center justify-center w-16 h-16 bg-green-500 rounded-full mb-4">
+                        <i class="fas fa-globe text-white text-2xl"></i>
+                    </div>
+                    <h4 class="text-2xl font-bold text-white mb-2">marketing-pro.pages.dev</h4>
+                    <p class="text-blue-100 mb-4">أو subdomain مخصص</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+                        <div class="bg-white/10 rounded-xl p-4">
+                            <h5 class="text-white font-semibold mb-2">بيانات الدخول</h5>
+                            <p class="text-blue-100 text-sm">admin@marketingpro.com</p>
+                            <p class="text-blue-100 text-sm">123456</p>
+                        </div>
+                        <div class="bg-white/10 rounded-xl p-4">
+                            <h5 class="text-white font-semibold mb-2">الميزات</h5>
+                            <p class="text-blue-100 text-sm">8 صفحات كاملة</p>
+                            <p class="text-blue-100 text-sm">مولد الاستراتيجيات بالذكاء الاصطناعي</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function copyCommand() {
+            const command = `export CLOUDFLARE_API_TOKEN="your_token_here"
+cd /path/to/webapp
+npm run build
+npx wrangler pages deploy dist --project-name marketing-pro`;
+            
+            navigator.clipboard.writeText(command).then(() => {
+                alert('تم نسخ الأوامر إلى الحافظة!');
+            }).catch(() => {
+                prompt('انسخ هذه الأوامر:', command);
+            });
+        }
+    </script>
+</body>
+</html>
